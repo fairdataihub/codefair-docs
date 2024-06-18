@@ -135,12 +135,23 @@ function portalSidebarGuide() {
     {
       text: 'Introduction',
       collapsible: true,
+      items: [{ text: 'What is Codefair?', link: '/docs/intro.md' }],
+    },
+    {
+      text: 'Codefair App',
+      collapsible: true,
       items: [
-        { text: 'What is Codefair?', link: '/docs/intro.md' },
-        { text: 'Codefair App', link: '/docs/codefair-app.md' },
         { text: 'GitHub Issue Dashboard', link: '/docs/github-issue.md' },
-        { text: 'LICENSE Issue', link: '/docs/license-issue.md' },
-        { text: 'Metadata Issue', link: '/docs/metadata-issue.md' },
+        { text: 'LICENSE Check', link: '/docs/license-issue.md' },
+        { text: 'Metadata Checks', link: '/docs/metadata-issue.md' },
+      ],
+    },
+    {
+      text: 'Codefair UI',
+      collapsible: true,
+      items: [
+        { text: 'LICENSE Editor', link: '/docs/license-editor.md' },
+        { text: 'Metadata Editor', link: '/docs/metadata-editor.md' },
       ],
     },
   ];

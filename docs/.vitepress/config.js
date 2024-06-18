@@ -102,7 +102,7 @@ export default withMermaid(
           link: '/docs/intro.md',
         },
         {
-          text: 'Codefair App',
+          text: 'Developer Guide',
           link: '/app/intro.md',
         },
       ],

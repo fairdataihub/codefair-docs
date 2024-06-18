@@ -252,3 +252,8 @@
 .dark .DocSearch-Form {
   background-color: var(--vp-c-bg-mute);
 }
+
+
+.image-src {
+  max-width: 40rem !important;
+}

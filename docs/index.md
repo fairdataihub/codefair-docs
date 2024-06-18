@@ -14,7 +14,7 @@ hero:
   text: ''
   tagline: Documentation for the Codefair platform.
   image:
-    src: /landing.svg
+    src: /landing.png
     alt: Vitest
   actions:
     - theme: brand

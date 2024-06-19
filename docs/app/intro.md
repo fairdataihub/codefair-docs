@@ -50,10 +50,30 @@ git clone
 pnpm install
 ```
 
-3. **Gather Environment Variables**: Create a `.env` file in the root of the repository and add the following environment variables:
+3. **Gather Environment Variables**: Create a `.env` file in both the `ui` and `bot` directories of the repository. You can use the `.env.example` file as a template for the environment variables.
 
 ```bash
-APP_ID=12345
-WEBHOOK_SECRET=secret
-PRIVATE_KEY_PATH=./private-key.pem
+# .env file in the ui directory
+GITHUB_APP_ID=
+GITHUB_APP_PRIVATE_KEY=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+MONGODB_DB_NAME=
+MONGODB_URI="
+```
+
+```bash
+# .env file in the bot directory
+CODEFAIR_APP_DOMAIN=http://localhost:3000
+GITHUB_APP_NAME=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+MONGODB_DB_NAME=
+MONGODB_URI=
+PORT=3001
+WEBHOOK_PROXY_URL=
+APP_ID=
+GITHUB_APP_ID=
+PRIVATE_KEY=
+WEBHOOK_SECRET=
 ```

@@ -5,7 +5,7 @@ description: Understanding the Codefair App
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Introduction%20to%20the%20Codefair%20Portal&description=&app=codefair-docs&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Understanding%20the%20Codefair%20App&app=codefair&org=fairdataihub
 ---
 
 # Codefair App

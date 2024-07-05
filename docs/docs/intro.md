@@ -1,11 +1,11 @@
 ---
 lang: en-US
-title: Introduction to the Codefair
-description: Introduction to the Codefair
+title: Introduction to Codefair
+description: Introduction to Codefair
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Introduction%20to%20the%20Codefair%20Portal&description=&app=codefair-docs&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Introduction%20to%20Codefair&app=codefair&org=fairdataihub
 ---
 
 # Introduction to the Codefair

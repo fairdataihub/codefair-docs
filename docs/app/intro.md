@@ -1,7 +1,7 @@
 ---
 lang: en-US
 title: Running the Repository
-description:
+description: Runnning the Codefair GitHub repository
 head:
   - - meta
     - name: og:image

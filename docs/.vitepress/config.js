@@ -133,9 +133,12 @@ function appSidebarGuide() {
 function portalSidebarGuide() {
   return [
     {
-      text: 'Introduction',
+      text: 'Getting Started',
       collapsible: true,
-      items: [{ text: 'What is Codefair?', link: '/docs/intro.md' }],
+      items: [
+        { text: 'What is Codefair?', link: '/docs/intro.md' },
+        { text: 'Installation', link: '/docs/installation.md' },
+      ],
     },
     {
       text: 'Codefair App',

@@ -10,7 +10,7 @@ head:
 
 # Installation
 
-This section provides instructions for installing the Codefair GitHub App.
+This section provides instructions for installing the Codefair GitHub App and the permissions required for the GitHub and Oauth Sign In through the Codefair UI.
 
 ## GitHub App Installation
 

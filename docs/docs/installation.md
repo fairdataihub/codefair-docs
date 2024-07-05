@@ -1,11 +1,11 @@
 ---
 lang: en-US
 title: Installation
-description: Installation the GitHub App
+description: Installaling the GitHub App
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Installating%20the%20GitHub%20App&app=codefair&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Installing%20the%20GitHub%20App&app=codefair&org=fairdataihub
 ---
 
 # Installation

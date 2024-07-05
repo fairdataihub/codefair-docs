@@ -31,3 +31,9 @@ Codefair requires the following permissions to function correctly:
 - **Read Access**: Metadata
 
 ![Codefair Permissions](/codefair-permissions.png)
+
+We do not store any data from your repository and only use the permissions to provide the Codefair features.
+
+## Sign In to Codefair
+
+To access the UI of the Codefair platform, you will need to sign in using your GitHub account. We use GitHub OAuth to authenticate users and provide access to the Codefair features.

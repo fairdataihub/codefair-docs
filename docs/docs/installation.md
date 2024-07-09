@@ -16,10 +16,13 @@ This section provides instructions for installing the Codefair GitHub App and th
 
 To install the Codefair GitHub App, you will need to follow the steps below:
 
-1. **Visit the Codefair GitHub App**: Visit the [Codefair GitHub App](https://github.com/marketplace/codefair-app)
+1. **GitHub Marketplace**: Visit https://github.com/marketplace/codefair-app
 2. **Install the App**: Click on the `Install it for free` button to install the Codefair GitHub App on your repository.
-3. **Configure the App**: After installing the Codefair GitHub App, you will need to configure the app by providing the necessary permissions and access to your repository.
-4. **Select Repositories**: Choose the repositories you want to enable the Codefair GitHub App for and click on the `Save` button.
+3. **Select Repositories**: Choose the repositories where you want to enable the Codefair GitHub App for and click on the `Save` button.
+
+::: tip
+You can also install the Codefair App without a credit card by visiting the [public page](https://github.com/apps/codefair-app)
+:::
 
 After following these steps, the Codefair GitHub App will be installed on your repository and you will be able to access the Codefair features.
 
@@ -33,7 +36,3 @@ Codefair requires the following permissions to function correctly:
 ![Codefair Permissions](/codefair-permissions.png)
 
 We do not store any data from your repository and only use the permissions to provide the Codefair features.
-
-## Sign In to Codefair
-
-To access the UI of the Codefair platform, you will need to sign in using your GitHub account. We use GitHub OAuth to authenticate users and provide access to the Codefair features.

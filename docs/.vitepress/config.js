@@ -93,7 +93,10 @@ export default withMermaid(
       },
 
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/fairdataihub' },
+        {
+          icon: 'github',
+          link: 'https://github.com/fairdataihub/codefair-app',
+        },
       ],
 
       nav: [
@@ -144,17 +147,19 @@ function portalSidebarGuide() {
       text: 'Codefair App',
       collapsible: true,
       items: [
-        { text: 'GitHub Issue Dashboard', link: '/docs/github-issue.md' },
-        { text: 'LICENSE Check', link: '/docs/license-issue.md' },
-        { text: 'Metadata Checks', link: '/docs/metadata-issue.md' },
+        { text: 'GitHub Issue Dashboard', link: '/docs/dashboard.md' },
+        { text: 'LICENSE', link: '/docs/license.md' },
+        { text: 'Metadata', link: '/docs/metadata.md' },
       ],
     },
     {
-      text: 'Codefair UI',
+      text: 'Upcoming',
       collapsible: true,
       items: [
-        { text: 'LICENSE Editor', link: '/docs/license-editor.md' },
-        { text: 'Metadata Editor', link: '/docs/metadata-editor.md' },
+        { text: 'Zenodo Archiving', link: '/docs/zenodo.md' },
+        { text: 'Code Formatting', link: '/docs/code-format.md' },
+        { text: 'Security and PII Review', link: '/docs/security.md' },
+        { text: 'PR Summary', link: '/docs/pr-summary.md' },
       ],
     },
   ];

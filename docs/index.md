@@ -18,17 +18,20 @@ hero:
     alt: Vitest
   actions:
     - theme: brand
-      text: Get Started 🚀
+      text: View Documentation 📚
       link: /docs/intro
+    - theme: brand
+      text: Install Codefair 🚀
+      link: https://github.com/marketplace/codefair-app
 
 features:
-  - icon: 🗂️
-    title: Organize repository
-    details: Use the Codefair platform to align your repository with the FAIR Research Software Principles.
-  - icon: 🤖
-    title: Be FAIR-Ready
-    details: Include metadata to make your repository FAIR.
-  - icon: 🏷️
-    title: Include metadata with ease
-    details: Use the Codeair platform to make your life easier.
+  - icon: 📚
+    title: Be FAIR
+    details: Make your software Findable, Accessible, Interoperable, and Reusable (FAIR) to enhance its reusability and make it citable.
+  - icon: 📝
+    title: Complying with funding agencies
+    details: Start complying with funding agencies such as the NIH that are progressively requiring all research outputs to be FAIR.
+  - icon: 😅
+    title: Don't sweat
+    details: Codefair takes care of everything for you so you can focus on the goals of your software.
 ---

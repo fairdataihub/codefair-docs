@@ -29,6 +29,10 @@ The image above demonstrates the Metadata issue in the Issue Dashboard.
 
 The metadata editor is a user-friendly interface that allows you to edit the metadata of your research software. The metadata initially displayed is what Probot has gathered from your repository. The editor is designed to help you input and update the metadata of your research software in a simple and intuitive way.
 
+::: warning
+To access the metadata editor, you will need to sign in using your GitHub account. We use GitHub OAuth to authenticate users and provide access to the Codefair features.
+:::
+
 The editor is broken into sections, each representing a different aspect of the metadata:
 
 1. **General Information**: This section includes the title, description, and homepage of your repository.

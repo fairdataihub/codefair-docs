@@ -6,7 +6,7 @@
   "author": "Fair Data Innovations Hub <info@fairdataihub.org> (https://fairdataihub.org)",
   "license": "MIT",
   "scripts": {
-    "dev": "vitepress dev docs --port 3002",
+    "dev": "vitepress dev docs --port 3000",
     "docs:dev": "vitepress dev docs --port 3000",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",

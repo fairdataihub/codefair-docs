@@ -10,4 +10,4 @@ head:
 
 # Introduction to the Codefair
 
-Codefair is a platform that combines the power of GitHub apps and an intuitive UI to help make research software reusable and comply with the FAIR principles for Research Software (FAIR4RS Principles). This repository contains the developer and user documentation for the Codefair platform.
+Codefair is a free and open source GitHub app that acts as your personal assistant when it comes to making your research software reusable and especially complying with the Findable, Accessible, Interoperable, Reusable (FAIR) Principles for Research Software (FAIR4RS Principles). Whether you are developing artificial intelligence (AI)/machine learning (ML) models with Python, data visualization tools with Jupyter notebook, or data analysis code with R, codefair is here to assist you. You can find out more about codefair at [codefair.io](https://codefair.io).

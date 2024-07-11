@@ -12,7 +12,7 @@ head:
 hero:
   name: Codefair Documentation
   text: ''
-  tagline: Documentation for the Codefair platform.
+  tagline: Documentation for users and developers of codefair.
   image:
     src: /landing.png
     alt: Vitest
@@ -29,7 +29,7 @@ features:
     title: Be FAIR
     details: Make your software Findable, Accessible, Interoperable, and Reusable (FAIR) to enhance its reusability and make it citable.
   - icon: 📝
-    title: Complying with funding agencies
+    title: Comply with funding agencies
     details: Start complying with funding agencies such as the NIH that are progressively requiring all research outputs to be FAIR.
   - icon: 😅
     title: Don't sweat

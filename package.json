@@ -1,7 +1,7 @@
 {
   "name": "codefair-docs",
   "version": "0.0.0",
-  "description": "Developer documentation for the codefair",
+  "description": "Developer documentation for the Codefair",
   "main": "index.js",
   "author": "Fair Data Innovations Hub <info@fairdataihub.org> (https://fairdataihub.org)",
   "license": "MIT",

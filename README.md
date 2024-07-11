@@ -7,7 +7,7 @@
 <h1>Codefair Documentation</h1>
 
 <p>
-Documentation for the codefair platform.
+Documentation for the Codefair platform.
 </p>
 
   <h4>

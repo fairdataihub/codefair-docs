@@ -12,7 +12,7 @@ head:
 hero:
   name: Codefair Documentation
   text: ''
-  tagline: Documentation for users and developers of codefair.
+  tagline: Documentation for users and developers of Codefair.
   image:
     src: /landing.png
     alt: Vitest
@@ -20,7 +20,7 @@ hero:
     - theme: brand
       text: View Documentation 📚
       link: /docs/intro
-    - theme: brand
+    - theme: secondary
       text: Install Codefair 🚀
       link: https://github.com/marketplace/codefair-app
 

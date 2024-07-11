@@ -108,6 +108,10 @@ export default withMermaid(
           text: 'Developer Guide',
           link: '/app/intro.md',
         },
+        {
+          text: 'Contact Us',
+          link: 'https://tally.so/r/3E0dao',
+        },
       ],
 
       sidebar: {
@@ -128,7 +132,7 @@ function appSidebarGuide() {
     {
       text: 'Getting Started',
       collapsible: true,
-      items: [{ text: 'What is the Codefair App?', link: '/app/intro.md' }],
+      items: [{ text: 'Running Locally', link: '/app/intro.md' }],
     },
   ];
 }
@@ -153,14 +157,9 @@ function portalSidebarGuide() {
       ],
     },
     {
-      text: 'Upcoming',
+      text: 'Resources',
       collapsible: true,
-      items: [
-        { text: 'Zenodo Archiving', link: '/docs/zenodo.md' },
-        { text: 'Code Formatting', link: '/docs/code-format.md' },
-        { text: 'Security and PII Review', link: '/docs/security.md' },
-        { text: 'PR Summary', link: '/docs/pr-summary.md' },
-      ],
+      items: [{ text: 'Upcoming Features', link: '/docs/upcoming.md' }],
     },
   ];
 }

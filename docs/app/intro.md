@@ -12,7 +12,7 @@ head:
 
 This section provides instructions for developers to run the Codefair GitHub repository.
 
-## What is Codefair?
+## Code Structure
 
 The Codefair repository combines both the Nuxt frontend and the Probot backend to work with the GitHub App. The repository is divided into two main parts:
 

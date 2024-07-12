@@ -1,5 +1,6 @@
 :root {
   --vp-c-brand: #4D5AE6;
+  --vp-c-secondary: #B6A6DE;
   --vp-c-brand-light: #a5b4fc;
   --vp-c-brand-dark: black;
   --vt-c-text-3: #213547;
@@ -46,6 +47,12 @@
 
 .VPButton.brand{
   color: white!important;
+}
+
+.VPButton.secondary {
+  color: white!important;
+  border: 1px solid var(--vp-c-brand)!important;
+  background: var(--vp-c-brand-light)!important;
 }
 
 .dark .VPNavBarMenuLink.active, .dark .VPNavBarMenuLink:hover{

@@ -10,4 +10,4 @@ head:
 
 # What is Codefair?
 
-Codefair is a platform that combines the power of GitHub apps and an intuitive UI to help make research software reusable and comply with the FAIR principles for Research Software (FAIR4RS Principles). This repository contains the developer and user documentation for the Codefair platform.
+This is the user documentation for Codefair. Codefair is a platform that combines the power of GitHub apps and an intuitive UI to help make research software reusable and comply with the FAIR principles for Research Software (FAIR4RS Principles). This repository contains the developer and user documentation for the Codefair platform.

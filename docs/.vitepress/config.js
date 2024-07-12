@@ -130,7 +130,7 @@ export default withMermaid(
 function appSidebarGuide() {
   return [
     {
-      text: 'Getting Started',
+      text: 'Introduction',
       collapsible: true,
       items: [{ text: 'Running Locally', link: '/app/intro.md' }],
     },
@@ -140,7 +140,7 @@ function appSidebarGuide() {
 function portalSidebarGuide() {
   return [
     {
-      text: 'Getting Started',
+      text: 'Introduction',
       collapsible: true,
       items: [
         { text: 'What is Codefair?', link: '/docs/intro.md' },

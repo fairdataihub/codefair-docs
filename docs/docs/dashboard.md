@@ -10,9 +10,7 @@ head:
 
 # GitHub Issue Dashboard
 
-The GitHub Issue Dashboard is a feature that allows you to view and manage issues your repository may have.
-The dashboard is updated in real-time and provides a comprehensive overview of the issues in your repository.
-A link to correct the issue is provided in the dashboard, making it easier to manage and resolve issues.
+As soon as you install the Codefair app, it opens a GitHub issue in your repository. This issue contains a dashboard that provides a point by point overview of your software's compliance with elements that make a software FAIR. The dashboard is updated with each new commit to the main branch. A check mark is shown next to elements your software is complying with (e.g., the dashboard in screenshot below shows that the software has a LICENSE file). A red cross is shown next to the elements that are not complied with yet (e.g., the dashboard in screenshot below shows that the software does not have required metadata files). For such elements, there is a button that takes you to the Codefair website where you can easily address the compliance issue through a convenience user interface.
 
 ![GitHub Issue Dashboard](/codefair-issue-dashboard.png)
 The image above demonstrates the Dashboard when all issues are resolved.

@@ -14,21 +14,18 @@ In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), princip
 
 ## How to fix the LICENSE issue
 
-To fix the LICENSE issue, you can simply click on the `Add License` button provided in the Issue Dashboard. This button will direct you to the Codefair's license editor to select and modify the LICENSE file. Once you have selected the appropriate license, you can save and push the changes to your repository. This will open a pull request in your repository with the updated LICENSE file. You can then review the changes and merge the pull request to resolve the LICENSE issue.
+The Codefair issue dashboard will show a compliance issue with the license requirement if no file named "LICENSE", "LICENSE.txt" or "LICENSE.md" is found in at the root of the repository. To fix the LICENSE issue, you can simply click on the `Add License` button provided in the issue dashboard. You will be directed to the Codefair's license editor UI where you will be able to select a license, review/edit the license terms, and submit a PR for adding a LICENSE file to your repository. Details about Codefair's license editor UI are provided below.
 
 ![LICENSE Issue](/license-issue-dashboard.png)
-The image above demonstrates the LICENSE issue in the Issue Dashboard.
+The image above demonstrates the LICENSE issue in the issue dashboard.
 
-## License Editor
+## License editor UI
 
-The license editor is a user-friendly interface that allows you to edit the license of your research software. The license editor is designed to help you input and update the license of your research software in a simple and intuitive way.
-
-The license editor provides you with a list of common licenses that you can choose from. Once selected the license content is displayed in the editor allowing you to review and update the license text. The license editor also provides you with a preview of the license text to help you understand how the license will be displayed in your repository.
+The license editor UI is a user-friendly interface that allows you to add a license to your research software or edit it. The license editor provides you with a list of common licenses that you can choose from. Once selected, the license content is displayed in the editor allowing you to review and update the license text, if needed. You can then click on the `Save and push license to repository` button and codefair will create a PR with a corresponding LICENSE file. The PR page will open automatically so you can quickly review and merge it. Alternatively, you can click on the `Save` button and come back to continue later on.
 
 ::: warning
 To access the license editor, you will need to sign in using your GitHub account. We use GitHub OAuth to authenticate users and provide access to the Codefair features.
 :::
 
 ![License Editor](/license-editor.png)
-The image above demonstrates the License Editor in the Codefair UI.
-A license is selected from the dropdown list, and the license text is displayed in the editor. The license text is displayed in the preview section to help you understand how the license will be displayed in your repository.
+The image above demonstrates the license editor UI. A license is selected from the dropdown list, and the license text is displayed in the editor. The license text is displayed in the preview section to help you understand how the license will be displayed in your repository.

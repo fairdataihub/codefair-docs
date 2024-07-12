@@ -35,4 +35,12 @@ Codefair requires the following permissions to function correctly:
 
 ![Codefair Permissions](/codefair-permissions.png)
 
+## Oauth Sign in Permissions
+
+Users can sign in to Codefair using their GitHub account. Codefair requires the following permissions to function correctly:
+
+- **Read Access**: User Email, Profile Information
+
+![Oauth Permissions](/oauth-permissions.png)
+
 We do not store any data from your repository and only use the permissions to provide the Codefair features.

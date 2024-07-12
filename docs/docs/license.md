@@ -10,9 +10,7 @@ head:
 
 # LICENSE
 
-The absence of a license file is a common issue in repositories. This problem occurs when a repository does not include a LICENSE file, which contains the licensing information for the repository. The LICENSE file is crucial because it informs users about how they can use the code in the repository. Additionally, it helps protect the code.
-
-Without a LICENSE file, users may be uncertain about how to use the repository's code. Adding a LICENSE file resolves this issue, making the code more accessible and usable. Addressing the LICENSE issue is important as it enhances the repository's compliance with FAIR principles and is a necessary step before checking other compliances. By fixing this issue, you contribute to making your repository more FAIR and aligned with FAIR4RS principles.
+In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), principle R1.1 states "Software is given a clear and accessible license". This is critical because without a license, a software cannot be legally reused. To comply with this principle, the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x) instruct to include a LICENSE file with license terms.
 
 ## How to fix the LICENSE issue
 

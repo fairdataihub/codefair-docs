@@ -10,9 +10,7 @@ head:
 
 # Metadata
 
-The Metadata issue occurs when a CITATION.cff or codemeta.json file is not present in the repository. Metadata is essential for enhancing the discoverability and reusability of your research software. These files provide crucial information about your software, including the authors, title, and license details. This information is important for users who want to cite your research software or reuse it in their own projects.
-
-By adding a CITATION.cff and codemeta.json file to your repository, you can help make your research software more discoverable and reusable. By adding metadata to your repository, you can help make your research software more FAIR and more compliant with the FAIR4RS principles.
+In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), many principles state to include rich metadata following standard structure. This is critical to make software findable and reusable. One of the ways to achieve that prescribed by the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x) is to include a CITATION.cff and a codemeta.json metadata files.
 
 ::: info
 Metadata checks are performed only when a LICENSE file is present in the repository.

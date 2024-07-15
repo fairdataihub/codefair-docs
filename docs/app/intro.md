@@ -5,7 +5,7 @@ description: Runnning the Codefair GitHub repository
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Running%20the%20Codefair%20Repository&app=codefair&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Running%20the%20GitHub%20Repository&app=codefair&org=fairdataihub
 ---
 
 # :toolbox: Developer Instructions

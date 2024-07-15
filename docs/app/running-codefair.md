@@ -5,7 +5,7 @@ description:
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=What%20is%20Codefair%3F&description=&app=codefair-docs&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Running%20the%20GitHub%20Repository&app=codefair&org=fairdataihub
 ---
 
 # What is Codefair?

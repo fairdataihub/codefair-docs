@@ -5,7 +5,7 @@ description: Metadata
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Metadata%20Issue&app=codefair&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Metadata&app=codefair&org=fairdataihub
 ---
 
 # Metadata

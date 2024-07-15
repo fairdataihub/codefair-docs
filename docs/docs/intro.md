@@ -5,7 +5,7 @@ description: Introduction
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Introduction%20to%20Codefair&app=codefair&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Introduction&app=codefair&org=fairdataihub
 ---
 
 # Introduction

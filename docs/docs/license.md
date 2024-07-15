@@ -5,7 +5,7 @@ description: LICENSE
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=License%20Issue&app=codefair&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=LICENSE&app=codefair&org=fairdataihub
 ---
 
 # LICENSE

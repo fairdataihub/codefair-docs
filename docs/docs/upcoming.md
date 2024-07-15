@@ -5,7 +5,7 @@ description: Upcoming Features
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=License%20Editor&app=codefair&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Upcoming%20Features&app=codefair&org=fairdataihub
 ---
 
 # Upcoming Features

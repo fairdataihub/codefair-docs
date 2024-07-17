@@ -54,26 +54,26 @@ pnpm install
 
 ```bash
 # .env file in the ui directory
-GITHUB_APP_ID=
-GITHUB_APP_PRIVATE_KEY=
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-MONGODB_DB_NAME=
-MONGODB_URI="
+GITHUB_APP_ID=            # GitHub App ID
+GITHUB_APP_PRIVATE_KEY=   # GitHub App private key
+GITHUB_CLIENT_ID=         # GitHub OAuth client ID
+GITHUB_CLIENT_SECRET=     # GitHub OAuth client secret
+MONGODB_DB_NAME=          # Name of the MongoDB database
+MONGODB_URI=              # URI for the MongoDB database
 ```
 
 ```bash
 # .env file in the bot directory
-CODEFAIR_APP_DOMAIN=http://localhost:3000
-GITHUB_APP_NAME=
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-MONGODB_DB_NAME=
-MONGODB_URI=
-PORT=3001
-WEBHOOK_PROXY_URL=
-APP_ID=
-GITHUB_APP_ID=
-PRIVATE_KEY=
-WEBHOOK_SECRET=
+CODEFAIR_APP_DOMAIN=          # http://localhost:3000 or your domain for the frontend
+GITHUB_APP_NAME=              # Name of the GitHub App
+GITHUB_CLIENT_ID=             # GitHub OAuth client ID
+GITHUB_CLIENT_SECRET=         # GitHub OAuth client secret
+MONGODB_DB_NAME=              # Name of the MongoDB database
+MONGODB_URI=                  # URI for the MongoDB database
+PORT=3001                     # port for the Probot server
+WEBHOOK_PROXY_URL=            # URL for the webhook proxy
+APP_ID=                       # GitHub App ID
+GITHUB_APP_ID=                # GitHub App Id
+PRIVATE_KEY=                  # GitHub App private key
+WEBHOOK_SECRET=               # GitHub App webhook secret
 ```

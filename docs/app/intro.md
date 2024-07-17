@@ -26,17 +26,32 @@ Before you can run the Codefair repository, you will need the following prerequi
 
 1. **Node.js**: You will need Node.js installed on your machine to run the Codefair repository. You can download Node.js from the [official Node.js website](https://nodejs.org/).
 
-2. **GitHub App**: You will need to create a GitHub App and install it on your repository. You can follow the instructions in the [GitHub App documentation](https://docs.github.com/en/developers/apps) to create a GitHub App.
+2. **MongoDB**: You will need a MongoDB database to store the data for the Codefair platform. You can download MongoDB from the [official MongoDB website](https://www.mongodb.com/).
 
-## Running the Repository
-
-To run the Codefair repository, you will need pnpm installed on your machine. If you do not have pnpm installed, you can install it by running the following command:
+3. **pnpm**: You will need pnpm installed on your machine to run the Codefair repository. You can install pnpm by running the following command:
 
 ```bash
 npm install -g pnpm
 ```
 
-After you have installed pnpm, you can run the following commands to start the Codefair repository:
+4. **GitHub App**: Create a GitHub App by going to the Developer Settings in your GitHub account and within the GitHub App section. You will need to provide the following information:
+
+- **GitHub App Name**: Name of the GitHub App
+- **Homepage URL**: URL for the Codefair frontend
+- **Webhook URL**: URL for the Probot server
+- **Webhook Secret**: Secret for the GitHub App webhook
+- **Permissions**:
+  - **Read & Write access:** Contents, issues, and pull requests
+  - **Read access:** Metadata
+  - **Events to Subscribe to:** Issue comments, issues, pull request, pull request review, push, repository
+
+For the final question on `Where can this GitHub App be installed?`, you can choose `Any account` to allow the GitHub App to be installed on any repository.
+
+Once you have create the GitHub App, you will need to generate a private key and client secret for the GitHub App. The private key and client secret will be used to authenticate the GitHub App with the GitHub API.
+
+## Running the Repository
+
+You can run the following commands to start the Codefair repository:
 
 1. **Clone the Repository**: Clone the Codefair repository to your local machine by running the following command:
 

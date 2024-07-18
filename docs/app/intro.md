@@ -34,7 +34,13 @@ Before you can run the Codefair repository, you will need the following prerequi
 npm install -g pnpm
 ```
 
-4. **GitHub App**: Create a GitHub App by going to the Developer Settings in your GitHub account and within the GitHub App section. You will need to provide the following information:
+4. **Oauth App**: Create an Oauth App by going to the Developer Settings in your GitHub account and within the Oauth Apps section. You will need to provide the following information:
+
+- **Application Name**: Name of the Oauth App
+- **Homepage URL**: URL for the Codefair frontend
+- **Authorization callback URL**: URL for the Codefair frontend
+
+5. **GitHub App**: Create a GitHub App by going to the Developer Settings in your GitHub account and within the GitHub App section. You will need to provide the following information:
 
 - **GitHub App Name**: Name of the GitHub App
 - **Homepage URL**: URL for the Codefair frontend

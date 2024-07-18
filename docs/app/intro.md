@@ -16,9 +16,9 @@ This section provides instructions for developers to run the Codefair GitHub rep
 
 The Codefair repository combines both the Nuxt frontend and the Probot backend to work with the GitHub App. The repository is divided into two main parts:
 
-1. **Frontend**: The frontend is built with Nuxt.js and is responsible for the user interface of the Codefair platform. The frontend is located in the `ui` directory of the repository.
+1. **Frontend**: The frontend is built with [Nuxt.js](https://nuxt.com/) and is responsible for the user interface of the Codefair platform. The frontend is located in the `ui` directory of the repository.
 
-2. **GitHub App**: The GitHub app is built with Probot and is responsible for the GitHub App functionality. The backend is located in the `bot` directory of the repository.
+2. **GitHub App**: The GitHub app is built with [Probot](https://probot.github.io/docs/README/) and is responsible for the GitHub App functionality. The backend is located in the `bot` directory of the repository.
 
 ## Prerequisites
 
@@ -34,17 +34,19 @@ Before you can run the Codefair repository, you will need the following prerequi
 npm install -g pnpm
 ```
 
-4. **Oauth App**: Create an Oauth App by going to the Developer Settings in your GitHub account and within the Oauth Apps section. You will need to provide the following information:
+4. **Smee**: You will need Smee.io to create a webhook proxy for the GitHub App. You can create a Smee.io webhook proxy by visiting the [Smee.io website](https://smee.io/). This will be used to receive GitHub App events from the GitHub API on your local machine.
+
+5. **Oauth App**: Create an Oauth App by going to the Developer Settings in your GitHub account and within the Oauth Apps section. You will need to provide the following information:
 
 - **Application Name**: Name of the Oauth App
 - **Homepage URL**: URL for the Codefair frontend
 - **Authorization callback URL**: URL for the Codefair frontend
 
-5. **GitHub App**: Create a GitHub App by going to the Developer Settings in your GitHub account and within the GitHub App section. You will need to provide the following information:
+6. **GitHub App**: Create a GitHub App by going to the Developer Settings in your GitHub account and within the GitHub App section. You will need to provide the following information:
 
 - **GitHub App Name**: Name of the GitHub App
 - **Homepage URL**: URL for the Codefair frontend
-- **Webhook URL**: URL for the Probot server
+- **Webhook URL**: URL for the Probot server (If working locally use the Smee.io URL)
 - **Webhook Secret**: Secret for the GitHub App webhook
 - **Permissions**:
   - **Read & Write access:** Contents, issues, and pull requests

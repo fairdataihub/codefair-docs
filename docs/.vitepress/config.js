@@ -137,6 +137,11 @@ function appSidebarGuide() {
         { text: 'Running Locally', link: '/app/running-locally.md' },
       ],
     },
+    {
+      text: 'Adding a New Feature',
+      collapsible: true,
+      items: [{ text: 'Introduction', link: '/app/intro-new-feature.md' }],
+    },
   ];
 }
 

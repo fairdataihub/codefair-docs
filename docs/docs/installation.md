@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Installing%20the%20GitHub%20App&app=codefair&org=fairdataihub
 ---
 
-# Installation
+# :cd: Installation
 
 This section provides instructions for installing the Codefair GitHub App and the permissions required for the GitHub and Oauth Sign In through the Codefair UI.
 

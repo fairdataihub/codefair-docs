@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Upcoming%20Features&app=codefair&org=fairdataihub
 ---
 
-# Upcoming Features
+# :fast_forward: Upcoming Features
 
 This section provides an overview of upcoming features that will be added to Codefair.
 

@@ -130,9 +130,12 @@ export default withMermaid(
 function appSidebarGuide() {
   return [
     {
-      text: 'Introduction',
+      text: 'Getting Started',
       collapsible: true,
-      items: [{ text: 'Running Locally', link: '/app/intro.md' }],
+      items: [
+        { text: 'Introduction', link: '/app/intro.md' },
+        { text: 'Running Locally', link: '/app/running-locally.md' },
+      ],
     },
   ];
 }
@@ -159,7 +162,10 @@ function portalSidebarGuide() {
     {
       text: 'Resources',
       collapsible: true,
-      items: [{ text: 'Upcoming Features', link: '/docs/upcoming.md' }],
+      items: [
+        { text: 'Upcoming Features', link: '/docs/upcoming.md' },
+        { text: 'Contributing', link: '/docs/contributing.md' },
+      ],
     },
   ];
 }

@@ -75,8 +75,6 @@ if (error.value) {
     message: 'Please try again later',
   });
 
-  // console.error("Failed to fetch license details:", error.value);
-
   throw createError(error.value);
 }
 

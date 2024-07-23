@@ -140,7 +140,10 @@ function appSidebarGuide() {
     {
       text: 'Adding a New Feature',
       collapsible: true,
-      items: [{ text: 'Introduction', link: '/app/intro-new-feature.md' }],
+      items: [
+        { text: 'Bot Feature', link: '/app/bot.md' },
+        { text: 'UI Page', link: '/app/ui.md' },
+      ],
     },
   ];
 }

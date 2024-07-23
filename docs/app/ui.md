@@ -96,8 +96,7 @@ const saveExpectoDraft = async () => {
   submitLoading.value = true;
 
   const body = {
-    licenseId: licenseId.value,
-    licenseContent: licenseContent.value,
+    expectoContent: expectoContent.value,
   };
 
   await $fetch(`/api/expecto/${identifier}`, {
@@ -112,9 +111,9 @@ const saveExpectoDraft = async () => {
       });
     })
     .catch((error) => {
-      console.error('Failed to save license draft:', error);
+      console.error('Failed to save expecto_patronum draft:', error);
       push.error({
-        title: 'Failed to save license draft',
+        title: 'Failed to save expecto_patronum draft',
         message: 'Please try again later',
       });
     })
@@ -127,7 +126,7 @@ const saveExpectoAndPush = async () => {
   submitLoading.value = true;
 
   const body = {
-    licenseContent: licenseContent.value,
+    expectoContent: expectoContent.value,
   };
 
   await $fetch(`/api/expecto/${identifier}`, {
@@ -327,7 +326,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Check if the user is authorized to access the codeMetadata request
+  // Check if the user is authorized to access the request
   await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
 
   const response: ExpectoRequestGetResponse = {
@@ -338,7 +337,7 @@ export default defineEventHandler(async (event) => {
     timestamp: expectoRequest.timestamp,
   };
 
-  // return the valid license request
+  // return the valid request
   return response;
 });
 ```
@@ -394,12 +393,12 @@ export default defineEventHandler(async (event) => {
   if (!expectoRequest) {
     throw createError({
       statusCode: 404,
-      message: 'License request not found',
+      message: 'Expecto request not found',
     });
   }
 
   const installationId = await installation.findOne({
-    repositoryId: licenseRequest.repositoryId,
+    repositoryId: expectoRequest.repositoryId,
   });
 
   if (!installationId) {
@@ -409,7 +408,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Check if the user is authorized to access the license request
+  // Check if the user is authorized to access the request
   await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
 
   if (!expectoRequest.open) {
@@ -461,7 +460,7 @@ export default defineEventHandler(async (event) => {
     },
   );
 
-  // Create a new branch for the license addition
+  // Create a new branch for the addition
   const newBranchName = `expecto-${nanoid()}`;
 
   // Create a new branch from the default branch
@@ -475,7 +474,7 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  // Create a new file with the license content
+  // Create a new file with the content
   await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     owner: expectoRequest.owner,
     repo: expectoRequest.repo,
@@ -505,7 +504,7 @@ export default defineEventHandler(async (event) => {
   );
 
   // Save the PR URL to the database
-  // Update the license content and the license id in the database
+  // Update the content in the database
   await collection.updateOne(
     {
       identifier,
@@ -572,11 +571,11 @@ export default defineEventHandler(async (event) => {
   if (!expectoRequest) {
     throw createError({
       statusCode: 404,
-      message: 'License request not found',
+      message: 'Expecto request not found',
     });
   }
 
-  // Check if the user is authorized to access the license request
+  // Check if the user is authorized to access the request
   await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
 
   if (!expectoRequest.open) {

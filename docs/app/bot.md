@@ -50,7 +50,7 @@ let expectoPatronum = await checkForExpectoPatronumFile(
 );
 ```
 
-The `renderIssues` function is used througout all event listeners so in the case of a push event, the commits can be checked for the file.
+The `renderIssues` function is used througout all event listeners and has a loop to check files being added, so in the case of a push event, the commits can be checked for the file by adding this within the loop.
 
 ```javascript
 if (commits[i].added[j] === "expecto_patronum.md") {
@@ -169,7 +169,7 @@ export async function applyExpectoPatronumTemplate(
 }
 ```
 
-The `applyExpectoPatronumTemplate` function will be placed within the renderIssues function at the end of the function where the other template updates are done.
+The `applyExpectoPatronumTemplate` function will be placed within the `renderIssues` function at the end of the function where the other template updates are done.
 
 ```javascript
 baseTemplate = await applyExpectoPatronumTemplate(
@@ -192,6 +192,6 @@ pnpm dev
 
 ![Terminal Output](/terminal-output.png)
 
-You can then navigate to your account settings -> developer settings -> GitHub Apps -> (Your GitHub App). Thereafter you can go to the Install App section to select a repository to install the GitHub App. Once installed, you can navigate to the Advanced page within the app settings to see the events being run and sent to your webook URL.
+You can then navigate to your `Account Settings -> Developer Settings -> GitHub Apps -> (Your GitHub App)`. Thereafter you can go to the `Install App` section to select a repository to install the GitHub App. Once installed, you can navigate to the `Advanced` page within the app settings to see the events being run and sent to your webook URL.
 
 ![GitHub App Events](/deliveries-page.png)

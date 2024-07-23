@@ -293,7 +293,7 @@ interface ExpectoRequest {
 }
 ```
 
-## **Step 4**: Add the API calls
+## **Step 4**: Add the API routes
 
 Finally, you will need to add the API calls to the Codefair frontend to retrieve and display the data from the MongoDB database, saving a draft, pushing content to a new branch and creating a pull request. You can navigate to `ui/server/api` and create a folder called `expecto` and within that folder another folder called `[identifier]`. There you will be able to add your different API calls.
 
@@ -610,3 +610,17 @@ export default defineEventHandler(async (event) => {
   };
 });
 ```
+
+## **Step 5**: Test the feature
+
+You can now test both the bot feature and correlating UI feature by running the Codefair repository locally. The terminal should output both the UI and bot servers running.
+
+```bash
+pnpm dev
+```
+
+![Terminal Output](/terminal-output.png)
+
+If you only want to check out the UI created, visit `https://localhost:3000/add/expecto/[identifier]` in your browser. The identifier being the one stored in the mongoDB database.
+
+Another alternative would be to visit the GitHub issue created by the bot and click on the `Edit Expecto Patronum` badge to be redirected to the UI page.

@@ -10,4 +10,4 @@ head:
 
 # :clap: Contributing
 
-We would love your contribution! Please see our [Developers documentation](https://docs.codefair.io/app/intro.html) for contributing.
+We would love your contribution! Please see our [Developers documentation](https://docs.codefair.io/dev/intro.html) for contributing.

@@ -27,68 +27,22 @@ Next, you will need to add the UI page to the Codefair frontend. You can navigat
 
 ```vue
 <script setup lang="ts">
-import sanitizeHtml from 'sanitize-html';
-import { MdEditor, config } from 'md-editor-v3';
-import TargetBlankExtension from '@/utils/TargetBlankExtension';
-
-config({
-  editorConfig: {
-    languageUserDefined: {
-      'en-US': {
-        footer: {
-          markdownTotal: 'Character Count',
-          scrollAuto: 'Scroll Auto',
-        },
-      },
-    },
-  },
-  markdownItConfig(md) {
-    md.use(TargetBlankExtension);
-  },
-});
-
-definePageMeta({
-  middleware: ['protected'],
-});
 
 const route = useRoute();
 
 const { identifier } = route.params as { identifier: string };
 
-const githubRepo = ref<string | null>(null);
 const expectoContent = ref<string>('');
 
-const displayExpectoEditor = ref(false);
 const getExpectoLoading = ref(false);
-const submitLoading = ref(false);
-
-const showSuccessModal = ref(false);
-const pullRequestURL = ref<string>('');
 
 const { data, error } = await useFetch(`/api/expecto/${identifier}`, {
   headers: useRequestHeaders(['cookie']),
 });
 
-if (error.value) {
-  push.error({
-    title: 'Failed to fetch file details',
-    message: 'Please try again later',
-  });
-
-  throw createError(error.value);
-}
-
 if (data.value) {
-  githubRepo.value = `${data.value.owner}/${data.value.repo}`;
   expectoContent.value = data.value.expectoContent ?? '';
-  githubRepo.value = `${data.value.owner}/${data.value.repo}`;
-
-  if (expectoContent.value) {
-    displayExpectoEditor.value = true;
-  }
 }
-
-const sanitize = (html: string) => sanitizeHtml(html);
 
 const saveExpectoDraft = async () => {
   submitLoading.value = true;
@@ -102,22 +56,6 @@ const saveExpectoDraft = async () => {
     headers: useRequestHeaders(['cookie']),
     body: JSON.stringify(body),
   })
-    .then((_response) => {
-      push.success({
-        title: 'Draft saved',
-        message: 'You can continue editing now or come back later',
-      });
-    })
-    .catch((error) => {
-      console.error('Failed to save expecto_patronum draft:', error);
-      push.error({
-        title: 'Failed to save expecto_patronum draft',
-        message: 'Please try again later',
-      });
-    })
-    .finally(() => {
-      submitLoading.value = false;
-    });
 };
 
 const saveExpectoAndPush = async () => {
@@ -132,32 +70,6 @@ const saveExpectoAndPush = async () => {
     headers: useRequestHeaders(['cookie']),
     body: JSON.stringify(body),
   })
-    .then((response) => {
-      if ('prUrl' in response) {
-        push.success({
-          title: 'expecto_patronum.md pushed to repository',
-          message: 'Review the changes in the repository',
-        });
-
-        showSuccessModal.value = true;
-        pullRequestURL.value = response.prUrl;
-      } else {
-        push.error({
-          title: 'Failed to push expecto_patronum.md to repository',
-          message: 'Please try again later',
-        });
-      }
-    })
-    .catch((error) => {
-      console.error('Failed to push expecto_patronum.md to repository:', error);
-      push.error({
-        title: 'Failed to push expecto_patronum.md to repository',
-        message: 'Please try again later',
-      });
-    })
-    .finally(() => {
-      submitLoading.value = false;
-    });
 };
 
 const navigateToPR = () => {
@@ -167,108 +79,17 @@ const navigateToPR = () => {
 </script>
 
 <template>
-  <main class="mx-auto max-w-screen-xl bg-white p-8">
-    <n-flex vertical size="large" class="pb-5">
-      <div class="flex flex-row justify-between">
-        <h1 class="text-2xl font-bold">
-          Edit expecto_patronum.md for
-          <NuxtLink
-            :to="`https://github.com/${githubRepo}`"
-            target="_blank"
-            class="text-blue-500 underline transition-all hover:text-blue-600"
-          >
-            {{ data?.repo }}
-          </NuxtLink>
-        </h1>
-      </div>
-
+  <main class="">
+    <n-flex vertical size="large">
       <TransitionFade>
         <div v-if="displayExpectoEditor">
           <n-form-item :show-feedback="false" size="large">
-            <template #label>
-              <p class="pb-1 text-base font-bold">
-                Edit your expecto_patronum.md content
-                <span class="text-right text-xs text-stone-500">
-                  (You can use the left panel to edit the content and right
-                  panel to preview the changes)
-                </span>
-              </p>
-            </template>
             <MdEditor
               v-model="expectoContent"
-              language="en-US"
-              :toolbars-exclude="[
-                'preview',
-                'fullscreen',
-                'save',
-                'pageFullscreen',
-                'github',
-                'catalog',
-              ]"
-              preview-theme="github"
-              :show-code-row-number="true"
-              :sanitize="sanitize"
             />
-          </n-form-item>
         </div>
       </TransitionFade>
     </n-flex>
-
-    <n-divider />
-
-    <n-flex class="my-4" justify="space-between">
-      <n-button
-        size="large"
-        color="black"
-        @click="saveExpectoDraft"
-        :loading="submitLoading"
-        :disabled="!expectoContent"
-      >
-        <template #icon>
-          <Icon name="material-symbols:save" />
-        </template>
-
-        Save draft
-      </n-button>
-
-      <n-button
-        size="large"
-        color="black"
-        x
-        @click="saveExpectoAndPush"
-        :disabled="!expectoContent"
-        :loading="submitLoading"
-      >
-        <template #icon>
-          <Icon name="ion:push" />
-        </template>
-        Save and push expecto_patronum.md to repository
-      </n-button>
-    </n-flex>
-
-    <n-modal v-model:show="showSuccessModal" transform-origin="center">
-      <n-card
-        style="width: 600px"
-        title="One more thing!"
-        :bordered="false"
-        size="huge"
-        role="dialog"
-        aria-modal="true"
-      >
-        A pull request to update the expecto_patronum.md file has been
-        submitted. Please approve the pull request to make the changes live.
-        <template #footer>
-          <n-flex justify="end">
-            <n-button type="success" @click="navigateToPR">
-              <template #icon>
-                <Icon name="icon-park-outline:success" />
-              </template>
-              View Pull Request
-            </n-button>
-          </n-flex>
-        </template>
-      </n-card>
-    </n-modal>
   </main>
 </template>
 ```
@@ -317,13 +138,6 @@ export default defineEventHandler(async (event) => {
     identifier,
   });
 
-  if (!expectoRequest) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'expectopatronum-request-not-found',
-    });
-  }
-
   // Check if the user is authorized to access the request
   await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
 
@@ -360,20 +174,8 @@ export default defineEventHandler(async (event) => {
   const { identifier } = event.context.params as { identifier: string };
 
   const body = await readBody(event);
-  if (!body) {
-    throw createError({
-      statusCode: 400,
-      message: 'Missing required fields',
-    });
-  }
 
   const parsedBody = bodySchema.safeParse(body);
-  if (!parsedBody.success) {
-    throw createError({
-      message: 'The provided parameters are invalid',
-      statusCode: 400,
-    });
-  }
 
   const { expectoContent } = parsedBody.data;
 
@@ -388,33 +190,12 @@ export default defineEventHandler(async (event) => {
     identifier,
   });
 
-  if (!expectoRequest) {
-    throw createError({
-      statusCode: 404,
-      message: 'Expecto request not found',
-    });
-  }
-
   const installationId = await installation.findOne({
     repositoryId: expectoRequest.repositoryId,
   });
 
-  if (!installationId) {
-    throw createError({
-      statusCode: 404,
-      message: 'Installation not found',
-    });
-  }
-
   // Check if the user is authorized to access the request
   await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
-
-  if (!expectoRequest.open) {
-    throw createError({
-      statusCode: 400,
-      message: 'Expecto request is not open',
-    });
-  }
 
   // Create an octokit app instance
   const app = new App({
@@ -540,20 +321,8 @@ export default defineEventHandler(async (event) => {
   const { identifier } = event.context.params as { identifier: string };
 
   const body = await readBody(event);
-  if (!body) {
-    throw createError({
-      statusCode: 400,
-      message: 'Missing required fields',
-    });
-  }
 
   const parsedBody = bodySchema.safeParse(body);
-  if (!parsedBody.success) {
-    throw createError({
-      message: 'The provided parameters are invalid',
-      statusCode: 400,
-    });
-  }
 
   const { expectoContent } = parsedBody.data;
 
@@ -566,22 +335,9 @@ export default defineEventHandler(async (event) => {
   const expectoRequest = await collection.findOne({
     identifier,
   });
-  if (!expectoRequest) {
-    throw createError({
-      statusCode: 404,
-      message: 'Expecto request not found',
-    });
-  }
 
   // Check if the user is authorized to access the request
   await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
-
-  if (!expectoRequest.open) {
-    throw createError({
-      statusCode: 400,
-      message: 'Expecto request is not open',
-    });
-  }
 
   const updatedRecord = await collection.updateOne(
     { identifier },
@@ -591,12 +347,6 @@ export default defineEventHandler(async (event) => {
       },
     },
   );
-  if (!updatedRecord) {
-    throw createError({
-      statusCode: 500,
-      message: 'expecto-request-update-failed',
-    });
-  }
 
   return {
     expectoContent,

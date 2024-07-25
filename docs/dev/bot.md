@@ -100,11 +100,11 @@ export async function applyExpectoPatronumTemplate(
       await expectoCollection.insertOne({
         created_id: newDate,
         identifier,
-        open: true,
         owner,
         repo: repository.name,
         repositoryId: repository.id,
         updated_at: newDate,
+        ...
       });
     } else {
       await expectoCollection.updateOne(
@@ -146,7 +146,6 @@ export async function applyExpectoPatronumTemplate(
         created_id: newDate,
         identifier,
         expectoContent,
-        open: true,
         owner,
         repo: repository.name,
         repositoryId: repository.id,

@@ -106,7 +106,7 @@ export default withMermaid(
         },
         {
           text: 'Developer Guide',
-          link: '/app/intro.md',
+          link: '/dev/intro.md',
         },
         {
           text: 'Contact Us',
@@ -115,7 +115,7 @@ export default withMermaid(
       ],
 
       sidebar: {
-        '/app': appSidebarGuide(),
+        '/dev': appSidebarGuide(),
         '/docs': portalSidebarGuide(),
       },
 
@@ -133,16 +133,16 @@ function appSidebarGuide() {
       text: 'Getting Started',
       collapsible: true,
       items: [
-        { text: 'Introduction', link: '/app/intro.md' },
-        { text: 'Running Locally', link: '/app/running-locally.md' },
+        { text: 'Introduction', link: '/dev/intro.md' },
+        { text: 'Running Locally', link: '/dev/running-locally.md' },
       ],
     },
     {
       text: 'Adding a New Feature',
       collapsible: true,
       items: [
-        { text: 'Bot Feature', link: '/app/bot.md' },
-        { text: 'UI Page', link: '/app/ui.md' },
+        { text: 'Bot Feature', link: '/dev/bot.md' },
+        { text: 'UI Page', link: '/dev/ui.md' },
       ],
     },
   ];

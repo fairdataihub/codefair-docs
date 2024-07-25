@@ -1,0 +1,46 @@
+{
+  "name": "codefair-docs",
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "author": [
+    {
+      "affiliation": {
+        "name": "FAIR Data Innovations Hub",
+        "type": "Organization"
+      },
+      "email": "wheresdorian@gmail.com",
+      "familyName": "Portillo",
+      "id": "_:author_1",
+      "givenName": "Dorian",
+      "type": "Person"
+    },
+    {
+      "affiliation": {
+        "name": "California Medical Innovations Institute",
+        "type": "Organization"
+      },
+      "familyName": "Patel",
+      "id": "_:author_2",
+      "givenName": "Bhavesh",
+      "type": "Person"
+    }
+  ],
+  "codeRepository": "https://github.com/fairdataihub/codefair-docs",
+  "dateCreated": "2024-06-18",
+  "description": "Documentation for Codefair (codefair.io)",
+  "issueTracker": "https://github.com/fairdataihub/codefair-docs/issues",
+  "keywords": [
+    "documentation",
+    "codefair",
+    "FAIR software",
+    "FAIR-BioRS"
+  ],
+  "license": "https://spdx.org/licenses/MIT",
+  "operatingSystem": [],
+  "programmingLanguage": [
+    "JavaScript"
+  ],
+  "relatedLink": [],
+  "runtimePlatform": [],
+  "softwareRequirements": [],
+  "type": "SoftwareSourceCode"
+}

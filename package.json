@@ -40,7 +40,7 @@
     "vite": "^4.2.1",
     "vitepress": "1.0.0-alpha.33",
     "vitepress-plugin-search": "^1.0.4-alpha.17",
-    "vue": "3.3.4"
+    "vue": "3.4.34"
   },
   "dependencies": {
     "mermaid": "^10.2.4",

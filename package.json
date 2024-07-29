@@ -33,7 +33,7 @@
     "flexsearch": "^0.7.31",
     "husky": "8.0.2",
     "lint-staged": "14.0.1",
-    "markdown-it": "^13.0.1",
+    "markdown-it": "^14.0.0",
     "megasanjay-devmoji": "^1.2.1",
     "prettier": "3.0.3",
     "semantic-release": "21.1.1",

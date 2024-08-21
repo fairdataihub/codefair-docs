@@ -127,6 +127,7 @@ export default withMermaid(
   }),
 );
 
+// Developer Guide Sidebar
 function appSidebarGuide() {
   return [
     {
@@ -148,6 +149,7 @@ function appSidebarGuide() {
   ];
 }
 
+// User guide sidebarq
 function portalSidebarGuide() {
   return [
     {
@@ -155,6 +157,7 @@ function portalSidebarGuide() {
       collapsible: true,
       items: [
         { text: 'Introduction', link: '/docs/intro.md' },
+        { text: 'About Codefair', link: '/docs/intro.md' },
         { text: 'Installation', link: '/docs/installation.md' },
       ],
     },

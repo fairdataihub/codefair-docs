@@ -166,8 +166,10 @@ function portalSidebarGuide() {
       collapsible: true,
       items: [
         { text: 'GitHub Issue Dashboard', link: '/docs/dashboard.md' },
+        { text: 'Overview of Features', link: '/docs/features.md' },
         { text: 'LICENSE', link: '/docs/license.md' },
         { text: 'Metadata', link: '/docs/metadata.md' },
+        { text: 'CWL Validation', link: '/docs/cwl.md' },
       ],
     },
     {

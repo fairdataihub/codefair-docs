@@ -14,8 +14,6 @@ The table below lists all the current and upcoming features of Codefair. It also
 
 Specifically the `Research discipline` column indicates the research discipline of the software for which this feature is suitable (e.g., biomedical, mathematics, etc.). Similarly, the `Coding language` column indicates the coding language of the research software for which this feature is suitable (e.g., Python, R, etc.). The `Software format` column indicates the format of the research software for which this feature is suitable (e.g., desktop software, command line interface, etc.). Finally, the `Software application` indicates the application of the research software for which the feature is suitable (e.g., computational model, AI-ML model, etc.).
 
-# :card_file_box: Features
-
 | Feature                     | Anticipated release date | Research discipline | Coding language                | Software format        | Software application |
 | :-------------------------- | :----------------------- | :------------------ | :----------------------------- | :--------------------- | :------------------- |
 | [License](./license.md)     | Released                 | All                 | All                            | All                    | All                  |

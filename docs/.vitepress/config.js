@@ -157,7 +157,7 @@ function portalSidebarGuide() {
       collapsible: true,
       items: [
         { text: 'Introduction', link: '/docs/intro.md' },
-        { text: 'About Codefair', link: '/docs/intro.md' },
+        { text: 'About Codefair', link: '/docs/about.md' },
         { text: 'Installation', link: '/docs/installation.md' },
       ],
     },

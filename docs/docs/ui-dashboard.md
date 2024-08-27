@@ -14,7 +14,7 @@ The UI dashboard shows a list of all the repositories that have installed the Co
 
 ![ui-dashboard](/ui-dashboard.png)
 
-## Repository Selected
+# :card_file_box: Repository Selected
 
 When you select a repository from the list, the dashboard will show the FAIR compliance of the selected repository. The dashboard will display a list of elements that make a software FAIR. A check mark is shown next to elements the software is complying with.
 

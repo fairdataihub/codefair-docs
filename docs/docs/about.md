@@ -10,7 +10,7 @@ head:
 
 # :sparkles: About Codefair
 
-Codefair is a free and open source GitHub app that acts as your personal assistant when it comes to making your research software reusable and especially complying with the Findable, Accessible, Interoperable, Reusable (FAIR) Principles for Research Software (FAIR4RS Principles).
+Codefair is a free and open source GitHub app that acts as your personal assistant when it comes to making your research software reusable and especially complying with the [Findable, Accessible, Interoperable, Reusable (FAIR) Principles for Research Software (FAIR4RS Principles)](https://www.nature.com/articles/s41597-022-01710-x).
 
 <!-- ![dashboard](/dashboard.png){width=10%}
 ![metadata-editor](/metadata-ui.png){width=10%} -->
@@ -21,4 +21,4 @@ Simply install Codefair from the GitHub marketplace on your software's GitHub re
 
 ## Who should use Codefair?
 
-Currently, Codefair helps make software FAIR by following the FAIR Biomedical Research Software (FAIR-BioRS) guidelines. Therefore, it is designed mainly for biomedical research software. However, most of the steps in the FAIR-BioRS guidelines are applicable to any research software, regardless of the field. This means that anyone developing research software can use Codefair. Whether you are developing artificial intelligence (AI)/machine learning (ML) models with Python, data visualization tools with Jupyter Notebook, or data analysis code with R, Codefair is here to assist you.
+Currently, Codefair helps make software FAIR by following the [(FAIR Biomedical Research Software (FAIR-BioRS) guidelines)](https://fair-biors.org/). Therefore, it is designed mainly for biomedical research software. However, most of the steps in the FAIR-BioRS guidelines are applicable to any research software, regardless of the field. This means that anyone developing research software can use Codefair. Whether you are developing artificial intelligence (AI)/machine learning (ML) models with Python, data visualization tools with Jupyter Notebook, or data analysis code with R, Codefair is here to assist you.

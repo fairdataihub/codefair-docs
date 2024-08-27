@@ -127,6 +127,7 @@ export default withMermaid(
   }),
 );
 
+// Developer Guide Sidebar
 function appSidebarGuide() {
   return [
     {
@@ -148,6 +149,7 @@ function appSidebarGuide() {
   ];
 }
 
+// User guide sidebarq
 function portalSidebarGuide() {
   return [
     {
@@ -155,6 +157,7 @@ function portalSidebarGuide() {
       collapsible: true,
       items: [
         { text: 'Introduction', link: '/docs/intro.md' },
+        { text: 'About Codefair', link: '/docs/about.md' },
         { text: 'Installation', link: '/docs/installation.md' },
       ],
     },
@@ -163,8 +166,11 @@ function portalSidebarGuide() {
       collapsible: true,
       items: [
         { text: 'GitHub Issue Dashboard', link: '/docs/dashboard.md' },
+        { text: 'UI Dashboard', link: '/docs/ui-dashboard.md' },
+        { text: 'Overview of Features', link: '/docs/features.md' },
         { text: 'LICENSE', link: '/docs/license.md' },
         { text: 'Metadata', link: '/docs/metadata.md' },
+        { text: 'CWL Validation', link: '/docs/cwl.md' },
       ],
     },
     {

@@ -12,7 +12,7 @@ head:
 
 The Codefair app provides a UI dashboard to help manage the FAIR compliance of repositories.
 
-## Owner Dashboard
+## :busts_in_silhouette: Owner Dashboard
 
 The UI dashboard shows a list of all the repositories that have installed the Codefair app. The dashboard provides a way to manage the FAIR compliance of the repositories. The dashboard is updated with each new commit to the main branch of the repositories.
 

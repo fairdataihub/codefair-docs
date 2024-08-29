@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Metadata&app=codefair&org=fairdataihub
 ---
 
-# Metadata
+# :label: Metadata
 
 In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), many principles state to include rich metadata following standard structure. This is critical to make software findable and reusable. One of the ways to achieve that prescribed by the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x) is to include a CITATION.cff and a codemeta.json metadata files.
 

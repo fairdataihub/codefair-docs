@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=LICENSE&app=codefair&org=fairdataihub
 ---
 
-# LICENSE
+# :page_facing_up: LICENSE
 
 In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), principle R1.1 states "Software is given a clear and accessible license". This is critical because without a license, a software cannot be legally reused. To comply with this principle, the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x) instruct to include a LICENSE file with license terms.
 

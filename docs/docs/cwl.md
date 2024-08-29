@@ -26,6 +26,6 @@ The CWL Section on the GitHub issue dashboard will display the CWL validations o
 
 ## CWL Validation Results
 
-The CWL validation results page will display the details of the CWL validation. The page will show the status of the validation, the list of CWL files checked, and the details of the issues found in the CWL files. The page will also provide a link to the pull request created to address the issues found in the CWL files.
+The CWL validation results page will display the details of the CWL validation. The page will show the status of the validation, the list of CWL files checked, and the details of the issues found in the CWL files.
 
 ![CWL Validation Results](/cwl-results-ui.png)

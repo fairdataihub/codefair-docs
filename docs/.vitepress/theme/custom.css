@@ -264,3 +264,9 @@
 .image-src {
   max-width: 40rem !important;
 }
+
+@media (max-width: 768px) { /* Target mobile devices */
+  .VPImage {
+    height: 15rem; /* Set height to 10rem */
+  }
+}

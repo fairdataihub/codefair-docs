@@ -36,9 +36,9 @@ Clicking the `View the repository on GitHub` button will take you to the reposit
 
 Clicking the `Rerun all Codefair checks` button will rerun all the checks on the repository.
 
-### Rerun CWL Validation
+<!-- ### Rerun CWL Validation -->
 
-Clicking the `Rerun CWL Validation` button will rerun the CWL validation on all the CWL files within the repository.
+<!-- Clicking the `Rerun CWL Validation` button will rerun the CWL validation on all the CWL files within the repository. -->
 
 ### View Codefair settings
 

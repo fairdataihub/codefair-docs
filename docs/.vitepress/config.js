@@ -171,6 +171,7 @@ function portalSidebarGuide() {
         { text: 'LICENSE', link: '/docs/license.md' },
         { text: 'Metadata', link: '/docs/metadata.md' },
         { text: 'CWL Validation', link: '/docs/cwl.md' },
+        { text: 'Software Archival', link: '/docs/archive.md' },
       ],
     },
     {

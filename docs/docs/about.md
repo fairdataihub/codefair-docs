@@ -17,8 +17,8 @@ Codefair is a free and open source GitHub app that acts as your personal assista
 
 ## How does Codefair work?
 
-Simply install Codefair from the GitHub marketplace on your software's GitHub repository. By communicating with you through GitHub issues and submitting pull requests, Codefair will ensure that your software follows best coding practices, provides metadata in standard formats, includes a license file, is archived on Zenodo, and much more to align with the FAIR4RS principles.
+Simply install Codefair from the [GitHub marketplace](https://github.com/marketplace/codefair-app) on your software's GitHub repository. By communicating with you through GitHub issues and submitting pull requests, Codefair will ensure that your software follows best coding practices, provides metadata in standard formats, includes a license file, is archived on Zenodo, and much more to align with the FAIR4RS principles.
 
 ## Who should use Codefair?
 
-Currently, Codefair helps make software FAIR by following the [(FAIR Biomedical Research Software (FAIR-BioRS) guidelines)](https://fair-biors.org/). Therefore, it is designed mainly for biomedical research software. However, most of the steps in the FAIR-BioRS guidelines are applicable to any research software, regardless of the field. This means that anyone developing research software can use Codefair. Whether you are developing artificial intelligence (AI)/machine learning (ML) models with Python, data visualization tools with Jupyter Notebook, or data analysis code with R, Codefair is here to assist you.
+Currently, Codefair helps make software FAIR by following the [(FAIR Biomedical Research Software (FAIR-BioRS) guidelines)](https://fair-biors.org/). Most of the steps in the FAIR-BioRS guidelines are applicable to any research software, regardless of the field. This means that anyone developing research software can use Codefair. Whether you are developing artificial intelligence (AI)/machine learning (ML) models with Python, data visualization tools with Jupyter Notebook, or data analysis code with R, Codefair is here to assist you.

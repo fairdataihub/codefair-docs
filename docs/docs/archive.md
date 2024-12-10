@@ -20,13 +20,13 @@ There is a webhook method that allows you to [automatically archive each GitHub 
 To archive your software on Zenodo, you will need to have a [license file](/docs/license.md) and [metadata files](/docs/metadata.md) (CITATION.cff and codemeta.json) in your repository.
 :::
 
-## How to make a FAIR release
+## :rocket: How to make a FAIR release
 
 To make a FAIR software release, you can simply click on the `Create release` button provided in the GitHub Issue Dashboard under the FAIR Software Release section. This will direct you to the Codefair's UI that takes you step by step into connecting to Zenodo, providing metadata required by Zenodo, making a release on GitHub, and archiving it on Zenodo.
 
 ![Software Archive](/zenodo-dashboard.png)
 
-## FAIR software release UI
+## :desktop_computer: FAIR software release UI
 
 The Zenodo archive UI is a user-friendly interface that allows you to archive your research software. It takes you through several steps:
 
@@ -72,6 +72,6 @@ The Zenodo archive UI is a user-friendly interface that allows you to archive yo
 
 After clicking the `Start the Zenodo publish process` button, Codefair will automatically handle your release. This includes generating a DOI via Zenodo for citation, updating the metadata files (CITATION.cff and codemeta.json) with the new DOI, and finalizing the release on both GitHub and Zenodo. You can monitor the status in both the Codefair UI and GitHub Issue dashboards. Once completed, Codefair will notify you of the successful archival, allowing you to track the entire Zenodo process.
 
-## Workflow Diagram
+## :world_map: Workflow Diagram
 
 ![Zenodo Archive](/zenodo-diagram.png)

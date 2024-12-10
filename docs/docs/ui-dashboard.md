@@ -14,12 +14,12 @@ The Codefair app provides a UI dashboard to help manage the FAIR compliance of r
 
 ## :busts_in_silhouette: Owner Dashboard
 
-The UI dashboard shows a list of all the repositories that have installed the Codefair app. The dashboard provides a way to manage the FAIR compliance of the repositories. The dashboard is updated with each new commit to the main branch of the repositories.
+The UI dashboard shows a list of all the repositories that have installed the Codefair app. The dashboard provides a way to manage the FAIR compliance of the repositories and displays the latest commit made to the main branch of the repository.
 
 ![ui-dashboard](/ui-dashboard.png)
 
 ::: tip
-Some repositories you installed Codefair to may not be listed on the dashboard if they have an action queued. This happens when Codefair is installed to more than 5 repositories at once. This helps prevent the Codefair app from mass opening issues on the repositories.
+Some repositories you installed Codefair to may not be listed on the dashboard if they have an action queued. This happens when Codefair is installed to more than 5 repositories at once. This helps prevent the Codefair app from mass opening issues on the repositories. The action will count down when events are triggered on the repositories eventually showing the repository on the dashboard.
 :::
 
 ## :card_file_box: Repository Selected
@@ -30,15 +30,23 @@ Below are some additional actions you can take on the selected repository:
 
 ### View the Repository on GitHub
 
-Clicking the `View the repository on GitHub` button will take you to the repository on GitHub.
+Clicking the `View the repository on GitHub` button within the `Settings` dropdown will take you to the repository on GitHub.
 
 ### Rerun all Codefair checks
 
-Clicking the `Rerun all Codefair checks` button will rerun all the checks on the repository.
+Clicking the `Rerun all Codefair checks` button within the `Settings` drodown will rerun all the checks on the repository.
 
-<!-- ### Rerun CWL Validation -->
+### Rerun CWL Validation
 
-<!-- Clicking the `Rerun CWL Validation` button will rerun the CWL validation on all the CWL files within the repository. -->
+Clicking the `Rerun CWL Validation` button will rerun the CWL validation on all the CWL files within the repository. **Only available if the repository contains CWL files.**
+
+### Rerun Metadata Validation
+
+To rerun the metadata validation on a repository, locate the icon with three vertically-stacked dots next to the status badges of your metadata. Hovering over this icon will display a dropdown menu with the button `Rerun Metadata Validation`. Selecting this option will erase any metadata drafts saved on Codefair. **Only available if the repository contains a license file.**
+
+### Rerun License Validation
+
+To rerun the license validation on a repository, locate the icon with three vertically-stacked dots next to the status badges of your license. Hovering over this icon will display a dropdown menu with the button `Rerun License Validation`. Selecting this option will erase any license drafts saved on Codefair. **Only available if the repository contains a license file.**
 
 ### View Codefair settings
 

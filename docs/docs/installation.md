@@ -12,7 +12,7 @@ head:
 
 This section provides instructions for installing the Codefair GitHub App and the permissions required for the GitHub and Oauth Sign In through the Codefair UI.
 
-## GitHub App Installation
+## :gear: GitHub App Installation
 
 To install the Codefair GitHub App, you will need to follow the steps below:
 
@@ -27,7 +27,7 @@ You can also install the Codefair App without a credit card by visiting the [pub
 
 After following these steps, the Codefair GitHub App will be installed on your repository and you will be able to access the Codefair features.
 
-## GitHub App Permissions
+## :robot: GitHub App Permissions
 
 Codefair requires the following permissions to function correctly:
 
@@ -36,7 +36,7 @@ Codefair requires the following permissions to function correctly:
 
 ![Codefair Permissions](/codefair-permissions.png)
 
-## Oauth Sign in Permissions
+## :key: Oauth Sign in Permissions
 
 Users can sign in to Codefair using their GitHub account. Codefair requires the following permissions to function correctly:
 

@@ -186,7 +186,7 @@ baseTemplate = await applyExpectoPatronumTemplate(
 You can provide console logs throughout your feature for debugging purposes and when you run locally you will those logs in the terminal. You can run the following command at the root level to start the both the ui and bot servers. Below is the command and the expected output:
 
 ```bash
-pnpm dev
+yarn dev
 ```
 
 ![Terminal Output](/terminal-output.png)

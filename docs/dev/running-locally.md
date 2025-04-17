@@ -66,51 +66,57 @@ You can run the following commands to start the Codefair repository:
 1. **Clone the Repository**: Clone the Codefair repository to your local machine by running the following command:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/fairdataihub/codefair-app.git
 ```
 
-2. **Install Dependencies**: Run the following command to install the dependencies for the Codefair repository:
-
-```bash
-yarn install
-```
-
-3. **Gather Environment Variables**: Create a `.env` file in both the `ui` and `bot` directories of the repository. You can use the `.env.example` file as a template for the environment variables.
+2. **Gather Environment Variables**: Create a `.env` file in both the `ui` and `bot` directories of the repository. You can use the `.env.example` file as a template for the environment variables.
 
 ```bash
 # .env file in the ui directory
+APP_ID=               # GitHub App ID
+CODEFAIR_APP_DOMAIN=  # URL for the Codefair app
+CODEFAIR_BOT_DOMAIN=  # URL for the Codefair bot
+DATABASE_URL=         # Postgres DB URL
+GH_APP_CLIENT_ID=     # GitHub App client ID
+GH_APP_CLIENT_SECRET= # GitHub App client secret
 GH_APP_ID=            # GitHub App ID
-GH_APP_NAME=          # Name of the GitHub App
+GH_APP_NAME=          # GitHub App Name
 GH_APP_PRIVATE_KEY=   # GitHub App private key
-GH_APP_CLIENT_ID=         # GitHub OAuth client ID
-GH_APP_CLIENT_SECRET=     # GitHub OAuth client secret
-GH_OAUTH_CLIENT_ID=   # GitHub OAuth client ID
-GH_OAUTH_CLIENT_SECRET=   # GitHub OAuth client secret
-PORT=3000             # port for the frontend
-DATABASE_URL=         # URL for the database
-WEBHOOK_PROXY_URL=    # URL for the webhook proxy
-WEBHOOK_SECRET=      # GitHub App webhook secret
-ZENODO_API_ENDPOINT=  # Zenodo API endpoint
-ZENODO_CLIENT_ID=     # Zenodo OAuth client ID
-ZENODO_CLIENT_SECRET= # Zenodo OAuth client secret
-ZENODO_ENDPOINT=      # Zenodo endpoint
-ZENODO_REDIRECT_URI=  # Zenodo redirect URI
+GH_OAUTH_APP_ID=      # GitHub OAuth App ID
+GH_OAUTH_CLIENT_ID=   # GitHub OAuth Client ID
+GH_OAUTH_CLIENT_SECRET= # GitHub OAuth Client Secret
+PORT="3000"             # Port to run frontend
+UI_LOGWATCH_URL=        # UI Logwatch URL
+VALIDATOR_URL=          # Validator URL
+WEBHOOK_PROXY_URL=      # Webhook proxy URL
+WEBHOOK_SECRET=         # Webhook proxy secret
+ZENODO_API_ENDPOINT=    # Zenodo API endpoint
+ZENODO_CLIENT_ID=       # Zenodo Client ID
+ZENODO_CLIENT_SECRET=   # Zenodo Client Secret
+ZENODO_ENDPOINT=        # Zenodo Endpoint URL
+ZENODO_REDIRECT_URI=    # Zenodo Redirect URI
 ```
 
 ```bash
 # .env file in the bot directory
-CODEFAIR_APP_DOMAIN=          # http://localhost:3000 or your domain for the frontend
-GH_APP_NAME=              # Name of the GitHub App
-GH_CLIENT_ID=             # GitHub OAuth client ID
-GH_CLIENT_SECRET=         # GitHub OAuth client secret
-PORT=3001                     # port for the Probot server
-WEBHOOK_SECRET=               # GitHub App webhook secret
-WEBHOOK_PROXY_URL=            # URL for the webhook proxy
-APP_ID=                       # GitHub App ID
-GH_APP_ID=                    # GitHub App Id
-GH_APP_PRIVATE_KEY=                  # GitHub App private key
-ZENODO_API_ENDPOINT=          # Zenodo API endpoint (sandbox or production)
-ZENODO_ENDPOINT=              # Zenodo url (sandbox or production)
+BOT_LOGWATCH_URL=             # Logwatch URL for the bot
+CODEFAIR_APP_DOMAIN=          # http://localhost:300 or your domain for the frontend
+CODEFAIR_BOT_DOMAIN=          # http://localhost:3001 or your domain for the bot
+DATABASE_URL=                 # Postgres DB URL
+GH_APP_CLIENT_ID=             # GitHub Client ID
+GH_APP_CLIENT_SECRET=         # GitHub Client Secret
+GH_APP_ID=                    # GitHub App ID
+GH_APP_NAME=                  # GitHub App Name
+GH_APP_PRIVATE_KEY=           # GitHub App Private key
+PORT="3001"                   # Port for the Probot Server
+VALIDATOR_URL=                # http://localhost:5000 or Validator URL
+WEBHOOK_PROXY_URL=            # Webhook Proxy URL
+WEBHOOK_SECRET=               # WebHook Secret
+ZENODO_API_ENDPOINT=          # Zenodo API Endpoint
+ZENODO_CLIENT_ID=             # Zenodo Client ID
+ZENODO_CLIENT_SECRET=         # Zenodo Client Secret
+ZENODO_ENDPOINT=              # Zenodo API URL (sandbox or production)
+ZENODO_REDIRECT_URI=          # Zenodo Redirect URL (sandbox or production)
 ```
 
 ## :running: Running the Codefair repository

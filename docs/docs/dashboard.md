@@ -24,5 +24,5 @@ A check mark is shown next to elements your software is complying with (e.g., th
 If you close the issue, Codefair will deactivate until you reopen the issue but if you delete the issue, you will need to reinstall Codefair to that repository.
 :::
 
-![GitHub Issue Dashboard](/dashboard-metadata.png)
+![GitHub Issue Dashboard](/latest-dashboard.png)
 The image above shows a Codefair issue dashboard.

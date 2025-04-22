@@ -12,7 +12,13 @@ head:
 
 The Codefair app provides a UI dashboard to help manage the FAIR compliance of repositories.
 
-## :busts_in_silhouette: Owner Dashboard
+## :computer: Dashboard
+
+The main UI dashboard provides a list of all the organizations and accounts that have installed the Codefair app. The dashboard provides a way to manage the FAIR compliance of repositories across all the organizations and accounts.
+
+![main-dashboard](/main-dashboard.png)
+
+## :busts_in_silhouette: Repo Dashboard
 
 The UI dashboard shows a list of all the repositories that have installed the Codefair app. The dashboard provides a way to manage the FAIR compliance of the repositories and displays the latest commit made to the main branch of the repository.
 

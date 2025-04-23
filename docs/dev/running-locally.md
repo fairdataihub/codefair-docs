@@ -26,9 +26,13 @@ The Codefair repository combines both the Nuxt frontend and the Probot backend t
 
 Before you can run the Codefair repository, you will need the following prerequisites:
 
-1. **Node.js**: You will need Node.js installed on your machine to run the Codefair repository. You can download Node.js from the [official Node.js website](https://nodejs.org/).
+1. **Node.js**: You will need Node.js (v20) installed on your machine to run the Codefair repository. You can download Node.js from the [official Node.js website](https://nodejs.org/en/download).
 
-2. **Database**: Codefair now uses Prisma as an ORM for managing database storage. Ensure you have a supported database (e.g., PostgreSQL, MySQL, or SQLite) set up and configured. You can learn more about Prisma and its supported databases from the [official Prisma website](https://www.prisma.io/).
+2. **Database**: Codefair now uses Prisma as an ORM for managing database storage (Earlier versions used MongoDB). Ensure you have a supported database (e.g., PostgreSQL, MySQL, or SQLite) set up and configured. You can learn more about Prisma and its supported databases from the [official Prisma website](https://www.prisma.io/). We've provided a Postgres Docker Compose file in the root of the repository to help you get started. You can run the following command to start a Postgres database using Docker:
+
+```bash
+docker-compose -f docker-compose.yml up -d
+```
 
 3. **Yarn**: You will need Yarn installed on your machine to run the Codefair repository. You can install Yarn by running the following command:
 

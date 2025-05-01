@@ -12,7 +12,7 @@ head:
 
 The best way to learn how to add a new feature to Codefair is to complete our step-by-step tutorial below:
 
-The Codefair repository is split into two main sections: `ui` and `bot`. This tutorial will guide you through the process of adding a new UI page to Codefair using Vue syntax. The feature will display a markdown editor in the Codefair UI that will allow users to input text to be added to an expecto_patronum.md file in the root of the repository. The page will also make API calls to the MongoDB database to retrieve and display information gathered from the bot, safe drafts, push to the repository in a new branch and create a pull request.
+The Codefair repository is split into three main subfolders: `ui`, `bot` and `validator`. This tutorial will guide you through the process of adding a new UI page to Codefair using Vue syntax. The feature will display a markdown editor in the Codefair UI that will allow users to input text to be added to an expecto_patronum.md file in the root of the repository. The page will also make API calls to the database to retrieve and display information gathered from the bot, save drafts, push to the updated content to a new branch and create a pull request.
 
 > **Note**
 > The feature connects with the bot feature implemented [here](./bot.md) so please ensure you have completed that tutorial before proceeding.
@@ -23,18 +23,13 @@ The first step is to setup your development environment and create a GitHub Oaut
 
 ## **Step 2**: Add the UI page
 
-Next, you will need to add the UI page to the Codefair frontend. You can navigate to `ui/pages/add` and create a folder called `expecto` and within that folder create a `[identifier].vue` file. Create the UI page using the following Vue syntax:
+Next, you will need to add the UI page to the Codefair frontend. We have a naming convention for the pages where you can navigate to `ui/pages/add` and create a folder called `expecto` and within that folder create a `[identifier].vue` file. Create the UI page using the following Vue syntax:
 
 ```vue
 <script setup lang="ts">
-
 const route = useRoute();
-
 const { identifier } = route.params as { identifier: string };
-
 const expectoContent = ref<string>('');
-
-const getExpectoLoading = ref(false);
 
 const { data, error } = await useFetch(`/api/expecto/${identifier}`, {
   headers: useRequestHeaders(['cookie']),
@@ -43,46 +38,13 @@ const { data, error } = await useFetch(`/api/expecto/${identifier}`, {
 if (data.value) {
   expectoContent.value = data.value.expectoContent ?? '';
 }
-
-const saveExpectoDraft = async () => {
-  submitLoading.value = true;
-
-  const body = {
-    expectoContent: expectoContent.value,
-  };
-
-  await $fetch(`/api/expecto/${identifier}`, {
-    method: 'PUT',
-    headers: useRequestHeaders(['cookie']),
-    body: JSON.stringify(body),
-  })
-};
-
-const saveExpectoAndPush = async () => {
-  submitLoading.value = true;
-
-  const body = {
-    expectoContent: expectoContent.value,
-  };
-
-  await $fetch(`/api/expecto/${identifier}`, {
-    method: 'POST',
-    headers: useRequestHeaders(['cookie']),
-    body: JSON.stringify(body),
-  })
-};
-
-const navigateToPR = () => {
-  showSuccessModal.value = false;
-  window.open(pullRequestURL.value, '_blank');
-};
 </script>
 
 <template>
   <main class="">
     <n-flex vertical size="large">
       <TransitionFade>
-        <div v-if="displayExpectoEditor">
+        <div>
           <n-form-item :show-feedback="false" size="large">
             <MdEditor
               v-model="expectoContent"
@@ -99,7 +61,7 @@ const navigateToPR = () => {
 Next, you will need to create interfaces for the API calls. You can navigate to `ui/types` and create a file called `expecto.d.ts` and add the following code to retrieve the necessary data from the MongoDB database:
 
 ```typescript
-interface ExpectoRequestGetReponse extends ExpectoRequest {
+interface ExpectoRequestGetResponse extends ExpectoRequest {
   identifer: string;
   owner: string;
   repo: string;
@@ -120,26 +82,32 @@ Finally, you will need to add the API calls to the Codefair frontend to retrieve
 To create a GET request and retrieve the expecto content from the database, you can create a file a file called `index.get.ts` and add the following code:
 
 ```typescript
-import { MongoClient } from 'mongodb';
-
 export default defineEventHandler(async (event) => {
   protectRoute(event);
 
-  const { identifier } = event.context.params as { identifier: string };
+  const { owner, repo } = event.context.params as {
+    owner: string;
+    repo: string;
+  };
 
-  const client = new MongoClient(process.env.MONGODB_URI as string, {});
-  await client.connect();
-
-  const db = client.db(process.env.MONGODB_DB_NAME);
-  const collection = db.collection('expectoPatronum');
-
-  // Check if the request identifier exists in the database
-  const expectoRequest = await collection.findOne({
-    identifier,
+  const expectoRequest = await prisma.expectoPatronum.findFirst({
+    where: {
+      repository: {
+        owner,
+        repo,
+      },
+    },
   });
 
+  if (!expectoRequest) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Expecto Patronum request not found',
+    });
+  }
+
   // Check if the user is authorized to access the request
-  await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
+  await repoWritePermissions(event, owner, repo);
 
   const response: ExpectoRequestGetResponse = {
     expectoContent: expectoRequest.expectoContent,
@@ -360,11 +328,7 @@ export default defineEventHandler(async (event) => {
 
 ## **Step 5**: Test the feature
 
-You can now test both the bot feature and correlating UI feature by running the Codefair repository locally. The terminal should output both the UI and bot servers running.
-
-```bash
-pnpm dev
-```
+You can now test both the bot feature and correlating UI feature by running the Codefair repository locally.
 
 ![Terminal Output](/terminal-output.png)
 

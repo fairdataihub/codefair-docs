@@ -178,6 +178,9 @@ function portalSidebarGuide() {
         { text: 'Metadata', link: '/docs/metadata.md' },
         { text: 'CWL Validation', link: '/docs/cwl.md' },
         { text: 'Software Archival', link: '/docs/archive.md' },
+        { text: 'README', link: '/docs/readme.md' },
+        { text: 'CONTRIBUTING.md', link: '/docs/contributing.md' },
+        { text: 'CODE_OF_CONDUCT.md', link: '/docs/code-of-conduct.md' },
       ],
     },
     {

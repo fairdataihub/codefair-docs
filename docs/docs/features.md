@@ -20,5 +20,8 @@ Specifically the `Research discipline` column indicates the research discipline 
 | [Metadata](./metadata.md)                                                | Released                 | All                 | All                            | All                    | All                  |
 | [CWL validation](./cwl.md)                                               | August 2024              | All                 | Common Workflow Language (CWL) | Command line interface | All                  |
 | [Quick release and archiving](./upcoming.md#quick-release-and-archiving) | October 2024             | All                 | All                            | All                    | All                  |
+| [README](./upcoming.md#quick-release-and-archiving)                      | May 2025                 | All                 | All                            | All                    | All                  |
+| [CONTRIBUTING](./upcoming.md#quick-release-and-archiving)                | May 2025                 | All                 | All                            | All                    | All                  |
+| [CODE_OF_CONDUCT](./upcoming.md#quick-release-and-archiving)             | May 2025                 | All                 | All                            | All                    | All                  |
 | [Code formatter](./upcoming.md#code-formatter)                           | TBD                      | All                 | Python, Javascript, Typescript | All                    | All                  |
 | [Automated CHANGELOG update](./upcoming.md#automated-changelog-update)   | TBD                      | All                 | All                            | All                    | All                  |

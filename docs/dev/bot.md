@@ -12,7 +12,7 @@ head:
 
 The best way to learn how to add a new feature to Codefair is to complete our step-by-step tutorial below:
 
-The Codefair repository is split into three main subfolders: `ui`, `bot` and `validator`. This tutorial will guide you through the process of adding a new check feature to Codefair bot. Codefair is modularized in a way to try and make it easy for anyone to plug in a new check with how our code structure is created. We have a main function that calls all the available checks `checkForCompliance()` and within there you will call your new feature. The example feature will below will guide you through the standard we have for creating a new feature to check if a `expecto_patronum.md` file exists. This feature will create append the detailed results to a string that will then be used for the GitHub issue body. A clickable badge to direct a user to the Codefair UI to add the file.
+The Codefair repository is split into three main subfolders: `ui`, `bot` and `validator`. This tutorial will guide you through the process of adding a new check feature to Codefair bot. Codefair is modularized in a way to try and make it easy for anyone to plug in a new check with how our code structure is created. We have a main function that calls all the available checks `checkForCompliance()` and within there you will call your new feature. The example feature will below will guide you through the standard we have for creating a new feature to check if a `expecto_patronum.md` file exists. This feature will append the detailed results to an object that will then be used for the GitHub issue renderer. A clickable badge to direct a user to the Codefair UI to add the file is created for each compliance check to allow users to quickly handle a FAIR compliance check.
 
 This page will focus on the steps required to add the new feature to the Codefair bot. To learn how to add a UI feature, you can refer to the [UI documentation](./ui.md).
 
@@ -74,7 +74,7 @@ const issueBody = await renderIssues(
 );
 ```
 
-> **Note**
+> :bulb: **Note**
 > The event listeners we have can be found in the `bot/index.js` file. If you need an event listener not already available you can add it in this file. A list of GitHub event listeners is available [here](https://docs.github.com/en/webhooks/webhook-events-and-payloads).
 
 ## **Step 3**: Create schema for the new check

@@ -144,6 +144,7 @@ function appSidebarGuide() {
       items: [
         { text: 'Bot Feature', link: '/dev/bot.md' },
         { text: 'UI Page', link: '/dev/ui.md' },
+        { text: 'Validation Feature', link: '/dev/validator.md' },
       ],
     },
   ];

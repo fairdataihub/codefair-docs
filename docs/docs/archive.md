@@ -12,6 +12,10 @@ head:
 
 In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), many of the principles aimed at making research software **Findable** and **Accessible** can be fulfilled by archiving the software in a suitable archival repository. This is critical to ensure the long-term preservation and accessibility of the software. One recommended approach, as prescribed by the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x), is to archive each release of your software on Zenodo.
 
+::: tip
+Our staging site at <https://staging.codefair.io/> uses the Zenodo Sandbox API rather than the production Zenodo API. You can test the full FAIR release workflow here before archiving your software on the live Zenodo platform.
+:::
+
 ::: warning
 There is a webhook method that allows you to [automatically archive each GitHub release on Zenodo](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content). However, please note that this method does not provide the DOI before the software is archived on Zenodo, meaning the DOI cannot be included in the software's metadata on GitHub beforehand. This does not align with the FAIR4RS Principle F3, which states: "Metadata should clearly and explicitly include the identifier of the software they describe."
 :::

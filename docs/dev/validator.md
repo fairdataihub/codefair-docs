@@ -1,11 +1,11 @@
 ---
 lang: en-US
-title: Running Locally
-description: Running the Codefair GitHub repository locally
+title: Validation Usage
+description: Adding a validation feature to Codefair
 head:
   - - meta
     - name: og:image
-      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Running%20the%20GitHub%20Repository&app=codefair&org=fairdataihub
+      content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Adding%20a%20validation%20feature%20to%20Codefair&app=codefair&org=fairdataihub
 ---
 
 # :hammer_and_wrench: Adding a Validation Endpoint

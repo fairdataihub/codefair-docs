@@ -1,7 +1,7 @@
 ---
 lang: en-US
 title: Running Locally
-description: Runnning the Codefair GitHub repository locally
+description: Running the Codefair GitHub repository locally
 head:
   - - meta
     - name: og:image

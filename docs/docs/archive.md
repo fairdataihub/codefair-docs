@@ -48,6 +48,10 @@ The Zenodo archive UI is a user-friendly interface that allows you to archive yo
 
    ![Zenodo Connection](/zenodo-permissions.png)
 
+   ::: tip
+   If the OAuth flow shows an error or a blank page, try navigating back and forth between Codefair and Zenodo until the connection completes. This can occur due to a known issue with Zenodo's OAuth implementation. If the problem persists, try using a private/incognito window or clearing relevant cookies.
+   :::
+
 3. **Select the Zenodo record**:
 
    - You can either create a new Zenodo record for your software or choose to update an existing one. This helps organize your software versions and makes it easier to track updates or changes over time.

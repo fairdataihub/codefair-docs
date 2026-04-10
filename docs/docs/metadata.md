@@ -52,3 +52,34 @@ To access the metadata editor, you will need to sign in using your GitHub accoun
 :::
 
 ![Metadata Editor](/metadata-editor.png)
+
+## :white_check_mark: About Metadata Validation
+
+When a `codemeta.json` or `CITATION.cff` file is detected in your repository, Codefair automatically validates each file
+to ensure it conforms to its respective standard. The validation results are reflected in the issue dashboard.
+
+### `codemeta.json` Validation
+
+Codemeta.json files are validated against their declared schema version. Codefair supports both **Codemeta v2.0** and
+**Codemeta v3.0**, detected automatically from the `@context` field in your file:
+
+- `https://doi.org/10.5063/schema/codemeta-2.0` → validated against the Codemeta 2.0 JSON Schema
+- `https://w3id.org/codemeta/3.0` → validated against the Codemeta 3.0 JSON Schema
+
+If the `@context` field is missing or does not match a supported version, the file is flagged as invalid.
+
+If any required fields are missing or malformed, the issue dashboard will display a specific validation error message describing the problem.
+
+### `CITATION.cff` Validation
+
+CITATION.cff files are validated using [cffconvert](https://github.com/citation-file-format/cffconvert), a dedicated
+tool for the Citation File Format. Codefair passes your file to `cffconvert` for validation and surfaces any errors
+directly in the issue dashboard.
+
+Common validation errors include missing required fields (such as `title` or `authors`), incorrect YAML formatting, or
+values that don't match the CFF schema.
+
+::: tip
+You can use the Codefair [metadata editor](#fountain_pen-metadata-editor) to generate valid `codemeta.json` and
+`CITATION.cff` files as it enforces the required structure automatically, reducing the chance of validation errors.
+:::

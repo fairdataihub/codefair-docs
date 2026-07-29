@@ -135,16 +135,28 @@ function appSidebarGuide() {
       collapsible: true,
       items: [
         { text: 'Introduction', link: '/dev/intro.md' },
+        { text: 'Architecture', link: '/dev/architecture.md' },
         { text: 'Running Locally', link: '/dev/running-locally.md' },
       ],
     },
     {
-      text: 'Adding a New Feature',
+      text: 'Contributing a Feature',
       collapsible: true,
       items: [
-        { text: 'Bot Feature', link: '/dev/bot.md' },
-        { text: 'UI Page', link: '/dev/ui.md' },
-        { text: 'Validation Feature', link: '/dev/validator.md' },
+        { text: 'Adding a Compliance Check', link: '/dev/compliance-check.md' },
+        { text: 'Adding a UI Page', link: '/dev/ui.md' },
+        {
+          text: 'Adding a Validation Endpoint',
+          link: '/dev/validator.md',
+        },
+      ],
+    },
+    {
+      text: 'Extending the Platform',
+      collapsible: true,
+      items: [
+        { text: 'Platform Providers (GitLab)', link: '/dev/providers.md' },
+        { text: 'REST API Reference', link: '/dev/api-reference.md' },
       ],
     },
   ];
@@ -160,6 +172,10 @@ function portalSidebarGuide() {
         { text: 'Introduction', link: '/docs/intro.md' },
         { text: 'About Codefair', link: '/docs/about.md' },
         { text: 'Installation', link: '/docs/installation.md' },
+        {
+          text: 'How Codefair Assesses FAIRness',
+          link: '/docs/fairness-assessment.md',
+        },
       ],
     },
     {

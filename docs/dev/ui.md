@@ -10,78 +10,73 @@ head:
 
 # Adding a New UI page :sparkles:
 
-The best way to learn how to add a new feature to Codefair is to complete our step-by-step tutorial below:
+This tutorial walks through adding a Codefair UI page using Vue. We'll build a Markdown editor that lets a user create an `expecto_patronum.md` file in their repository. The page fetches existing content from the central API, and on save it commits the file to a new branch and opens a pull request.
 
-The Codefair repository is split into three main subfolders: `ui`, `bot` and `validator`. This tutorial will guide you through the process of adding a new UI page to Codefair using Vue syntax. The feature will display a markdown editor in the Codefair UI that will allow users to input text to be added to an expecto_patronum.md file in the root of the repository. The page will also make API calls to the database to retrieve and display information gathered from the bot, save drafts, push to the updated content to a new branch and create a pull request.
+> [!NOTE]
+> This page builds on the backend check from [Adding a Compliance Check](./compliance-check.md) (the `expecto_patronum.md` example). Complete that tutorial first so the database model and dashboard badge exist.
 
-> **Note**
-> The feature connects with the bot feature implemented [here](./bot.md) so please ensure you have completed that tutorial before proceeding.
+In the new architecture, UI pages and their API routes are organised **per repository**:
 
-## **Step 1**: Setup your development environment
+- **Editor pages** live at `pages/dashboard/[owner]/[repo]/edit/<feature>.vue`
+- **Read-only views** live at `pages/dashboard/[owner]/[repo]/view/<feature>.vue`
+- **API routes** live at `server/api/[owner]/[repo]/<feature>/index.<method>.ts`
 
-The first step is to setup your development environment and create a GitHub Oauth. You can find detailed instructions on how to do this in our [developer documentation](./running-locally.md).
+Data is read and written with [Prisma](https://www.prisma.io/) (not MongoDB), and every route is protected by the auth helpers `protectRoute` and `repoWritePermissions`. All paths below are relative to the `ui/` directory.
 
-## **Step 2**: Add the UI page
+## **Step 1**: Set up your development environment
 
-Next, you will need to add the UI page to the Codefair frontend. We have a naming convention for the pages where you can navigate to `ui/pages/add` and create a folder called `expecto` and within that folder create a `[identifier].vue` file. Create the UI page using the following Vue syntax:
+Follow [Running Locally](./running-locally.md) to run the central API and create your GitHub App and OAuth App.
+
+## **Step 2**: Add the editor page
+
+Create `pages/dashboard/[owner]/[repo]/edit/expecto.vue`. The route params give you the `owner` and `repo`, which you use to call the per-repository API:
 
 ```vue
 <script setup lang="ts">
 const route = useRoute();
-const { identifier } = route.params as { identifier: string };
+const { owner, repo } = route.params as { owner: string; repo: string };
+
 const expectoContent = ref<string>('');
 
-const { data, error } = await useFetch(`/api/expecto/${identifier}`, {
+const { data } = await useFetch(`/api/${owner}/${repo}/expecto`, {
   headers: useRequestHeaders(['cookie']),
 });
 
 if (data.value) {
   expectoContent.value = data.value.expectoContent ?? '';
 }
+
+async function pushToRepo() {
+  const { prUrl } = await $fetch(`/api/${owner}/${repo}/expecto`, {
+    body: { expectoContent: expectoContent.value },
+    method: 'POST',
+  });
+  // navigate the user to the new pull request
+  await navigateTo(prUrl, { external: true });
+}
 </script>
 
 <template>
-  <main class="">
+  <main>
     <n-flex vertical size="large">
-      <TransitionFade>
-        <div>
-          <n-form-item :show-feedback="false" size="large">
-            <MdEditor
-              v-model="expectoContent"
-            />
-        </div>
-      </TransitionFade>
+      <MdEditor v-model="expectoContent" language="en-US" />
+      <n-button type="primary" @click="pushToRepo">
+        Save and open pull request
+      </n-button>
     </n-flex>
   </main>
 </template>
 ```
 
-## **Step 3**: Create interfaces for the API calls
+The dashboard badge you added in the [compliance check tutorial](./compliance-check.md) links here, because the renderer points it at `${DOMAIN}/dashboard/${owner}/${repo}/edit/expecto`.
 
-Next, you will need to create interfaces for the API calls. You can navigate to `ui/types` and create a file called `expecto.d.ts` and add the following code to retrieve the necessary data from the MongoDB database:
+## **Step 3**: Add the GET route
 
-```typescript
-interface ExpectoRequestGetResponse extends ExpectoRequest {
-  identifer: string;
-  owner: string;
-  repo: string;
-  timestamp: number;
-}
-
-interface ExpectoRequest {
-  expectoContent?: string;
-}
-```
-
-## **Step 4**: Add the API routes
-
-Finally, you will need to add the API calls to the Codefair frontend to retrieve and display the data from the MongoDB database, saving a draft, pushing content to a new branch and creating a pull request. You can navigate to `ui/server/api` and create a folder called `expecto` and within that folder another folder called `[identifier]`. There you will be able to add your different API calls.
-
-### GET request
-
-To create a GET request and retrieve the expecto content from the database, you can create a file a file called `index.get.ts` and add the following code:
+Create `server/api/[owner]/[repo]/expecto/index.get.ts`. It looks up the repository's `Installation`, returns the stored content, and creates an empty record on first visit. Helpers like `prisma`, `protectRoute`, and `repoWritePermissions` are auto-imported. This mirrors `server/api/[owner]/[repo]/readme/index.get.ts`:
 
 ```typescript
+import { createId } from '@paralleldrive/cuid2';
+
 export default defineEventHandler(async (event) => {
   protectRoute(event);
 
@@ -90,44 +85,41 @@ export default defineEventHandler(async (event) => {
     repo: string;
   };
 
-  const expectoRequest = await prisma.expectoPatronum.findFirst({
-    where: {
-      repository: {
-        owner,
-        repo,
-      },
-    },
+  const installation = await prisma.installation.findFirst({
+    include: { ExpectoValidation: true },
+    where: { owner, repo },
   });
 
-  if (!expectoRequest) {
+  if (!installation) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Expecto Patronum request not found',
+      statusMessage: 'installation-not-found',
     });
   }
 
-  // Check if the user is authorized to access the request
+  // Confirm the signed-in user has write access to the repo
   await repoWritePermissions(event, owner, repo);
 
-  const response: ExpectoRequestGetResponse = {
-    expectoContent: expectoRequest.expectoContent,
-    identifier: expectoRequest.identifier,
-    owner: expectoRequest.owner,
-    repo: expectoRequest.repo,
-    timestamp: expectoRequest.timestamp,
-  };
+  let expecto = installation.ExpectoValidation;
+  if (!expecto) {
+    expecto = await prisma.expectoValidation.create({
+      data: {
+        contains_expecto: false,
+        identifier: createId(),
+        repository: { connect: { id: installation.id } },
+      },
+    });
+  }
 
-  // return the valid request
-  return response;
+  return { expectoContent: expecto.expecto_content || '' };
 });
 ```
 
-### POST request
+## **Step 4**: Add the POST route
 
-The POST request will be used to push the content to the repository in a new branch and then create a pull request. You can create a file called `index.post.ts` and add the following code:
+Create `server/api/[owner]/[repo]/expecto/index.post.ts`. It validates the body with [Zod](https://zod.dev/), checks permissions, then uses the GitHub App installation client to create a branch, commit the file, and open a pull request — finally saving the PR URL to the database. This mirrors `server/api/[owner]/[repo]/readme/index.post.ts`:
 
 ```typescript
-import { MongoClient } from 'mongodb';
 import { z } from 'zod';
 import { App } from 'octokit';
 import { nanoid } from 'nanoid';
@@ -135,203 +127,109 @@ import { nanoid } from 'nanoid';
 export default defineEventHandler(async (event) => {
   protectRoute(event);
 
-  const bodySchema = z.object({
-    expectoContent: z.string(),
-  });
+  const { owner, repo } = event.context.params as {
+    owner: string;
+    repo: string;
+  };
 
-  const { identifier } = event.context.params as { identifier: string };
-
-  const body = await readBody(event);
-
-  const parsedBody = bodySchema.safeParse(body);
-
+  const bodySchema = z.object({ expectoContent: z.string() });
+  const parsedBody = bodySchema.safeParse(await readBody(event));
+  if (!parsedBody.success) {
+    throw createError({ statusCode: 400, statusMessage: 'invalid-parameters' });
+  }
   const { expectoContent } = parsedBody.data;
 
-  const client = new MongoClient(process.env.MONGODB_URI as string, {});
-  await client.connect();
-
-  const db = client.db(process.env.MONGODB_DB_NAME);
-  const collection = db.collection('expectoPatronum');
-  const installation = db.collection('installation');
-
-  const expectoRequest = await collection.findOne({
-    identifier,
+  const expecto = await prisma.expectoValidation.findFirst({
+    include: { repository: true },
+    where: { repository: { owner, repo } },
   });
+  if (!expecto?.repository) {
+    throw createError({ statusCode: 404, statusMessage: 'request-not-found' });
+  }
 
-  const installationId = await installation.findOne({
-    repositoryId: expectoRequest.repositoryId,
-  });
+  await repoWritePermissions(event, owner, repo);
 
-  // Check if the user is authorized to access the request
-  await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
-
-  // Create an octokit app instance
+  // Authenticate as the GitHub App installation for this repository
   const app = new App({
-    appId: process.env.GITHUB_APP_ID!,
-    privateKey: process.env.GITHUB_APP_PRIVATE_KEY!,
+    appId: process.env.GH_APP_ID!,
     oauth: {
       clientId: null as unknown as string,
       clientSecret: null as unknown as string,
     },
+    privateKey: process.env.GH_APP_PRIVATE_KEY!.replace(/\\n/g, '\n'),
   });
-
-  // Get the installation instance for the app
   const octokit = await app.getInstallationOctokit(
-    installationId.installationId,
+    expecto.repository.installation_id,
   );
 
-  // Get the default branch of the repository
+  // Branch off the default branch, commit the file, and open a PR
   const { data: repoData } = await octokit.request(
     'GET /repos/{owner}/{repo}',
     {
-      owner: expectoRequest.owner,
-      repo: expectoRequest.repo,
-      headers: {
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
+      owner,
+      repo,
     },
   );
-
   const defaultBranch = repoData.default_branch;
-
-  // Get the default branch reference
   const { data: refData } = await octokit.request(
     'GET /repos/{owner}/{repo}/git/ref/{ref}',
-    {
-      owner: expectoRequest.owner,
-      repo: expectoRequest.repo,
-      ref: `heads/${defaultBranch}`,
-      headers: {
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
-    },
+    { owner, repo, ref: `heads/${defaultBranch}` },
   );
 
-  // Create a new branch for the addition
-  const newBranchName = `expecto-${nanoid()}`;
-
-  // Create a new branch from the default branch
+  const newBranch = `expecto-${nanoid(5)}`;
   await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
-    owner: expectoRequest.owner,
-    repo: expectoRequest.repo,
-    ref: `refs/heads/${newBranchName}`,
+    owner,
+    repo,
+    ref: `refs/heads/${newBranch}`,
     sha: refData.object.sha,
-    headers: {
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
   });
-
-  // Create a new file with the content
   await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-    owner: expectoRequest.owner,
-    repo: expectoRequest.repo,
-    path: 'expecto_patronum.md',
-    message: `feat: ✨ add expecto_patronum file`,
+    owner,
+    repo,
+    branch: newBranch,
     content: Buffer.from(expectoContent).toString('base64'),
-    branch: newBranchName,
-    headers: {
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
+    message: 'feat: ✨ add expecto_patronum.md',
+    path: 'expecto_patronum.md',
   });
-
-  // Create a pull request for the new branch with the expecto_patronum.md content
-  const { data: pullRequestData } = await octokit.request(
+  const { data: pr } = await octokit.request(
     'POST /repos/{owner}/{repo}/pulls',
     {
-      owner: expectoRequest.owner,
-      repo: expectoRequest.repo,
-      title: 'feat: ✨ expecto_patronum.md file added',
-      head: newBranchName,
+      owner,
+      repo,
       base: defaultBranch,
-      // body: `Resolves #${context.payload.issue.number}`,
-      headers: {
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
+      head: newBranch,
+      title: 'feat: ✨ expecto_patronum.md added',
     },
   );
 
-  // Save the PR URL to the database
-  // Update the content in the database
-  await collection.updateOne(
-    {
-      identifier,
-    },
-    {
-      $set: {
-        expectoContent,
-        pullRequestURL: pullRequestData.html_url,
-      },
-    },
-  );
+  // Persist the PR URL and content
+  await prisma.expectoValidation.update({
+    data: { expecto_content: expectoContent, pull_request_url: pr.html_url },
+    where: { id: expecto.id },
+  });
 
-  return {
-    prUrl: pullRequestData.html_url,
-    message: 'expecto_patronum.md request updated successfully',
-  };
+  return { message: 'expecto request updated', prUrl: pr.html_url };
 });
 ```
 
-### PUT request
+> [!NOTE]
+> The example above constructs an Octokit `App` inline because that is what the existing
+> per-repository routes do. For new code, prefer
+> `getInstallationOctokit(installationId)` from `server/services/github-app/client.ts` — it
+> centralises the App credentials instead of repeating them in every route. Better still, if
+> your route only needs ordinary repository operations, take a
+> [`RepositoryProvider`](./providers.md) so it stays platform-agnostic.
 
-The PUT request will be used to save a draft of the content. You can create a file called `index.put.ts` and add the following code:
-
-```typescript
-import { MongoClient } from 'mongodb';
-import { z } from 'zod';
-
-export default defineEventHandler(async (event) => {
-  protectRoute(event);
-
-  const bodySchema = z.object({
-    expectoContent: z.string(),
-  });
-
-  const { identifier } = event.context.params as { identifier: string };
-
-  const body = await readBody(event);
-
-  const parsedBody = bodySchema.safeParse(body);
-
-  const { expectoContent } = parsedBody.data;
-
-  const client = new MongoClient(process.env.MONGODB_URI as string, {});
-  await client.connect();
-
-  const db = client.db(process.env.MONGODB_DB_NAME);
-  const collection = db.collection('expectoPatronum');
-
-  const expectoRequest = await collection.findOne({
-    identifier,
-  });
-
-  // Check if the user is authorized to access the request
-  await repoWritePermissions(event, expectoRequest.owner, expectoRequest.repo);
-
-  const updatedRecord = await collection.updateOne(
-    { identifier },
-    {
-      $set: {
-        expectoContent,
-      },
-    },
-  );
-
-  return {
-    expectoContent,
-    identifier,
-    owner: expectoRequest.owner,
-    repo: expectoRequest.repo,
-    timestamp: expectoRequest.timestamp,
-  };
-});
-```
+> [!TIP]
+> Need a read-only results page instead (like the CWL or metadata validation reports)? Put it under `pages/dashboard/[owner]/[repo]/view/<feature>.vue` and point the dashboard badge at `.../view/<feature>`.
 
 ## **Step 5**: Test the feature
 
-You can now test both the bot feature and correlating UI feature by running the Codefair repository locally.
+Run the stack locally and sign in:
 
-![Terminal Output](/terminal-output.png)
+```bash
+# In ui/
+yarn dev
+```
 
-If you only want to check out the UI created, visit `https://localhost:3000/add/expecto/[identifier]` in your browser. The identifier being the one stored in the mongoDB database.
-
-Another alternative would be to visit the GitHub issue created by the bot and click on the `Edit Expecto Patronum` badge to be redirected to the UI page.
+Visit `http://localhost:3000/dashboard/<owner>/<repo>/edit/expecto`, edit the content, and click **Save**. Confirm that a new branch and pull request are created on the repository, and that the PR URL is stored on the `ExpectoValidation` row (`yarn prisma:studio`). You can also reach the page from the **FAIR Compliance Dashboard** issue by clicking the _Create/Edit Expecto_ badge.

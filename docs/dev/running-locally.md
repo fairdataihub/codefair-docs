@@ -10,152 +10,166 @@ head:
 
 # :computer: Running Locally
 
-This section provides instructions for developers to run the Codefair GitHub repository locally.
+This section provides instructions for developers to run the Codefair GitHub repository locally. If you have not yet, read the [Architecture](./architecture.md) page first — it explains how the pieces below fit together.
 
 ## :file_folder: Code structure
 
-The Codefair repository combines both the Nuxt frontend and the Probot backend to work with the GitHub App. The repository is divided into three main parts:
+Codefair is a **central API**: a single Nuxt application that serves the web UI and the backend, plus a small validation microservice. The repository has two active parts:
 
-1. **Frontend**: The frontend is built with [Nuxt.js](https://nuxt.com/) and is responsible for the user interface of the Codefair platform. The frontend is located in the `ui` directory of the repository.
+1. **Central API (`ui/`)** — built with [Nuxt](https://nuxt.com/). It serves the user interface **and** the backend API (webhooks, FAIR compliance checks, pull requests, dashboard, and archival). It talks to GitHub through [Octokit](https://github.com/octokit/octokit.js) and stores state in PostgreSQL through [Prisma](https://www.prisma.io/).
 
-2. **GitHub App**: The GitHub app is built with [Probot](https://probot.github.io/docs/README/) and is responsible for the GitHub App functionality. The backend is located in the `bot` directory of the repository.
+2. **Validation microservice (`validator/`)** — built with [Python](https://www.python.org/) and [Flask](https://flask.palletsprojects.com/), responsible for validating `codemeta.json`, `CITATION.cff`, and CWL files. The `ui` calls it over HTTP.
 
-3. **Validation Microservice**: The validation microservice is built with [Python](https://www.python.org/) and [Flask](https://flask.palletsprojects.com/en/stable/), which is responsible for the validation of metadata, licenses, and CWL files. The microservice is located in the `validation` directory of the repository.
+> [!NOTE]
+> The repository also contains a `bot/` folder — the original [Probot](https://probot.github.io/) backend, now **being retired**. You do **not** need to set it up for local development: all backend functionality you'll be working on lives in `ui/server`. It is still deployed in production for repositories that have not yet been migrated to the central API. See [Architecture](./architecture.md#use-central-api-flag).
 
 ## :white_check_mark: Prerequisites
 
 Before you can run the Codefair repository, you will need the following prerequisites:
 
-1. **Node.js**: You will need Node.js (v20) installed on your machine to run the Codefair repository. You can download Node.js from the [official Node.js website](https://nodejs.org/en/download).
+1. **Node.js**: The `ui` app targets **Node.js 24+** (see the `engines` field in `ui/package.json`). You can download Node.js from the [official website](https://nodejs.org/en/download).
 
-2. **Database**: Codefair now uses Prisma as an ORM for managing database storage (Earlier versions used MongoDB). Ensure you have a supported database (e.g., PostgreSQL, MySQL, or SQLite) set up and configured. You can learn more about Prisma and its supported databases from the [official Prisma website](https://www.prisma.io/). We've provided a Postgres Docker Compose file in the root of the repository to help you get started. You can run the following command to start a Postgres database using Docker:
+2. **Yarn**: Install Yarn to manage the `ui` dependencies:
 
-```bash
-docker-compose -f docker-compose.yml up -d
-```
+   ```bash
+   npm install -g yarn
+   ```
 
-3. **Yarn**: You will need Yarn installed on your machine to run the Codefair repository. You can install Yarn by running the following command:
+3. **PostgreSQL**: Codefair uses PostgreSQL via the Prisma ORM. The repository ships a Compose file (`db-docker-compose.yaml`) that runs a local Postgres for you — see **Set up the database** below. (You can also point `DATABASE_URL` at any Postgres instance you prefer.)
 
-```bash
-npm install -g yarn
-```
+4. **Python**: Python **3.10+** is used for the validation service. Download it from the [official website](https://www.python.org/downloads/).
 
-4. **Python**: Python is used for the Validation service. You will need Python 3.8 or higher installed on your machine. You can download Python from the [official Python website](https://www.python.org/downloads/).
+5. **Smee** (local dev): GitHub needs to reach your machine to deliver webhooks. Create a free channel at [smee.io](https://smee.io/) and use the URL as your webhook proxy. The `ui` includes a helper script that forwards events from Smee to your local server.
 
-5. **Smee**: You will need Smee.io to create a webhook proxy for the GitHub App. You can create a Smee.io webhook proxy by visiting the [Smee.io website](https://smee.io/). This will be used to receive GitHub App events from the GitHub API on your local machine.
+6. **OAuth App** (user sign-in): In your GitHub account, go to **Settings → Developer settings → OAuth Apps** and create one. Provide:
 
-6. **Oauth App**: Create an Oauth App by going to the Developer Settings in your GitHub account and within the Oauth Apps section. You will need to provide the following information:
+   - **Application name**
+   - **Homepage URL**: the Codefair frontend (e.g. `http://localhost:3000`)
+   - **Authorization callback URL**: `http://localhost:3000/login/github/callback`
 
-   - **Application Name**: Name of the Oauth App
-   - **Homepage URL**: URL for the Codefair frontend
-   - **Authorization callback URL**: URL for the Codefair frontend
+7. **GitHub App** (the bot): In **Settings → Developer settings → GitHub Apps**, create one with:
 
-7. **GitHub App**: Create a GitHub App by going to the Developer Settings in your GitHub account and within the GitHub App section. You will need to provide the following information:
-
-   - **GitHub App Name**: Name of the GitHub App
-   - **Homepage URL**: URL for the Codefair frontend
-   - **Webhook URL**: URL for the Probot server (If working locally use the Smee.io URL)
-   - **Webhook Secret**: Secret for the GitHub App webhook
+   - **GitHub App name**
+   - **Homepage URL**: the Codefair frontend
+   - **Webhook URL**: your **Smee.io URL** in local development (in production this is the app's `/api/webhooks/github` endpoint)
+   - **Webhook secret**: a value you choose — it must match `WEBHOOK_SECRET` in your `.env`
    - **Permissions**:
-     - **Read & Write access:** Contents, issues, and pull requests
-     - **Read access:** Metadata
-     - **Events to Subscribe to:** Issue comments, issues, pull request, pull request review, push, repository
+     - **Read & Write**: Contents, Issues, Pull requests
+     - **Read-only**: Metadata
+   - **Subscribe to events**: Installation target, Push, Pull request, Issues, Issue comment
 
-For the final question on `Where can this GitHub App be installed?`, you can choose `Any account` to allow the GitHub App to be installed on any repository.
+   For _"Where can this GitHub App be installed?"_ choose **Any account** so you can install it on test repositories.
 
-Once you have create the GitHub App, you will need to generate a private key and client secret for the GitHub App. The private key and client secret will be used to authenticate the GitHub App with the GitHub API.
+   After creating the App, generate a **private key** (`.pem`) and note the **App ID**. These become `GH_APP_PRIVATE_KEY` and `GH_APP_ID`.
 
-## :wrench: Setting up the Codefair repository
-
-You can run the following commands to start the Codefair repository:
-
-1. **Clone the Repository**: Clone the Codefair repository to your local machine by running the following command:
+## :arrow_down: Clone the repository
 
 ```bash
 git clone https://github.com/fairdataihub/codefair-app.git
+cd codefair-app
 ```
 
-2. **Gather Environment Variables**: Create a `.env` file in both the `ui` and `bot` directories of the repository. You can use the `.env.example` file as a template for the environment variables.
+## :elephant: Set up the database
+
+Start a local PostgreSQL instance using the provided Compose file at the repository root:
 
 ```bash
-# .env file in the ui directory
-APP_ID=               # GitHub App ID
-CODEFAIR_APP_DOMAIN=  # URL for the Codefair app
-CODEFAIR_BOT_DOMAIN=  # URL for the Codefair bot
-DATABASE_URL=         # Postgres DB URL
-GH_APP_CLIENT_ID=     # GitHub App client ID
-GH_APP_CLIENT_SECRET= # GitHub App client secret
-GH_APP_ID=            # GitHub App ID
-GH_APP_NAME=          # GitHub App Name
-GH_APP_PRIVATE_KEY=   # GitHub App private key
-GH_OAUTH_APP_ID=      # GitHub OAuth App ID
-GH_OAUTH_CLIENT_ID=   # GitHub OAuth Client ID
-GH_OAUTH_CLIENT_SECRET= # GitHub OAuth Client Secret
-PORT="3000"             # Port to run frontend
-UI_LOGWATCH_URL=        # UI Logwatch URL
-VALIDATOR_URL=          # Validator URL
-WEBHOOK_PROXY_URL=      # Webhook proxy URL
-WEBHOOK_SECRET=         # Webhook proxy secret
-ZENODO_API_ENDPOINT=    # Zenodo API endpoint
-ZENODO_CLIENT_ID=       # Zenodo Client ID
-ZENODO_CLIENT_SECRET=   # Zenodo Client Secret
-ZENODO_ENDPOINT=        # Zenodo Endpoint URL
-ZENODO_REDIRECT_URI=    # Zenodo Redirect URI
+docker compose -f db-docker-compose.yaml up -d
 ```
 
+This starts Postgres on port `5432` with database `codefair_local` (user `admin`, password `root`). The matching connection string is:
+
 ```bash
-# .env file in the bot directory
-BOT_LOGWATCH_URL=             # Logwatch URL for the bot
-CODEFAIR_APP_DOMAIN=          # http://localhost:300 or your domain for the frontend
-CODEFAIR_BOT_DOMAIN=          # http://localhost:3001 or your domain for the bot
-DATABASE_URL=                 # Postgres DB URL
-GH_APP_CLIENT_ID=             # GitHub Client ID
-GH_APP_CLIENT_SECRET=         # GitHub Client Secret
-GH_APP_ID=                    # GitHub App ID
-GH_APP_NAME=                  # GitHub App Name
-GH_APP_PRIVATE_KEY=           # GitHub App Private key
-PORT="3001"                   # Port for the Probot Server
-VALIDATOR_URL=                # http://localhost:5000 or Validator URL
-WEBHOOK_PROXY_URL=            # Webhook Proxy URL
-WEBHOOK_SECRET=               # WebHook Secret
-ZENODO_API_ENDPOINT=          # Zenodo API Endpoint
-ZENODO_CLIENT_ID=             # Zenodo Client ID
-ZENODO_CLIENT_SECRET=         # Zenodo Client Secret
-ZENODO_ENDPOINT=              # Zenodo API URL (sandbox or production)
-ZENODO_REDIRECT_URI=          # Zenodo Redirect URL (sandbox or production)
+DATABASE_URL="postgresql://admin:root@localhost:5432/codefair_local"
 ```
 
-## :running: Running the Codefair repository
+## :key: Environment variables
 
-There are three main parts to running the Codefair repository:
-
-- **Frontend**: To run the frontend run the following command at the root of the repository:
+Unlike the old Probot setup, there is now a **single** `.env` file, located in the `ui/` directory. The required variables are enforced at startup by `ui/server/plugins/env-check.ts` — if any are missing, the app refuses to boot and tells you which one. Create `ui/.env` with the following:
 
 ```bash
-# Navigate to the ui directory, install dependencies, and run the server
-cd ui && yarn install && yarn dev
+# Database
+DATABASE_URL=               # PostgreSQL connection string (see above)
+
+# GitHub App (the bot identity)
+GH_APP_ID=                  # GitHub App ID
+GH_APP_NAME=                # GitHub App name (used to build the "<name>[bot]" login)
+GH_APP_PRIVATE_KEY=         # GitHub App private key (PEM; escape newlines as \n)
+
+# GitHub OAuth (user sign-in)
+GH_OAUTH_APP_ID=            # OAuth App ID
+GH_OAUTH_CLIENT_ID=         # OAuth client ID
+GH_OAUTH_CLIENT_SECRET=     # OAuth client secret
+
+# Webhooks
+WEBHOOK_SECRET=             # Must match the secret set on the GitHub App
+WEBHOOK_PROXY_URL=          # Your Smee.io channel URL (local dev only)
+
+# App + services
+CODEFAIR_APP_DOMAIN=        # Base URL of the app, e.g. http://localhost:3000
+UI_LOGWATCH_URL=            # Logging service endpoint
+VALIDATOR_URL=              # Base URL of the validator, e.g. http://localhost:5000
+
+# Zenodo (archival)
+ZENODO_API_ENDPOINT=        # Zenodo API endpoint
+ZENODO_ENDPOINT=            # Zenodo site URL (sandbox or production)
+ZENODO_CLIENT_ID=           # Zenodo OAuth client ID
+ZENODO_CLIENT_SECRET=       # Zenodo OAuth client secret
+ZENODO_REDIRECT_URI=        # Zenodo OAuth redirect URI
 ```
 
-- **Backend**: To run the backend run the following command at the root of the repository:
+> [!TIP]
+> For local archival testing, point the Zenodo variables at the [Zenodo Sandbox](https://sandbox.zenodo.org/) rather than production so you don't mint real DOIs.
+
+## :running: Running the services
+
+### 1. Central API (`ui/`)
 
 ```bash
-# Navigate to the bot directory, install dependencies, and run the server
-cd bot && yarn install && yarn dev
+cd ui
+
+# Install dependencies
+yarn install
+
+# Generate the Prisma client and create the database tables
+yarn prisma:generate
+yarn prisma:db:push
+
+# Start the dev server on http://localhost:3000
+yarn dev
 ```
 
-- **Validation Microservice**: To run the validation microservice run the following command at the root of the repository:
+To also forward GitHub webhooks from your Smee channel while developing, use the combined script instead of `yarn dev`:
 
 ```bash
-# Create a virtual environment within the validation folder
-cd validation && python -m venv .venv
+# Runs the Nuxt dev server and the Smee proxy together
+yarn dev:webhook
+```
 
-# Activate the virtual environment
-source .venv/bin/activate  # For Linux or MacOS
-source .venv/Scripts/activate   # For Windows
+> [!TIP]
+> Useful Prisma scripts: `yarn prisma:studio` opens a database GUI, and `yarn prisma:migrate:dev --name <name>` creates a migration when you change the schema (use this instead of `db:push` for changes you intend to merge).
+
+### 2. Validation microservice (`validator/`)
+
+```bash
+cd validator
+
+# Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate        # macOS / Linux
+.venv\Scripts\activate           # Windows (PowerShell)
 
 # Install the requirements
 pip install -r requirements.txt
 
-# Run the microservice
+# Run the service on http://localhost:5000
 python app.py --host localhost --port 5000
 ```
+
+Alternatively, run the validator in Docker using the Compose file in that folder:
+
+```bash
+cd validator && docker compose up
+```
+
+Once both services are running, install your GitHub App on a test repository. Webhook deliveries will appear in your Smee channel and in the terminal running `yarn dev:webhook`, and Codefair will open a **FAIR Compliance Dashboard** issue on the repository.

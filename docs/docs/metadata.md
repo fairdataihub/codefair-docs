@@ -30,22 +30,29 @@ This will direct you to the Codefair's metadata editor to review the metadata ga
 
 You can then edit the metadata as needed and save as a draft or push the changes into a pull request.
 
-## :fountain_pen: Metadata Editor
+## :fountain_pen: Metadata Editor {#metadata-editor}
 
 The metadata editor UI is a user-friendly interface that allows you to generate both a CITATION.cff and a codemeta.json file within the same page in a simple and intuitive way.
 
-The editor is broken into sections, each representing a different aspect of the metadata:
+The editor is broken into collapsible sections, each representing a different aspect of the metadata. A sidebar lists every section with a status dot — green when it is complete, orange when something is still missing, red when a field needs fixing — and tracks how many of the required sections you have finished.
 
-1. **General Information**: This section includes essential details about your repository, such as the title, description, and homepage URL. It helps users and other researchers understand the purpose of your software at a glance.
-2. **Discoverability**: This section includes keywords, tags, and topics that make it easier for others to discover your repository in search results. These descriptors improve the visibility of your software across platforms like GitHub, Zenodo, and software registries.
-3. **License**: This section includes the licensing information for your repository. It ensures that your software is properly licensed, making it clear how others can use, modify, and distribute it.
-4. **Software Requirements**: This section specifies the technical requirements necessary for users to install and run your software successfully.
-5. **Current Version**: This section tracks the version number, release date, and any associated release notes for your repository. It provides transparency about the most recent updates to your software, helping users stay informed about the latest changes and improvements.
-6. **Additional Information**: This section is a flexible area where you can include any supplementary information that may not fit into the other categories. It can be used to note acknowledgments, special usage instructions, or links to external resources like documentation, publications, or datasets.
-<!-- 7. **Editorial Review**: This section includes the status of the metadata and any comments from the editorial review. -->
-7. **Authors and Contributors**: This section lists the authors, contributors, and collaborators involved in creating or maintaining the repository. It recognizes their work and gives proper attribution while making it clear who to contact for further inquiries or contributions.
+| Section                    | Required | What goes here                                                                                       |
+| :------------------------- | :------- | :--------------------------------------------------------------------------------------------------- |
+| **Basic Information**      | Yes      | Software name and description, plus creation and first release dates.                                |
+| **Authors & Contributors** | Yes      | Everyone involved, with affiliation, email, and ORCID, and the roles they played.                    |
+| **Discoverability**        | Yes      | Keywords, application category, a unique identifier such as a DOI, and funding details.              |
+| **Development Community**  | No       | Links to your code repository, issue tracker, continuous integration, and related resources.         |
+| **Software Requirements**  | Yes      | Programming languages, runtime platform, and supported operating systems.                            |
+| **Current Version**        | No       | Version number, release date, download URL, and release notes.                                       |
+| **Additional Information** | No       | Development status, and whether this software is part of — or the source code of — something larger. |
 
-When done, you can click on the `Save and push to repository` button and codefair will create a PR with corresponding CITATION.cff and codemeta.json files. The PR page will open automatically so you can quickly review and merge it. Alternatively, you can click on the `Save` button and come back to continue later on.
+::: tip
+Codefair pre-fills much of this from your repository — languages, contributors, repository URL, and existing releases — so in most cases you are reviewing and correcting rather than typing everything from scratch. If a required field is missing when you try to save, the editor jumps you to the section that needs attention.
+:::
+
+Licensing is **not** part of this editor. Codefair fills the license field of both files from the license already detected on your repository, so you manage it in one place — the [license editor](./license.md#license-editor-ui).
+
+When done, you can click on the `Save and push to repository` button and codefair will create a PR with corresponding CITATION.cff and codemeta.json files. The PR page will open automatically so you can quickly review and merge it. Alternatively, you can click on the `Save draft` button and come back to continue later on.
 
 ::: warning
 To access the metadata editor, you will need to sign in using your GitHub account. We use [GitHub OAuth](./installation.md#oauth-sign-in-permissions) to authenticate users and provide access to the Codefair features.
@@ -53,10 +60,12 @@ To access the metadata editor, you will need to sign in using your GitHub accoun
 
 ![Metadata Editor](/metadata-editor.png)
 
-## :white_check_mark: About Metadata Validation
+## :white_check_mark: About Metadata Validation {#about-metadata-validation}
 
 When a `codemeta.json` or `CITATION.cff` file is detected in your repository, Codefair automatically validates each file
-to ensure it conforms to its respective standard. The validation results are reflected in the issue dashboard.
+to ensure it conforms to its respective standard. The validation results are reflected in the issue dashboard, and you
+can open the dedicated **View Metadata Validation** page from the Codefair UI dashboard (via the **View Validations**
+badge in the Metadata section) to review the per-file status and detailed error messages.
 
 ### `codemeta.json` Validation
 
@@ -80,6 +89,6 @@ Common validation errors include missing required fields (such as `title` or `au
 values that don't match the CFF schema.
 
 ::: tip
-You can use the Codefair [metadata editor](#fountain_pen-metadata-editor) to generate valid `codemeta.json` and
+You can use the Codefair [metadata editor](#metadata-editor) to generate valid `codemeta.json` and
 `CITATION.cff` files as it enforces the required structure automatically, reducing the chance of validation errors.
 :::

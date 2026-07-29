@@ -80,6 +80,65 @@ The Zenodo archive UI is a user-friendly interface that allows you to archive yo
 
 After clicking the `Start the Zenodo publish process` button, Codefair will automatically handle your release. This includes generating a DOI via Zenodo for citation, updating the metadata files (CITATION.cff and codemeta.json) with the new DOI, and finalizing the release on both GitHub and Zenodo. You can monitor the status in both the Codefair UI and GitHub Issue dashboards. Once completed, Codefair will notify you of the successful archival, allowing you to track the entire Zenodo process.
 
+## :label: Share your DOI badge {#share-your-doi-badge}
+
+Once your software is archived on Zenodo, Codefair generates a **DOI badge** you can add to your README so visitors can quickly find and cite your latest release. Click **Request Zenodo badge** on the release page and Codefair shows ready-to-copy snippets in Markdown and HTML, plus the image and target URLs on their own:
+
+```markdown
+[![FAIR Software Release](https://codefair.io/api/badge/<owner>/<repo>)](https://codefair.io/doi/<owner>/<repo>)
+```
+
+```html
+<a href="https://codefair.io/doi/<owner>/<repo>">
+  <img
+    src="https://codefair.io/api/badge/<owner>/<repo>"
+    alt="FAIR Software Release"
+  />
+</a>
+```
+
+Two different URLs are doing two different jobs here:
+
+- `https://codefair.io/api/badge/<owner>/<repo>` — the badge **image**, an SVG showing your DOI.
+- `https://codefair.io/doi/<owner>/<repo>` — where the badge **links to**. It redirects to your DOI, so clicking the badge takes readers to your record.
+
+Both always reflect your most recently published Zenodo DOI, so the badge stays up to date as you publish new releases without you having to edit your README again.
+
+## :closed_lock_with_key: Managing your Zenodo connection
+
+Codefair stores a Zenodo token so it can create depositions on your behalf. There are two ways to remove it:
+
+- **Sign out of Zenodo** — on the release page, in the _Check Zenodo connection_ step. This disconnects Zenodo and leaves the rest of your Codefair account untouched. Use this one if you simply want to reconnect with a different Zenodo account.
+- **Purge tokens** — on your Codefair **profile** page. This is the bigger hammer: it removes your Zenodo token **and** your stored GitHub token, and signs you out of Codefair entirely. You will need to sign in again afterwards.
+
+Either way you can reconnect later from the release workflow. Removing a token does not affect anything you have already published — your DOIs and Zenodo records are permanent.
+
+## :bookmark: How Codefair finds your existing DOIs
+
+Even before you publish through Codefair, the dashboard looks for identifiers you may already have. It reads the `identifier` field of your `codemeta.json` and the `doi` field of your `CITATION.cff`, and sorts what it finds into three groups:
+
+| What Codefair finds             | What the dashboard shows                                                                            |
+| :------------------------------ | :-------------------------------------------------------------------------------------------------- |
+| A Zenodo DOI                    | ✔️ — you are archived, with a badge linking to the record.                                          |
+| A DOI from somewhere else       | ℹ️ — the DOI is recognised and displayed, with a note that automated archival is Zenodo-only today. |
+| An identifier that is not a DOI | ℹ️ — a suggestion to obtain a DOI, since a DOI is what makes a release citable and findable.        |
+| Nothing                         | ❌ — with a button to create your first release.                                                    |
+
+If more than one identifier is found, Codefair picks a **primary** one (preferring a Zenodo DOI) and lists the rest under _"Additional identifiers found"_, noting which file each came from. This is informational — Codefair never edits or removes identifiers you added yourself.
+
+## :warning: Requirements and limits
+
+A few conditions are enforced before a release can be archived:
+
+- **A standard license is required.** Zenodo cannot accept a license it can't identify, so archiving is disabled while your license is marked as custom. See [Custom Licences](./license.md#custom-licences).
+- **The GitHub release must be a draft.** Codefair publishes the GitHub release itself as the final step, so it needs the release to still be a draft when the process starts.
+- **A tag can only be released once.** If the tag you selected has already been released, Codefair will ask you to pick or create another.
+- **Access right is currently open only.** Zenodo's embargoed, restricted, and closed options are not yet supported through Codefair.
+
+::: tip
+Testing? Point Codefair at the [Zenodo Sandbox](https://sandbox.zenodo.org/) instead of production so you can practise the whole workflow without minting a real DOI. Sandbox DOIs use the `10.5072` prefix.
+:::
+
 ## :world_map: Workflow Diagram
 
 ![Zenodo Archive](/zenodo-diagram.png)

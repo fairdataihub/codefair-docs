@@ -34,7 +34,7 @@ A file found only through this fallback is treated as a **custom license**, beca
 
 The Codefair issue dashboard will show a compliance issue with the license requirement if no license file can be found at all. To fix the LICENSE issue, you can simply click on the `Add License` (or `Edit License` if a license exists already) button provided in the issue dashboard. You will be directed to Codefair's license editor UI where you will be able to select a license, review/edit the license terms, and submit a PR for adding a LICENSE file to your repository. Details about Codefair's license editor UI are provided below.
 
-## :memo: Custom Licences
+## :memo: Custom Licences {#custom-licences}
 
 If GitHub cannot determine an SPDX license ID, Codefair classifies your license as a **custom license**. This also happens when you modify the text of a standard license — Codefair compares your file against what it recorded previously, and meaningful changes cause it to ask you to confirm the license again rather than silently keeping the old identifier.
 
@@ -46,7 +46,7 @@ A custom license still counts as having a license: your dashboard shows ❗ ("ne
 If you want to archive your software and mint a DOI, select a standard SPDX license in the license editor. If you must keep a custom license, you can still archive manually through Zenodo's own website.
 :::
 
-## :fountain_pen: License editor UI
+## :fountain_pen: License editor UI {#license-editor-ui}
 
 The license editor UI is a user-friendly interface that allows you to add a license to your research software or edit it. The license editor provides you with a list of common licenses that you can choose from. Once selected, the license content is displayed in the editor allowing you to review and update the license text, if needed. You can then click on the `Save and push license to repository` button and codefair will create a PR with a corresponding LICENSE file. The PR page will open automatically so you can quickly review and merge it. Alternatively, you can click on the `Save` button and come back to continue later on.
 

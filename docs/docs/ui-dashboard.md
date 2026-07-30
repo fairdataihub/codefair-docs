@@ -84,6 +84,6 @@ Clicking the `View Codefair settings` button will take you to the GitHub setting
 
 ## :hourglass_flowing_sand: What happens when a check re-runs
 
-When you trigger any of the re-runs above, Codefair opens a progress window and reports each step as it happens, so you can see what it is doing rather than waiting on a spinner. Larger repositories — particularly those with many CWL files — can take a few minutes.
+When you trigger any of the re-runs above, Codefair opens a progress window and reports each step as it happens, so you can see what it is doing rather than waiting on a spinner. Larger repositories, particularly those with many CWL files, can take a few minutes.
 
 When the run finishes, the window confirms completion and the cards update with the new results. The GitHub issue dashboard is refreshed at the same time, so both views stay in sync.

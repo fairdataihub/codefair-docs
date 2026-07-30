@@ -18,7 +18,7 @@ The Common Workflow Language (CWL) is a specification for describing analysis wo
 
 The CWL Validation feature of Codefair checks whether the CWL files in your repository are compliant with the CWL standard. Codefair searches your repository for every file ending in `.cwl`, wherever it lives in the directory tree, and validates each one with [cwltool](https://cwltool.readthedocs.io/en/stable/) using its [`--validate` mode](https://cwltool.readthedocs.io/en/stable/cli.html#cmdoption-cwltool-validate). The results are written to the CWL section of your issue dashboard and to a detailed results page in the Codefair web app.
 
-Validation happens on Codefair's servers. **Nothing is added to your repository** — Codefair does not commit a GitHub Actions workflow, and it does not open a pull request for CWL. Your files are only ever read.
+Validation happens on Codefair's servers. **Nothing is added to your repository**. Codefair does not commit a GitHub Actions workflow, and it does not open a pull request for CWL. Your files are only ever read.
 
 ::: tip
 If your repository contains no `.cwl` files, the CWL section is left off your dashboard entirely rather than shown as a failure. CWL is a language-specific standard, so it is only reported for the projects it applies to.
@@ -36,7 +36,7 @@ The CWL section on the GitHub issue dashboard appears under **Language Specific 
 
 ## :white_check_mark: CWL Validation Results
 
-The CWL validation results page shows the details of each file that was checked. Every file is listed with its status, the date it was last validated, a **View file** link back to that file on GitHub, and — when validation failed — the full message produced by `cwltool` so you can see exactly which line caused the problem.
+The CWL validation results page shows the details of each file that was checked. Every file is listed with its status, the date it was last validated, a **View file** link back to that file on GitHub, and, when validation failed, the full message produced by `cwltool` so you can see exactly which line caused the problem.
 
 You can re-run the validation at any time using the **Rerun CWL Validation** button on the repository page. This may take a few minutes for repositories with many workflows, and progress is shown while it runs.
 

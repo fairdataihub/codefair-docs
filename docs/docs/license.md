@@ -36,7 +36,7 @@ The Codefair issue dashboard will show a compliance issue with the license requi
 
 ## :memo: Custom Licences {#custom-licences}
 
-If GitHub cannot determine an SPDX license ID, Codefair classifies your license as a **custom license**. This also happens when you modify the text of a standard license — Codefair compares your file against what it recorded previously, and meaningful changes cause it to ask you to confirm the license again rather than silently keeping the old identifier.
+If GitHub cannot determine an SPDX license ID, Codefair classifies your license as a **custom license**. This also happens when you modify the text of a standard license. Codefair compares your file against what it recorded previously, and meaningful changes cause it to ask you to confirm the license again rather than silently keeping the old identifier.
 
 A custom license still counts as having a license: your dashboard shows ❗ ("needs verification") rather than ❌, and once you give it a title through the license editor it shows ✔️. You can also use the editor to replace it with one of the licenses from the SPDX list.
 

@@ -12,7 +12,7 @@ head:
 
 The central API exposes its functionality over HTTP from `ui/server/api`. This page is a reference to those endpoints.
 
-> [!WARNING] > **Internal and evolving.** These endpoints currently power Codefair's own web UI and are authenticated with the browser **session cookie**, not API tokens. They are documented here as the foundation of the planned **public REST API** — paths, payloads, and the auth model may change before a stable, token-authenticated, versioned API is released. Treat this as a contributor reference, not a public contract.
+> [!WARNING] > **Internal and evolving.** These endpoints currently power Codefair's own web UI and are authenticated with the browser **session cookie**, not API tokens. They are documented here as the foundation of the planned **public REST API**, so paths, payloads, and the auth model may change before a stable, token-authenticated, versioned API is released. Treat this as a contributor reference, not a public contract.
 
 ## :gear: Conventions
 
@@ -54,7 +54,7 @@ Each FAIR check exposes a consistent trio: `GET` current state, `POST` to create
 
 > [!NOTE]
 > A second, older pair of routes exists at `/dashboard/[owner]` and
-> `/dashboard/[owner]/[repo]`. No page calls them — the UI uses
+> `/dashboard/[owner]/[repo]`. No page calls them; the UI uses
 > `/[owner]/dashboard` and `/[owner]/[repo]/dashboard` above. Treat them as
 > deprecated and don't build on them.
 
@@ -118,7 +118,7 @@ the browser rather than by `fetch`.
 | :----- | :--------------------------------- | :------ | :------------------------------------------------------------------------------------ |
 | GET    | `/up`                              | Public  | Health check for the deployment proxy.                                                |
 | GET    | `/login/github`                    | Public  | Starts GitHub OAuth. Accepts `?redirect=` to return the user where they started.      |
-| GET    | `/login/github/callback`           | Public  | OAuth callback — validates state, creates the session, redirects to the dashboard.    |
+| GET    | `/login/github/callback`           | Public  | OAuth callback: validates state, creates the session, redirects to the dashboard.     |
 | GET    | `/doi/[owner]/[repo]`              | Public  | Redirects to the repository's published DOI. **This is the DOI badge's link target.** |
 | GET    | `/add/license/[identifier]`        | Session | Redirect shim to the license editor. Kept for links in older dashboard issues.        |
 | GET    | `/add/code-metadata/[identifier]`  | Session | Redirect shim to the metadata editor.                                                 |

@@ -99,8 +99,8 @@ Once your software is archived on Zenodo, Codefair generates a **DOI badge** you
 
 Two different URLs are doing two different jobs here:
 
-- `https://codefair.io/api/badge/<owner>/<repo>` — the badge **image**, an SVG showing your DOI.
-- `https://codefair.io/doi/<owner>/<repo>` — where the badge **links to**. It redirects to your DOI, so clicking the badge takes readers to your record.
+- `https://codefair.io/api/badge/<owner>/<repo>` is the badge **image**, an SVG showing your DOI.
+- `https://codefair.io/doi/<owner>/<repo>` is where the badge **links to**. It redirects to your DOI, so clicking the badge takes readers to your record.
 
 Both always reflect your most recently published Zenodo DOI, so the badge stays up to date as you publish new releases without you having to edit your README again.
 
@@ -108,23 +108,23 @@ Both always reflect your most recently published Zenodo DOI, so the badge stays 
 
 Codefair stores a Zenodo token so it can create depositions on your behalf. There are two ways to remove it:
 
-- **Sign out of Zenodo** — on the release page, in the _Check Zenodo connection_ step. This disconnects Zenodo and leaves the rest of your Codefair account untouched. Use this one if you simply want to reconnect with a different Zenodo account.
-- **Purge tokens** — on your Codefair **profile** page. This is the bigger hammer: it removes your Zenodo token **and** your stored GitHub token, and signs you out of Codefair entirely. You will need to sign in again afterwards.
+- **Sign out of Zenodo**, on the release page, in the _Check Zenodo connection_ step. This disconnects Zenodo and leaves the rest of your Codefair account untouched. Use this one if you simply want to reconnect with a different Zenodo account.
+- **Purge tokens**, on your Codefair **profile** page. This is the bigger hammer: it removes your Zenodo token **and** your stored GitHub token, and signs you out of Codefair entirely. You will need to sign in again afterwards.
 
-Either way you can reconnect later from the release workflow. Removing a token does not affect anything you have already published — your DOIs and Zenodo records are permanent.
+Either way you can reconnect later from the release workflow. Removing a token does not affect anything you have already published; your DOIs and Zenodo records are permanent.
 
 ## :bookmark: How Codefair finds your existing DOIs
 
 Even before you publish through Codefair, the dashboard looks for identifiers you may already have. It reads the `identifier` field of your `codemeta.json` and the `doi` field of your `CITATION.cff`, and sorts what it finds into three groups:
 
-| What Codefair finds             | What the dashboard shows                                                                            |
-| :------------------------------ | :-------------------------------------------------------------------------------------------------- |
-| A Zenodo DOI                    | ✔️ — you are archived, with a badge linking to the record.                                          |
-| A DOI from somewhere else       | ℹ️ — the DOI is recognised and displayed, with a note that automated archival is Zenodo-only today. |
-| An identifier that is not a DOI | ℹ️ — a suggestion to obtain a DOI, since a DOI is what makes a release citable and findable.        |
-| Nothing                         | ❌ — with a button to create your first release.                                                    |
+| What Codefair finds             | What the dashboard shows                                                                          |
+| :------------------------------ | :------------------------------------------------------------------------------------------------ |
+| A Zenodo DOI                    | ✔️ You are archived, with a badge linking to the record.                                          |
+| A DOI from somewhere else       | ℹ️ The DOI is recognised and displayed, with a note that automated archival is Zenodo-only today. |
+| An identifier that is not a DOI | ℹ️ A suggestion to obtain a DOI, since a DOI is what makes a release citable and findable.        |
+| Nothing                         | ❌ A button to create your first release.                                                         |
 
-If more than one identifier is found, Codefair picks a **primary** one (preferring a Zenodo DOI) and lists the rest under _"Additional identifiers found"_, noting which file each came from. This is informational — Codefair never edits or removes identifiers you added yourself.
+If more than one identifier is found, Codefair picks a **primary** one (preferring a Zenodo DOI) and lists the rest under _"Additional identifiers found"_, noting which file each came from. This is informational; Codefair never edits or removes identifiers you added yourself.
 
 ## :warning: Requirements and limits
 

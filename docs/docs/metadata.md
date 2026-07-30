@@ -34,23 +34,23 @@ You can then edit the metadata as needed and save as a draft or push the changes
 
 The metadata editor UI is a user-friendly interface that allows you to generate both a CITATION.cff and a codemeta.json file within the same page in a simple and intuitive way.
 
-The editor is broken into collapsible sections, each representing a different aspect of the metadata. A sidebar lists every section with a status dot — green when it is complete, orange when something is still missing, red when a field needs fixing — and tracks how many of the required sections you have finished.
+The editor is broken into collapsible sections, each representing a different aspect of the metadata. A sidebar lists every section with a status dot (green when it is complete, orange when something is still missing, red when a field needs fixing) and tracks how many of the required sections you have finished.
 
-| Section                    | Required | What goes here                                                                                       |
-| :------------------------- | :------- | :--------------------------------------------------------------------------------------------------- |
-| **Basic Information**      | Yes      | Software name and description, plus creation and first release dates.                                |
-| **Authors & Contributors** | Yes      | Everyone involved, with affiliation, email, and ORCID, and the roles they played.                    |
-| **Discoverability**        | Yes      | Keywords, application category, a unique identifier such as a DOI, and funding details.              |
-| **Development Community**  | No       | Links to your code repository, issue tracker, continuous integration, and related resources.         |
-| **Software Requirements**  | Yes      | Programming languages, runtime platform, and supported operating systems.                            |
-| **Current Version**        | No       | Version number, release date, download URL, and release notes.                                       |
-| **Additional Information** | No       | Development status, and whether this software is part of — or the source code of — something larger. |
+| Section                    | Required | What goes here                                                                                     |
+| :------------------------- | :------- | :------------------------------------------------------------------------------------------------- |
+| **Basic Information**      | Yes      | Software name and description, plus creation and first release dates.                              |
+| **Authors & Contributors** | Yes      | Everyone involved, with affiliation, email, and ORCID, and the roles they played.                  |
+| **Discoverability**        | Yes      | Keywords, application category, a unique identifier such as a DOI, and funding details.            |
+| **Development Community**  | No       | Links to your code repository, issue tracker, continuous integration, and related resources.       |
+| **Software Requirements**  | Yes      | Programming languages, runtime platform, and supported operating systems.                          |
+| **Current Version**        | No       | Version number, release date, download URL, and release notes.                                     |
+| **Additional Information** | No       | Development status, and whether this software is part of, or the source code of, something larger. |
 
 ::: tip
-Codefair pre-fills much of this from your repository — languages, contributors, repository URL, and existing releases — so in most cases you are reviewing and correcting rather than typing everything from scratch. If a required field is missing when you try to save, the editor jumps you to the section that needs attention.
+Codefair pre-fills much of this from your repository (languages, contributors, repository URL, and existing releases), so in most cases you are reviewing and correcting rather than typing everything from scratch. If a required field is missing when you try to save, the editor jumps you to the section that needs attention.
 :::
 
-Licensing is **not** part of this editor. Codefair fills the license field of both files from the license already detected on your repository, so you manage it in one place — the [license editor](./license.md#license-editor-ui).
+Licensing is **not** part of this editor. Codefair fills the license field of both files from the license already detected on your repository, so you manage it in one place: the [license editor](./license.md#license-editor-ui).
 
 When done, you can click on the `Save and push to repository` button and codefair will create a PR with corresponding CITATION.cff and codemeta.json files. The PR page will open automatically so you can quickly review and merge it. Alternatively, you can click on the `Save draft` button and come back to continue later on.
 

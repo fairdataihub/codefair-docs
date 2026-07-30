@@ -16,7 +16,7 @@ Extend Codefair’s **Validator Microservice** (Flask + Flask-RESTX) by adding c
 
 This guide walks through creating a new validation route, securing inputs, updating dependencies, and testing your endpoint locally.
 
-The validator is a standalone, stateless microservice. The central API (`ui/`) calls it over HTTP using the `VALIDATOR_URL` environment variable — see the [Architecture](./architecture.md) page. It currently exposes:
+The validator is a standalone, stateless microservice. The central API (`ui/`) calls it over HTTP using the `VALIDATOR_URL` environment variable; see the [Architecture](./architecture.md) page. It currently exposes:
 
 | Endpoint             | Method | Purpose                                       |
 | :------------------- | :----- | :-------------------------------------------- |
@@ -85,7 +85,7 @@ Reuse helper functions (e.g., `clean_output`) from other endpoints to sanitize a
 ## :package: Update Dependencies & Entrypoint
 
 1. **Dependencies:** If your validator relies on new libraries (e.g., `jsonschema`), add them to `validator/requirements.txt`.
-2. **Entrypoint:** No changes required in `validator/app.py`—all `@api.route` decorators are auto-registered via `api.init_app(app)`.
+2. **Entrypoint:** No changes required in `validator/app.py`. All `@api.route` decorators are auto-registered via `api.init_app(app)`.
 
 > 🔄 If you split your logic into a separate module, import it from `validator/apis/__init__.py` so its `@api.route` decorator is registered:
 >

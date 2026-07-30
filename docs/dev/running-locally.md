@@ -10,18 +10,18 @@ head:
 
 # :computer: Running Locally
 
-This section provides instructions for developers to run the Codefair GitHub repository locally. If you have not yet, read the [Architecture](./architecture.md) page first — it explains how the pieces below fit together.
+This section provides instructions for developers to run the Codefair GitHub repository locally. If you have not yet, read the [Architecture](./architecture.md) page first; it explains how the pieces below fit together.
 
 ## :file_folder: Code structure
 
 Codefair is a **central API**: a single Nuxt application that serves the web UI and the backend, plus a small validation microservice. The repository has two active parts:
 
-1. **Central API (`ui/`)** — built with [Nuxt](https://nuxt.com/). It serves the user interface **and** the backend API (webhooks, FAIR compliance checks, pull requests, dashboard, and archival). It talks to GitHub through [Octokit](https://github.com/octokit/octokit.js) and stores state in PostgreSQL through [Prisma](https://www.prisma.io/).
+1. **Central API (`ui/`)**: built with [Nuxt](https://nuxt.com/). It serves the user interface **and** the backend API (webhooks, FAIR compliance checks, pull requests, dashboard, and archival). It talks to GitHub through [Octokit](https://github.com/octokit/octokit.js) and stores state in PostgreSQL through [Prisma](https://www.prisma.io/).
 
-2. **Validation microservice (`validator/`)** — built with [Python](https://www.python.org/) and [Flask](https://flask.palletsprojects.com/), responsible for validating `codemeta.json`, `CITATION.cff`, and CWL files. The `ui` calls it over HTTP.
+2. **Validation microservice (`validator/`)**: built with [Python](https://www.python.org/) and [Flask](https://flask.palletsprojects.com/), responsible for validating `codemeta.json`, `CITATION.cff`, and CWL files. The `ui` calls it over HTTP.
 
 > [!NOTE]
-> The repository also contains a `bot/` folder — the original [Probot](https://probot.github.io/) backend, now **being retired**. You do **not** need to set it up for local development: all backend functionality you'll be working on lives in `ui/server`. It is still deployed in production for repositories that have not yet been migrated to the central API. See [Architecture](./architecture.md#use-central-api-flag).
+> The repository also contains a `bot/` folder: the original [Probot](https://probot.github.io/) backend, now **being retired**. You do **not** need to set it up for local development: all backend functionality you'll be working on lives in `ui/server`. It is still deployed in production for repositories that have not yet been migrated to the central API. See [Architecture](./architecture.md#use-central-api-flag).
 
 ## :white_check_mark: Prerequisites
 
@@ -35,7 +35,7 @@ Before you can run the Codefair repository, you will need the following prerequi
    npm install -g yarn
    ```
 
-3. **PostgreSQL**: Codefair uses PostgreSQL via the Prisma ORM. The repository ships a Compose file (`db-docker-compose.yaml`) that runs a local Postgres for you — see **Set up the database** below. (You can also point `DATABASE_URL` at any Postgres instance you prefer.)
+3. **PostgreSQL**: Codefair uses PostgreSQL via the Prisma ORM. The repository ships a Compose file (`db-docker-compose.yaml`) that runs a local Postgres for you; see **Set up the database** below. (You can also point `DATABASE_URL` at any Postgres instance you prefer.)
 
 4. **Python**: Python **3.10+** is used for the validation service. Download it from the [official website](https://www.python.org/downloads/).
 
@@ -52,7 +52,7 @@ Before you can run the Codefair repository, you will need the following prerequi
    - **GitHub App name**
    - **Homepage URL**: the Codefair frontend
    - **Webhook URL**: your **Smee.io URL** in local development (in production this is the app's `/api/webhooks/github` endpoint)
-   - **Webhook secret**: a value you choose — it must match `WEBHOOK_SECRET` in your `.env`
+   - **Webhook secret**: a value you choose. It must match `WEBHOOK_SECRET` in your `.env`
    - **Permissions**:
      - **Read & Write**: Contents, Issues, Pull requests
      - **Read-only**: Metadata
@@ -85,7 +85,7 @@ DATABASE_URL="postgresql://admin:root@localhost:5432/codefair_local"
 
 ## :key: Environment variables
 
-Unlike the old Probot setup, there is now a **single** `.env` file, located in the `ui/` directory. The required variables are enforced at startup by `ui/server/plugins/env-check.ts` — if any are missing, the app refuses to boot and tells you which one. Create `ui/.env` with the following:
+Unlike the old Probot setup, there is now a **single** `.env` file, located in the `ui/` directory. The required variables are enforced at startup by `ui/server/plugins/env-check.ts`. If any are missing, the app refuses to boot and tells you which one. Create `ui/.env` with the following:
 
 ```bash
 # Database

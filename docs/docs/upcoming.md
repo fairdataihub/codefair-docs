@@ -22,7 +22,7 @@ In the FAIR4RS Principles, principle F1.2. states "Different versions of the sof
 
 ## :package: Wider archival and registry support
 
-Codefair already supports [quick release and archiving on Zenodo](./archive.md) — you review your software information in the Codefair UI, and Codefair mints a DOI, updates your metadata files, creates the GitHub release, and archives it on Zenodo.
+Codefair already supports [quick release and archiving on Zenodo](./archive.md): you review your software information in the Codefair UI, and Codefair mints a DOI, updates your metadata files, creates the GitHub release, and archives it on Zenodo.
 
 The FAIR-BioRS guidelines also recommend archiving on [Software Heritage](https://www.softwareheritage.org/) and registering biomedical software on [bio.tools](https://bio.tools/). We plan to extend the existing release workflow to cover both, so a single run through the Codefair release page keeps every registration up to date.
 

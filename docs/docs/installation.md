@@ -50,10 +50,10 @@ Users can sign in to Codefair using their GitHub account. Signing in requests th
 ![Oauth Permissions](/oauth-permissions.png)
 
 ::: warning
-`repo` is a broad GitHub scope — it grants read and write access to your repositories, and GitHub does not offer a narrower version of it. Codefair uses it for two things only: checking that you are allowed to edit a repository before showing you its editors, and creating the branches and pull requests you explicitly ask for.
+`repo` is a broad GitHub scope: it grants read and write access to your repositories, and GitHub does not offer a narrower version of it. Codefair uses it for two things only: checking that you are allowed to edit a repository before showing you its editors, and creating the branches and pull requests you explicitly ask for.
 :::
 
-Codefair does not copy your source code. It stores the content of the specific files it checks — such as your `LICENSE`, `README`, `CITATION.cff`, and `codemeta.json` — so it can show them in the editors and detect when they change. You can remove your stored tokens at any time from your Codefair profile page.
+Codefair does not copy your source code. It stores the content of the specific files it checks, such as your `LICENSE`, `README`, `CITATION.cff`, and `codemeta.json`, so it can show them in the editors and detect when they change. You can remove your stored tokens at any time from your Codefair profile page.
 
 Changes Codefair makes to your repository arrive as pull requests for you to review, with one deliberate exception: when you publish a release to Zenodo, Codefair commits the newly minted DOI straight into your `CITATION.cff` and `codemeta.json` on your default branch. This has to happen during the release, so that the archived version contains its own DOI. Those two commits are made by Codefair and clearly labelled:
 

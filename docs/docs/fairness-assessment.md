@@ -10,25 +10,25 @@ head:
 
 # :mag: How Codefair Assesses FAIRness
 
-Codefair reports on your repository through the **FAIR Compliance Dashboard** — the issue it opens on your repository — and through the Codefair web app. This page explains what each symbol means, what Codefair looks for, and why some checks stay quiet until others pass.
+Codefair reports on your repository through the **FAIR Compliance Dashboard** (the issue it opens on your repository) and through the Codefair web app. This page explains what each symbol means, what Codefair looks for, and why some checks stay quiet until others pass.
 
 You do not need to read code to follow this page.
 
 ## :question: What "FAIR" means here
 
-The [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x) say research software should be **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable. They describe goals, not a checklist, so Codefair follows the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x), which turn those goals into concrete steps — include a license, provide metadata in standard formats, archive each release, and so on.
+The [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x) say research software should be **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable. They describe goals, not a checklist, so Codefair follows the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x), which turn those goals into concrete steps: include a license, provide metadata in standard formats, archive each release, and so on.
 
 Codefair checks the steps that can be verified automatically from a repository. It is a helpful assistant, not a certification: passing every check does not by itself make software FAIR, and a ❗ does not mean your work is bad.
 
 ## :traffic_light: Reading your results
 
-| Symbol | Meaning                                                                          |
-| :----- | :------------------------------------------------------------------------------- |
-| ✔️     | The check passed.                                                                |
-| ❌     | A required item is missing. There is a button to fix it.                         |
-| ❗     | Something exists but needs your attention or confirmation.                       |
-| ⚠️     | Codefair could not complete the check — usually a temporary problem on our side. |
-| 🟡     | Not checked yet, because a prerequisite is missing.                              |
+| Symbol | Meaning                                                                         |
+| :----- | :------------------------------------------------------------------------------ |
+| ✔️     | The check passed.                                                               |
+| ❌     | A required item is missing. There is a button to fix it.                        |
+| ❗     | Something exists but needs your attention or confirmation.                      |
+| ⚠️     | Codefair could not complete the check, usually a temporary problem on our side. |
+| 🟡     | Not checked yet, because a prerequisite is missing.                             |
 
 The ⚠️ state matters and is easy to misread. When a metadata file cannot be validated because Codefair's validation service is unreachable, the result is reported as **"Unknown (Service error, try again)"** rather than invalid. **Your file is not necessarily wrong.** Re-run the check later, and if it persists, [let us know](https://github.com/fairdataihub/codefair-app/issues).
 
@@ -42,7 +42,7 @@ These map directly to FAIR-BioRS requirements.
 | :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | [License](./license.md)   | A license file, identified by GitHub's licensee engine, falling back to `LICENSE`, `LICENSE.md`, `LICENSE.txt`, `COPYING`, `COPYING.LESSER`. |
 | [Metadata](./metadata.md) | `codemeta.json` and `CITATION.cff` at the root, each validated against its standard.                                                         |
-| [README](./readme.md)     | `README.md`, `README.txt`, or `README` — at the root, in `docs/`, or in `.github/`.                                                          |
+| [README](./readme.md)     | `README.md`, `README.txt`, or `README`, at the root, in `docs/`, or in `.github/`.                                                           |
 | [Archival](./archive.md)  | A DOI for your software, ideally from a Zenodo release made through Codefair.                                                                |
 
 ### Language-specific checks
@@ -53,19 +53,19 @@ Reported only for projects they apply to.
 | :-------------- | :----------------------------------------------------------------------------------- |
 | [CWL](./cwl.md) | Your repository contains at least one `.cwl` file. Each is validated with `cwltool`. |
 
-If no `.cwl` files exist, this section is left off your dashboard entirely — it is not counted as a failure.
+If no `.cwl` files exist, this section is left off your dashboard entirely; it is not counted as a failure.
 
 ### Additional recommendations
 
-| Check                                   | What Codefair looks for                                                               |
-| :-------------------------------------- | :------------------------------------------------------------------------------------ |
-| [Contributing](./contributing.md)       | `CONTRIBUTING.md`, `.txt`, or extensionless — at the root, in `docs/`, or `.github/`. |
-| [Code of Conduct](./code-of-conduct.md) | `CODE_OF_CONDUCT.md`, `.txt`, or extensionless — same three locations.                |
+| Check                                   | What Codefair looks for                                                              |
+| :-------------------------------------- | :----------------------------------------------------------------------------------- |
+| [Contributing](./contributing.md)       | `CONTRIBUTING.md`, `.txt`, or extensionless, at the root, in `docs/`, or `.github/`. |
+| [Code of Conduct](./code-of-conduct.md) | `CODE_OF_CONDUCT.md`, `.txt`, or extensionless, in the same three locations.         |
 
-These are **not part of the core FAIR compliance checks**. They show ✔️ or ❗ but never ❌, and they never block anything — including releases. Codefair recommends them because they make a project easier to contribute to, which supports reusability.
+These are **not part of the core FAIR compliance checks**. They show ✔️ or ❗ but never ❌, and they never block anything, including releases. Codefair recommends them because they make a project easier to contribute to, which supports reusability.
 
 ::: tip
-For README, Contributing, and Code of Conduct, Codefair accepts the file at the repository root, inside `docs/`, or inside `.github/`. Any of the three is fine — it takes the first one it finds.
+For README, Contributing, and Code of Conduct, Codefair accepts the file at the repository root, inside `docs/`, or inside `.github/`. Any of the three is fine; it takes the first one it finds.
 :::
 
 ## :lock: Why some checks wait for others
@@ -83,7 +83,7 @@ flowchart LR
   L --> A["FAIR Software Release"]
   M -.-> A
   R["README"]
-  C["CWL — only if .cwl files exist"]
+  C["CWL: only if .cwl files exist"]
   AR["Additional Recommendations<br/>never blocking"]
 ```
 

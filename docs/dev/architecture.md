@@ -30,11 +30,11 @@ flowchart LR
     GL["GitLab (planned)"]
   end
 
-  subgraph CentralAPI["Central API — ui/ (Nuxt + Nitro)"]
+  subgraph CentralAPI["Central API: ui/ (Nuxt + Nitro)"]
     WH["/api/webhooks/github"]
-    SVC["services/ — webhooks, compliance,<br/>dashboard, archival"]
+    SVC["services/: webhooks, compliance,<br/>dashboard, archival"]
     REST["/api/** REST endpoints"]
-    WEB["Web UI — pages/, components/"]
+    WEB["Web UI: pages/, components/"]
   end
 
   VAL["Validator microservice<br/>(Flask, port 5000)"]
@@ -59,8 +59,8 @@ flowchart LR
 | :-------------- | :----------- | :------------------------------------ | :---------------------------------------------------------------------------- |
 | **Central API** | `ui/`        | Nuxt 4, Nitro, Octokit, Prisma, Lucia | Web UI **and** backend: webhooks, compliance, dashboard, PRs, archival, auth. |
 | **Validator**   | `validator/` | Python 3, Flask, Flask-RESTX          | Validates CWL, `CITATION.cff`, and `codemeta.json` over HTTP.                 |
-| **Database**    | —            | PostgreSQL                            | Stores installations, per-check state, users, and Zenodo depositions.         |
-| **Zenodo**      | —            | external                              | Archival of releases and DOI minting.                                         |
+| **Database**    | n/a          | PostgreSQL                            | Stores installations, per-check state, users, and Zenodo depositions.         |
+| **Zenodo**      | n/a          | external                              | Archival of releases and DOI minting.                                         |
 
 ## :gear: Inside the central API (`ui/server`)
 
@@ -70,19 +70,19 @@ The backend lives in `ui/server` and follows Nuxt/Nitro conventions:
 | :------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
 | `server/api/`        | HTTP endpoints. File name encodes the method, e.g. `index.get.ts`, `index.post.ts`. See the [API reference](./api-reference.md). |
 | `server/routes/`     | Non-API server routes: GitHub OAuth login, `add/*` redirect shims, health check.                                                 |
-| `server/middleware/` | Runs on every request — session validation and CSRF checks (`auth.ts`).                                                          |
+| `server/middleware/` | Runs on every request: session validation and CSRF checks (`auth.ts`).                                                           |
 | `server/services/`   | The business logic, grouped by concern (see below).                                                                              |
 | `server/utils/`      | Shared helpers: `prisma.ts`, `auth/*`, `cuid.ts`, `logwatch.ts`.                                                                 |
 | `server/plugins/`    | Nitro startup plugins, e.g. `env-check.ts` which fails fast on missing env vars.                                                 |
 
 The `services/` folder is where most feature work happens:
 
-- **`services/webhooks/`** — one handler per GitHub event family: `installation.ts`, `push.ts`, `pull-request.ts`, `issues.ts`.
-- **`services/compliance/`** — the FAIR checks: `license.ts`, `metadata.ts`, `readme.ts`, `contributing.ts`, `cwl.ts`, orchestrated by `index.ts`.
-- **`services/providers/`** — the platform abstraction: `interface.ts` (the contract) and `github.ts` (the GitHub implementation).
-- **`services/github-app/`** — `client.ts` wires up the Octokit `App` and hands out installation-scoped clients.
-- **`services/dashboard/`** — `manager.ts` (reads/writes the dashboard issue) and `renderer.ts` (pure markdown builder).
-- **`services/archival/`** — `interface.ts` (the `ArchivalProvider` contract) and `zenodo.ts` (the Zenodo implementation).
+- **`services/webhooks/`**: one handler per GitHub event family: `installation.ts`, `push.ts`, `pull-request.ts`, `issues.ts`.
+- **`services/compliance/`**: the FAIR checks: `license.ts`, `metadata.ts`, `readme.ts`, `contributing.ts`, `cwl.ts`, orchestrated by `index.ts`.
+- **`services/providers/`**: the platform abstraction: `interface.ts` (the contract) and `github.ts` (the GitHub implementation).
+- **`services/github-app/`**: `client.ts` wires up the Octokit `App` and hands out installation-scoped clients.
+- **`services/dashboard/`**: `manager.ts` (reads/writes the dashboard issue) and `renderer.ts` (pure markdown builder).
+- **`services/archival/`**: `interface.ts` (the `ArchivalProvider` contract) and `zenodo.ts` (the Zenodo implementation).
 
 ## :inbox_tray: How a webhook is handled
 
@@ -116,16 +116,16 @@ sequenceDiagram
 
 Key handlers:
 
-- **`installation` / `installation_repositories`** — a repo was added or removed. On add, Codefair creates an `Installation` row, runs the first compliance check, and opens the dashboard issue. (To protect against bulk installs, only the first repositories get a full run; the rest are rate-limited.)
-- **`push`** — only the default branch is processed. Codefair re-runs the checks and updates the dashboard.
-- **`pull_request`** — tracks the Codefair-created PRs (license, README, …) so the dashboard can show their status.
-- **`issues`** — reopening the dashboard issue restores it; closing updates state.
+- **`installation` / `installation_repositories`**: a repo was added or removed. On add, Codefair creates an `Installation` row, runs the first compliance check, and opens the dashboard issue. (To protect against bulk installs, only the first repositories get a full run; the rest are rate-limited.)
+- **`push`**: only the default branch is processed. Codefair re-runs the checks and updates the dashboard.
+- **`pull_request`**: tracks the Codefair-created PRs (license, README, …) so the dashboard can show their status.
+- **`issues`**: reopening the dashboard issue restores it; closing updates state.
 
 ## :electric_plug: The provider abstraction (multi-platform support)
 
 The most important design decision is that **compliance services never touch
 Octokit directly**. Instead they receive a `RepositoryProvider`
-(`server/services/providers/interface.ts`) — a platform-agnostic contract with
+(`server/services/providers/interface.ts`), a platform-agnostic contract with
 methods like `getFileContent`, `listDirectory`, `commitFile`,
 `createPullRequest`, and `createIssue`.
 
@@ -144,8 +144,8 @@ flowchart TD
 `GitHubRepositoryProvider` (`providers/github.ts`) implements that contract
 today by translating each method into an Octokit request. A future
 `GitLabRepositoryProvider` will implement the **same** interface, and the
-compliance code will not need to change. This is what makes GitLab support — and
-the eventual public REST API — tractable. See
+compliance code will not need to change. This is what makes GitLab support (and
+the eventual public REST API) tractable. See
 [Platform Providers (GitLab)](./providers.md) for how to add one.
 
 Archival follows the same pattern: `ArchivalProvider`
@@ -155,7 +155,7 @@ for additional archival backends (e.g. Figshare) later.
 ## :floppy_disk: Data model
 
 State is stored in PostgreSQL through Prisma (`ui/prisma/schema.prisma`). The
-hub of the schema is the **`Installation`** model — one row per repository
+hub of the schema is the **`Installation`** model, one row per repository
 Codefair is installed on. Each compliance check has its own model linked 1:1 to
 `Installation` and cascades on delete:
 
@@ -176,15 +176,15 @@ erDiagram
 Other models include `User` and `Session` (authentication), `ZenodoToken` and
 `ZenodoDeposition` (archival), and `Analytics` (usage counters).
 
-## :lock: Authentication — two distinct identities
+## :lock: Authentication: two distinct identities
 
 Codefair uses GitHub in two different ways, and it helps to keep them separate:
 
-1. **GitHub App identity** — how Codefair acts _as the bot_ (reading repos,
+1. **GitHub App identity**: how Codefair acts _as the bot_ (reading repos,
    committing files, opening PRs and issues). Configured in
    `services/github-app/client.ts` with `GH_APP_ID` and `GH_APP_PRIVATE_KEY`;
    Octokit mints short-lived, installation-scoped tokens automatically.
-2. **User identity** — how a human signs in to the web dashboard. This is GitHub
+2. **User identity**: how a human signs in to the web dashboard. This is GitHub
    **OAuth**, handled with [Lucia](https://lucia-auth.com/) sessions and
    [Arctic](https://arctic.js.org/) (`server/utils/auth.ts`,
    `server/middleware/auth.ts`). The user's OAuth token is used to confirm they
@@ -195,7 +195,7 @@ Codefair uses GitHub in two different ways, and it helps to keep them separate:
 
 The `validator/` service is intentionally small and stateless. It exposes a few
 HTTP endpoints (`/validate-cwl`, `/validate-citation`, `/validate-codemeta`,
-plus `/up` and `/echo`) and wraps established tools — `cwltool`, `cffconvert`,
+plus `/up` and `/echo`) and wraps established tools: `cwltool`, `cffconvert`,
 and JSON-Schema validation for CodeMeta. The central API calls it via the
 `VALIDATOR_URL` environment variable. Because it is decoupled over HTTP, it can
 be deployed and scaled independently. To add a new validation type, see
@@ -213,7 +213,7 @@ If you worked on Codefair before, here is what changed:
 | Two backends (`bot` + `ui`) with two `.env` files. | One app, one `ui/.env`.                                                 |
 | Two deployments to keep in step.                   | One deployment, one Prisma schema.                                      |
 
-Both backends use PostgreSQL through Prisma — that did not change in the
+Both backends use PostgreSQL through Prisma; that did not change in the
 migration. The schema now lives only in `ui/prisma/`.
 
 ### The `use_central_api` flag {#use-central-api-flag}
@@ -222,8 +222,8 @@ The cutover is per repository, not global. `Installation.use_central_api`
 (added in migration `20260320211650`) decides which backend handles a given
 repository:
 
-- **`true`** — the central API handles it. Every `bot/` handler early-returns.
-- **`false`** (the default) — the legacy Probot backend still handles it.
+- **`true`**: the central API handles it. Every `bot/` handler early-returns.
+- **`false`** (the default): the legacy Probot backend still handles it.
 
 This is why `bot/` is best described as **being retired** rather than gone: it
 still serves installations that have not been flipped over. Two consequences

@@ -117,7 +117,7 @@ export default defineEventHandler(async (event) => {
 
 ## **Step 4**: Add the POST route
 
-Create `server/api/[owner]/[repo]/expecto/index.post.ts`. It validates the body with [Zod](https://zod.dev/), checks permissions, then uses the GitHub App installation client to create a branch, commit the file, and open a pull request — finally saving the PR URL to the database. This mirrors `server/api/[owner]/[repo]/readme/index.post.ts`:
+Create `server/api/[owner]/[repo]/expecto/index.post.ts`. It validates the body with [Zod](https://zod.dev/), checks permissions, then uses the GitHub App installation client to create a branch, commit the file, and open a pull request, finally saving the PR URL to the database. This mirrors `server/api/[owner]/[repo]/readme/index.post.ts`:
 
 ```typescript
 import { z } from 'zod';
@@ -215,7 +215,7 @@ export default defineEventHandler(async (event) => {
 > [!NOTE]
 > The example above constructs an Octokit `App` inline because that is what the existing
 > per-repository routes do. For new code, prefer
-> `getInstallationOctokit(installationId)` from `server/services/github-app/client.ts` — it
+> `getInstallationOctokit(installationId)` from `server/services/github-app/client.ts`. It
 > centralises the App credentials instead of repeating them in every route. Better still, if
 > your route only needs ordinary repository operations, take a
 > [`RepositoryProvider`](./providers.md) so it stays platform-agnostic.

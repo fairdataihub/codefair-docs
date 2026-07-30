@@ -10,7 +10,7 @@ head:
 
 # Adding a Compliance Check :sparkles:
 
-A **compliance check** is a single FAIR rule Codefair evaluates for a repository — for example "does a `LICENSE` file exist?" or "is the `codemeta.json` valid?". Each check produces a result that is stored in the database and rendered as a section of the repository's **FAIR Compliance Dashboard** issue.
+A **compliance check** is a single FAIR rule Codefair evaluates for a repository. For example, "does a `LICENSE` file exist?" or "is the `codemeta.json` valid?". Each check produces a result that is stored in the database and rendered as a section of the repository's **FAIR Compliance Dashboard** issue.
 
 Codefair is deliberately modular: checks are small functions that receive a platform-agnostic [`RepositoryProvider`](./providers.md) and are wired into a single orchestrator, `runComplianceChecks()`. This page walks through adding a brand-new check end-to-end by building an example that verifies an `expecto_patronum.md` file exists.
 
@@ -68,7 +68,7 @@ export async function checkForExpecto(
 ```
 
 > [!IMPORTANT]
-> Always go through the `provider` (`getFileContent`, `listDirectory`, `commitFile`, …) — **never** import Octokit directly in a compliance service. This is what lets the same check run unchanged on GitHub today and GitLab in the future. See [Platform Providers](./providers.md).
+> Always go through the `provider` (`getFileContent`, `listDirectory`, `commitFile`, …). **Never** import Octokit directly in a compliance service. This is what lets the same check run unchanged on GitHub today and GitLab in the future. See [Platform Providers](./providers.md).
 
 ## **Step 3**: Register the check in the orchestrator
 
@@ -94,7 +94,7 @@ export interface ComplianceSubjects {
   expecto: ExpectoResult;
 }
 
-// 3. Run it inside runComplianceChecks() — add a default stub and a Promise.all entry
+// 3. Run it inside runComplianceChecks(): add a default stub and a Promise.all entry
 const defaultExpecto: ExpectoResult = { content: '', path: '', status: false };
 
 const [readme, license, metadata, contributing, cofc, expecto] =
@@ -154,7 +154,7 @@ To write results back, follow the pattern in `server/services/compliance/license
 
 ## **Step 5**: Render it on the dashboard
 
-The dashboard issue body is built by `server/services/dashboard/renderer.ts` — a pure function that turns the compliance results into Markdown. Add a section renderer modelled on `renderReadme()`:
+The dashboard issue body is built by `server/services/dashboard/renderer.ts`, a pure function that turns the compliance results into Markdown. Add a section renderer modelled on `renderReadme()`:
 
 ```typescript
 function renderExpecto(
@@ -191,14 +191,14 @@ Then call it from `renderDashboard()` and add the data to the `DashboardSections
 body += renderExpecto(owner, repo, expecto);
 ```
 
-When `renderDashboard()` runs, the dashboard manager (`server/services/dashboard/manager.ts`) updates the single GitHub issue for the repository — no extra wiring needed.
+When `renderDashboard()` runs, the dashboard manager (`server/services/dashboard/manager.ts`) updates the single GitHub issue for the repository, with no extra wiring needed.
 
 ## **Step 6**: Test the feature
 
 Run the stack locally (see [Running Locally](./running-locally.md)):
 
 ```bash
-# In ui/ — runs the Nuxt server plus the Smee webhook proxy
+# In ui/: runs the Nuxt server plus the Smee webhook proxy
 yarn dev:webhook
 ```
 

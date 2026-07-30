@@ -8,11 +8,11 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=README.md&app=codefair&org=fairdataihub
 ---
 
-# :book: README
+# README
 
 A README file provides an introduction to your project, helping users understand its purpose, installation steps, usage examples, and more. Codefair checks for a `README.md`, `README.txt` or `README` (at the root, in `.github`, or in `docs`) to ensure clear project documentation.
 
-## :hammer: How to fix the README issue
+## How to fix the README issue
 
 If Codefair does not detect a README file, it will flag a compliance issue on the dashboard. To resolve:
 
@@ -26,7 +26,7 @@ If Codefair does not detect a README file, it will flag a compliance issue on th
 A well-written README file is highly recommended to guide users and contributors. Though it is not strictly require for FAIR Archival releases.
 :::
 
-## :memo: Recommended Sections
+## Recommended Sections
 
 While there is no default template, a comprehensive README file often includes:
 
@@ -40,7 +40,7 @@ While there is no default template, a comprehensive README file often includes:
 
 Feel free to tailor these sections to your project's needs.
 
-## :fountain_pen: README editor UI
+## README editor UI
 
 The editor UI lets you:
 

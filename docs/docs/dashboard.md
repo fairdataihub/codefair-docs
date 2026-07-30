@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Understanding%20the%20GitHub%20Issue%20Dashboard&app=codefair&org=fairdataihub
 ---
 
-# :memo: GitHub Issue Dashboard
+# GitHub Issue Dashboard
 
 As soon as you install the Codefair app, it opens a GitHub issue in your repository. This issue contains a dashboard that provides a point-by-point overview of your software's compliance with elements that make a software FAIR.
 

@@ -14,9 +14,9 @@ A **compliance check** is a single FAIR rule Codefair evaluates for a repository
 
 Codefair is deliberately modular: checks are small functions that receive a platform-agnostic [`RepositoryProvider`](./providers.md) and are wired into a single orchestrator, `runComplianceChecks()`. This page walks through adding a brand-new check end-to-end by building an example that verifies an `expecto_patronum.md` file exists.
 
-> [!NOTE]
-> This page covers the **backend** check. To build the Codefair UI page where a user can create or edit the file, follow [Adding a UI Page](./ui.md) afterwards.
-
+::: info
+This page covers the **backend** check. To build the Codefair UI page where a user can create or edit the file, follow [Adding a UI Page](./ui.md) afterwards.
+:::
 All paths below are relative to the `ui/` directory.
 
 ## **Step 1**: Set up your development environment

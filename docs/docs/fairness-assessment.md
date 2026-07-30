@@ -8,19 +8,17 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=How%20Codefair%20Assesses%20FAIRness&app=codefair&org=fairdataihub
 ---
 
-# :mag: How Codefair Assesses FAIRness
+# How Codefair Assesses FAIRness
 
 Codefair reports on your repository through the **FAIR Compliance Dashboard** (the issue it opens on your repository) and through the Codefair web app. This page explains what each symbol means, what Codefair looks for, and why some checks stay quiet until others pass.
 
-You do not need to read code to follow this page.
-
-## :question: What "FAIR" means here
+## What "FAIR" means here
 
 The [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x) say research software should be **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable. They describe goals, not a checklist, so Codefair follows the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x), which turn those goals into concrete steps: include a license, provide metadata in standard formats, archive each release, and so on.
 
-Codefair checks the steps that can be verified automatically from a repository. It is a helpful assistant, not a certification: passing every check does not by itself make software FAIR, and a ❗ does not mean your work is bad.
+Codefair checks the steps that can be verified automatically from a repository. It is a helpful assistant so passing every check does not by itself make software FAIR, and a ❗ does not mean your work is bad.
 
-## :traffic_light: Reading your results
+## Reading your results
 
 | Symbol | Meaning                                                                         |
 | :----- | :------------------------------------------------------------------------------ |
@@ -28,11 +26,11 @@ Codefair checks the steps that can be verified automatically from a repository. 
 | ❌     | A required item is missing. There is a button to fix it.                        |
 | ❗     | Something exists but needs your attention or confirmation.                      |
 | ⚠️     | Codefair could not complete the check, usually a temporary problem on our side. |
-| 🟡     | Not checked yet, because a prerequisite is missing.                             |
+| 🟡     | Not checked yet because a prerequisite is missing.                              |
 
 The ⚠️ state matters and is easy to misread. When a metadata file cannot be validated because Codefair's validation service is unreachable, the result is reported as **"Unknown (Service error, try again)"** rather than invalid. **Your file is not necessarily wrong.** Re-run the check later, and if it persists, [let us know](https://github.com/fairdataihub/codefair-app/issues).
 
-## :white_check_mark: What Codefair checks
+## What Codefair checks
 
 ### Core checks
 
@@ -68,7 +66,7 @@ These are **not part of the core FAIR compliance checks**. They show ✔️ or �
 For README, Contributing, and Code of Conduct, Codefair accepts the file at the repository root, inside `docs/`, or inside `.github/`. Any of the three is fine; it takes the first one it finds.
 :::
 
-## :lock: Why some checks wait for others
+## Why some checks wait for others
 
 Two sections stay yellow with the note _"Codefair will run this check after a LICENSE file is detected in your repository"_ until you add a license:
 
@@ -89,7 +87,7 @@ flowchart LR
 
 **Add a license first** and the rest of the dashboard opens up.
 
-## :arrows_counterclockwise: When checks run
+## When checks run
 
 Codefair re-checks your repository when:
 
@@ -105,7 +103,7 @@ You can always trigger a fresh check with **Rerun all Codefair checks** from the
 If you **close** the dashboard issue, Codefair deactivates for that repository until you reopen it. If you **delete** the issue, you will need to reinstall Codefair on the repository.
 :::
 
-## :bulb: What Codefair does not do
+## What Codefair does not do
 
 - It does not judge the quality of your code, tests, or documentation.
 - It does not rewrite your repository behind your back. Changes arrive as pull requests you review and merge, with one exception: publishing a release to Zenodo commits the new DOI into your `CITATION.cff` and `codemeta.json` directly, because the archived version has to contain its own DOI.

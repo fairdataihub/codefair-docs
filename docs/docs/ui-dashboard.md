@@ -8,17 +8,17 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Understanding%20the%20UI%20Dashboard&app=codefair&org=fairdataihub
 ---
 
-# :sparkles: Dashboard Overview
+# Dashboard Overview
 
 The Codefair app provides a UI dashboard to help manage the FAIR compliance of repositories.
 
-## :computer: Dashboard
+## Dashboard
 
 The main UI dashboard provides a list of all the organizations and accounts that have installed the Codefair app. The dashboard provides a way to manage the FAIR compliance of repositories across all the organizations and accounts.
 
 ![main-dashboard](/main-dashboard.png)
 
-## :busts_in_silhouette: Repo Dashboard
+## Repo Dashboard
 
 The UI dashboard shows a list of all the repositories that have installed the Codefair app. The dashboard provides a way to manage the FAIR compliance of the repositories and displays the latest commit made to the main branch of the repository.
 
@@ -28,7 +28,7 @@ The UI dashboard shows a list of all the repositories that have installed the Co
 Some repositories you installed Codefair to may not be listed on the dashboard if they have an action queued. This happens when Codefair is installed to more than 5 repositories at once. This helps prevent the Codefair app from mass opening issues on the repositories. The action will count down when events are triggered on the repositories eventually showing the repository on the dashboard.
 :::
 
-## :card_file_box: Repository Selected {#repository-selected}
+## Repository Selected {#repository-selected}
 
 When you select a repository from the list, the dashboard will show the FAIR compliance of the selected repository. The dashboard will display a list of elements that make a software FAIR. A check mark is shown next to elements the software is complying with.
 
@@ -82,7 +82,7 @@ Clicking the `View Codefair settings` button will take you to the GitHub setting
 
 ![repository-selected](/repo-dashboard.png)
 
-## :hourglass_flowing_sand: What happens when a check re-runs
+## What happens when a check re-runs
 
 When you trigger any of the re-runs above, Codefair opens a progress window and reports each step as it happens, so you can see what it is doing rather than waiting on a spinner. Larger repositories, particularly those with many CWL files, can take a few minutes.
 

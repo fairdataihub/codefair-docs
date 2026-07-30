@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Architecture&app=codefair&org=fairdataihub
 ---
 
-# :building_construction: Architecture
+# Architecture
 
 Codefair is a GitHub App that helps research software become FAIR. Behind the
 App is a **central API**: a single [Nuxt](https://nuxt.com/) application (the
@@ -21,7 +21,7 @@ This page explains how the pieces fit together so you can find your way around
 before [running locally](./running-locally.md) or
 [contributing a feature](./compliance-check.md).
 
-## :eyes: The big picture
+## The big picture
 
 ```mermaid
 flowchart LR
@@ -62,7 +62,7 @@ flowchart LR
 | **Database**    | n/a          | PostgreSQL                            | Stores installations, per-check state, users, and Zenodo depositions.         |
 | **Zenodo**      | n/a          | external                              | Archival of releases and DOI minting.                                         |
 
-## :gear: Inside the central API (`ui/server`)
+## Inside the central API (`ui/server`)
 
 The backend lives in `ui/server` and follows Nuxt/Nitro conventions:
 
@@ -84,7 +84,7 @@ The `services/` folder is where most feature work happens:
 - **`services/dashboard/`**: `manager.ts` (reads/writes the dashboard issue) and `renderer.ts` (pure markdown builder).
 - **`services/archival/`**: `interface.ts` (the `ArchivalProvider` contract) and `zenodo.ts` (the Zenodo implementation).
 
-## :inbox_tray: How a webhook is handled
+## How a webhook is handled
 
 Every GitHub event flows through the same path. GitHub posts to
 `server/api/webhooks/github.post.ts`, which verifies the
@@ -121,7 +121,7 @@ Key handlers:
 - **`pull_request`**: tracks the Codefair-created PRs (license, README, …) so the dashboard can show their status.
 - **`issues`**: reopening the dashboard issue restores it; closing updates state.
 
-## :electric_plug: The provider abstraction (multi-platform support)
+## The provider abstraction (multi-platform support)
 
 The most important design decision is that **compliance services never touch
 Octokit directly**. Instead they receive a `RepositoryProvider`
@@ -152,7 +152,7 @@ Archival follows the same pattern: `ArchivalProvider`
 (`services/archival/interface.ts`) is implemented by Zenodo today, leaving room
 for additional archival backends (e.g. Figshare) later.
 
-## :floppy_disk: Data model
+## Data model
 
 State is stored in PostgreSQL through Prisma (`ui/prisma/schema.prisma`). The
 hub of the schema is the **`Installation`** model, one row per repository
@@ -176,7 +176,7 @@ erDiagram
 Other models include `User` and `Session` (authentication), `ZenodoToken` and
 `ZenodoDeposition` (archival), and `Analytics` (usage counters).
 
-## :lock: Authentication: two distinct identities
+## Authentication: two distinct identities
 
 Codefair uses GitHub in two different ways, and it helps to keep them separate:
 
@@ -191,7 +191,7 @@ Codefair uses GitHub in two different ways, and it helps to keep them separate:
    have write access to a repo before any UI-triggered action runs
    (`repoWritePermissions`).
 
-## :test_tube: The validator microservice
+## The validator microservice
 
 The `validator/` service is intentionally small and stateless. It exposes a few
 HTTP endpoints (`/validate-cwl`, `/validate-citation`, `/validate-codemeta`,
@@ -201,7 +201,7 @@ and JSON-Schema validation for CodeMeta. The central API calls it via the
 be deployed and scaled independently. To add a new validation type, see
 [Adding a Validation Endpoint](./validator.md).
 
-## :arrows_counterclockwise: From Probot to the central API
+## From Probot to the central API
 
 If you worked on Codefair before, here is what changed:
 

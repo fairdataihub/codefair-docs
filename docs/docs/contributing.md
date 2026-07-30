@@ -8,11 +8,11 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Contributing&app=codefair&org=fairdataihub
 ---
 
-# :memo: Contributing
+# Contributing
 
 A Contributing guide helps new collaborators understand how to propose changes, report issues, and submit improvements. Codefair verifies that your repository contains a `CONTRIBUTING.md` file (at the root, in `.github`, or in `docs`) to streamline contributions and maintain quality.
 
-## :hammer: How to fix the Contributing issue
+## How to fix the Contributing issue
 
 If Codefair does not detect a contributing file, it will flag a compliance issue on the dashboard. To resolve:
 
@@ -26,7 +26,7 @@ If Codefair does not detect a contributing file, it will flag a compliance issue
 This file is not mandatory, but highly recommended. You will still be able to make FAIR Archival releases without it.
 :::
 
-## :memo: Contributing template
+## Contributing template
 
 Codefair provides a single template based on the [nayafia/contributing-template](https://github.com/nayafia/contributing-template). It covers commons sections such as:
 
@@ -37,7 +37,7 @@ Codefair provides a single template based on the [nayafia/contributing-template]
 
 Feel free to remove sections you don't need or add project-specific instructions.
 
-## :fountain_pen: Contributing editor UI
+## Contributing editor UI
 
 The editor UI lets you:
 

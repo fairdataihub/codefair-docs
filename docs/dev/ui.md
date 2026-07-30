@@ -212,13 +212,9 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-> [!NOTE]
-> The example above constructs an Octokit `App` inline because that is what the existing
-> per-repository routes do. For new code, prefer
-> `getInstallationOctokit(installationId)` from `server/services/github-app/client.ts`. It
-> centralises the App credentials instead of repeating them in every route. Better still, if
-> your route only needs ordinary repository operations, take a
-> [`RepositoryProvider`](./providers.md) so it stays platform-agnostic.
+::: info
+The example above constructs an Octokit `App` inline because that is what the existing per-repository routes do. For new code, prefer `getInstallationOctokit(installationId)` from `server/services/github-app/client.ts`. It centralises the App credentials instead of repeating them in every route. Better still, if your route only needs ordinary repository operations, take a [`RepositoryProvider`](./providers.md) so it stays platform-agnostic.
+:::
 
 > [!TIP]
 > Need a read-only results page instead (like the CWL or metadata validation reports)? Put it under `pages/dashboard/[owner]/[repo]/view/<feature>.vue` and point the dashboard badge at `.../view/<feature>`.
@@ -229,7 +225,7 @@ Run the stack locally and sign in:
 
 ```bash
 # In ui/
-yarn dev
+yarn dev:webhook
 ```
 
 Visit `http://localhost:3000/dashboard/<owner>/<repo>/edit/expecto`, edit the content, and click **Save**. Confirm that a new branch and pull request are created on the repository, and that the PR URL is stored on the `ExpectoValidation` row (`yarn prisma:studio`). You can also reach the page from the **FAIR Compliance Dashboard** issue by clicking the _Create/Edit Expecto_ badge.

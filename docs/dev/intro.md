@@ -8,11 +8,11 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Running%20the%20GitHub%20Repository&app=codefair&org=fairdataihub
 ---
 
-# :page_with_curl: Introduction
+# Introduction
 
 This is the documentation of Codefair for developers. You will find here everything to set up the project locally and start making your contribution! Before you continue, we invite you to first read our [contributing guidelines](https://github.com/fairdataihub/codefair-app/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/fairdataihub/codefair-app/blob/main/CODE_OF_CONDUCT.md).
 
-## :compass: How the project is organized
+## How the project is organized
 
 Codefair recently moved to a **central API** architecture. The [`codefair-app`](https://github.com/fairdataihub/codefair-app) repository is now organized into two active parts:
 
@@ -24,7 +24,7 @@ Codefair recently moved to a **central API** architecture. The [`codefair-app`](
 
 This central API is the foundation for two ongoing goals: releasing a public **REST API** and adding **GitLab** support alongside GitHub. The architecture was deliberately built around platform-agnostic abstractions so that new checks, new platforms, and community contributions are easier to land.
 
-## :map: Where to go next
+## Where to go next
 
 - **[Architecture](./architecture.md)**: understand how the central API, validator, database, and external platforms fit together before you write any code.
 - **[Running Locally](./running-locally.md)**: set up your environment and run the stack on your machine.

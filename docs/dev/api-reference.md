@@ -8,20 +8,20 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=REST%20API%20Reference&app=codefair&org=fairdataihub
 ---
 
-# :satellite: REST API Reference
+# REST API Reference
 
 The central API exposes its functionality over HTTP from `ui/server/api`. This page is a reference to those endpoints.
 
 > [!WARNING] > **Internal and evolving.** These endpoints currently power Codefair's own web UI and are authenticated with the browser **session cookie**, not API tokens. They are documented here as the foundation of the planned **public REST API**, so paths, payloads, and the auth model may change before a stable, token-authenticated, versioned API is released. Treat this as a contributor reference, not a public contract.
 
-## :gear: Conventions
+## Conventions
 
 - **Routing.** Nuxt/Nitro encodes the HTTP method in the file name: `index.get.ts` → `GET`, `index.post.ts` → `POST`, `index.put.ts` → `PUT`. Path segments in brackets (`[owner]`, `[repo]`) are URL parameters.
 - **Authentication.** Most endpoints call `protectRoute(event)` (a valid session is required) and `repoWritePermissions(event, owner, repo)` (the signed-in user must have write access to the repository). A CSRF/origin check runs in middleware for browser requests. Exceptions: the **webhook** endpoint uses HMAC signature verification, and the **badge** endpoint is public.
 - **Errors.** Failures are returned as JSON with an HTTP status and a `statusMessage`, e.g. `{ "statusCode": 404, "statusMessage": "installation-not-found" }`.
 - **Bodies.** Write endpoints validate their JSON body with [Zod](https://zod.dev/).
 
-## :file_folder: Repository compliance
+## Repository compliance
 
 Each FAIR check exposes a consistent trio: `GET` current state, `POST` to create the file via a pull request, and `PUT` to save a draft. All are under `/api/[owner]/[repo]`.
 
@@ -34,7 +34,7 @@ Each FAIR check exposes a consistent trio: `GET` current state, `POST` to create
 | GET / POST / PUT | `/code-of-conduct`      | Read, create-PR, or update `CODE_OF_CONDUCT.md`.             |
 | GET / POST / PUT | `/code-metadata`        | Read, create-PR, or update `codemeta.json` + `CITATION.cff`. |
 
-## :test_tube: Validation views
+## Validation views
 
 | Method | Path                                   | Purpose                                              |
 | :----- | :------------------------------------- | :--------------------------------------------------- |
@@ -42,7 +42,7 @@ Each FAIR check exposes a consistent trio: `GET` current state, `POST` to create
 | GET    | `/[owner]/[repo]/cwl-validation/rerun` | Re-run CWL validation.                               |
 | GET    | `/[owner]/[repo]/metadata-validation`  | `codemeta.json` / `CITATION.cff` validation results. |
 
-## :bar_chart: Dashboard data
+## Dashboard data
 
 | Method | Path                        | Purpose                                                              |
 | :----- | :-------------------------- | :------------------------------------------------------------------- |
@@ -74,7 +74,7 @@ the UI can show live progress.
 > **400 `Central API mode required for rerun`** otherwise. See
 > [Architecture](./architecture.md) for what that flag means.
 
-## :rocket: Releases & archival
+## Releases & archival
 
 | Method | Path                                       | Purpose                                        |
 | :----- | :----------------------------------------- | :--------------------------------------------- |
@@ -86,7 +86,7 @@ the UI can show live progress.
 | GET    | `/zenodo/callback`                         | Zenodo OAuth callback.                         |
 | POST   | `/zenodo/disconnect`                       | Disconnect the user's Zenodo account.          |
 
-## :bust_in_silhouette: User & session
+## User & session
 
 | Method | Path           | Purpose                                     |
 | :----- | :------------- | :------------------------------------------ |
@@ -95,7 +95,7 @@ the UI can show live progress.
 | DELETE | `/user/tokens` | Revoke the user's tokens.                   |
 | POST   | `/logout`      | End the session.                            |
 
-## :label: Badges & utilities
+## Badges & utilities
 
 | Method | Path                           | Auth    | Purpose                                                               |
 | :----- | :----------------------------- | :------ | :-------------------------------------------------------------------- |
@@ -103,13 +103,13 @@ the UI can show live progress.
 | GET    | `/utils/stats`                 | Public  | Global usage statistics.                                              |
 | GET    | `/request/license/[licenseid]` | Session | Fetch a license template by SPDX id, proxied from spdx.org.           |
 
-## :inbox_tray: Webhooks
+## Webhooks
 
 | Method | Path               | Auth | Purpose                                                            |
 | :----- | :----------------- | :--- | :----------------------------------------------------------------- |
 | POST   | `/webhooks/github` | HMAC | Receives GitHub App events. See [Architecture](./architecture.md). |
 
-## :compass: Non-`/api` routes
+## Non-`/api` routes
 
 Not everything is under `/api`. These live in `ui/server/routes/` and are reached directly in
 the browser rather than by `fetch`.
@@ -129,7 +129,7 @@ the browser rather than by `fetch`.
 > `/doi/[owner]/[repo]` is what it **links to**. Note the `/api` prefix on the image but not
 > on the redirect.
 
-## :page_facing_up: Example
+## Example
 
 Reading and updating the README for a repository:
 
@@ -147,7 +147,7 @@ curl -X POST https://codefair.io/api/octocat/hello-world/readme \
 # → { "message": "README request updated successfully", "prUrl": "https://github.com/octocat/hello-world/pull/42" }
 ```
 
-## :crystal_ball: Toward a public REST API
+## Toward a public REST API
 
 The current surface is the groundwork for a public REST API. Expected additions as it matures:
 

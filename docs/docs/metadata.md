@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Metadata&app=codefair&org=fairdataihub
 ---
 
-# :label: Metadata
+# Metadata
 
 In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), many principles state to include rich metadata following standard structure. This is critical to make software findable and reusable. One of the ways to achieve that prescribed by the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x) is to include a CITATION.cff and a codemeta.json metadata files.
 
@@ -18,7 +18,7 @@ Metadata checks are performed only when a LICENSE file is present in the reposit
 
 ![Metadata Issue](/metadata-issue-dashboard.png)
 
-## :hammer_and_wrench: How to fix the Metadata issue
+## How to fix the Metadata issue
 
 To fix the Metadata issue, you can simply click on the `Add Metadata` (or `Edit Metadata` if both metadata files exist) button provided in the issue dashboard under the Metadata section.
 
@@ -30,7 +30,7 @@ This will direct you to the Codefair's metadata editor to review the metadata ga
 
 You can then edit the metadata as needed and save as a draft or push the changes into a pull request.
 
-## :fountain_pen: Metadata Editor {#metadata-editor}
+## Metadata Editor {#metadata-editor}
 
 The metadata editor UI is a user-friendly interface that allows you to generate both a CITATION.cff and a codemeta.json file within the same page in a simple and intuitive way.
 
@@ -60,7 +60,7 @@ To access the metadata editor, you will need to sign in using your GitHub accoun
 
 ![Metadata Editor](/metadata-editor.png)
 
-## :white_check_mark: About Metadata Validation {#about-metadata-validation}
+## About Metadata Validation {#about-metadata-validation}
 
 When a `codemeta.json` or `CITATION.cff` file is detected in your repository, Codefair automatically validates each file
 to ensure it conforms to its respective standard. The validation results are reflected in the issue dashboard, and you

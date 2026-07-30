@@ -8,11 +8,11 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=CWL%20Validation&app=codefair&org=fairdataihub
 ---
 
-# :sparkles: CWL Validation
+# CWL Validation
 
 This section provides an overview of the CWL Validation feature of Codefair.
 
-## :newspaper: What is CWL Validation?
+## What is CWL Validation?
 
 The Common Workflow Language (CWL) is a specification for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high-performance computing (HPC) environments. The CWL standard is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, Physics, and Chemistry. CWL is developed by the [Common Workflow Language working group](https://www.commonwl.org/).
 
@@ -28,13 +28,13 @@ If your repository contains no `.cwl` files, the CWL section is left off your da
 The repository-wide scan for `.cwl` files runs during full Codefair checks rather than on every single push. If you have just added your first CWL file and don't see the section yet, use **Rerun CWL Validation** from the repository page in the Codefair dashboard.
 :::
 
-## :bar_chart: CWL Issue Dashboard
+## CWL Issue Dashboard
 
 The CWL section on the GitHub issue dashboard appears under **Language Specific Standards** and summarises the validation of your repository. It shows a ✔️ when every CWL file is valid and a ❗ when one or more are not, along with a count (for example, "2/5 CWL file(s) in your repository are not valid"). A collapsible summary table lists each file and its individual result, and a **View CWL Report** button links to the full results page.
 
 ![CWL Issue Dashboard](/cwl-dashboard.png)
 
-## :white_check_mark: CWL Validation Results
+## CWL Validation Results
 
 The CWL validation results page shows the details of each file that was checked. Every file is listed with its status, the date it was last validated, a **View file** link back to that file on GitHub, and, when validation failed, the full message produced by `cwltool` so you can see exactly which line caused the problem.
 

@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Overview%20of%20Features&app=codefair&org=fairdataihub
 ---
 
-# :sparkles: Overview of Features
+# Overview of Features
 
 The table below lists all the current and upcoming features of Codefair. It also indicates for what type of research software each feature is suitable.
 

@@ -8,11 +8,11 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Adding%20a%20validation%20feature%20to%20Codefair&app=codefair&org=fairdataihub
 ---
 
-# :hammer_and_wrench: Adding a Validation Endpoint
+# Adding a Validation Endpoint
 
 Extend Codefair’s **Validator Microservice** (Flask + Flask-RESTX) by adding custom HTTP endpoints under `validator/apis`. Follow the sections below to seamlessly integrate your new validation logic.
 
-## :sparkles: Overview
+## Overview
 
 This guide walks through creating a new validation route, securing inputs, updating dependencies, and testing your endpoint locally.
 
@@ -27,12 +27,12 @@ The validator is a standalone, stateless microservice. The central API (`ui/`) c
 
 Interactive Swagger docs are served at `/docs`.
 
-## :bookmark: Prerequisites
+## Prerequisites
 
 - A Python 3.10+ environment
 - Familiarity with Flask and RESTful APIs
 
-## :rocket: Register a New API Route
+## Register a New API Route
 
 Create a new route in `validator/apis/__init__.py`:
 
@@ -72,7 +72,7 @@ class ValidateJSON(Resource):
 
 > 📌 You can base this on existing validators like `ValidateCWL` for consistent style.
 
-## :lock: Input Sanitization & Security
+## Input Sanitization & Security
 
 Ensure robust input handling to prevent attacks:
 
@@ -82,7 +82,7 @@ Ensure robust input handling to prevent attacks:
 
 Reuse helper functions (e.g., `clean_output`) from other endpoints to sanitize and parse external tool outputs.
 
-## :package: Update Dependencies & Entrypoint
+## Update Dependencies & Entrypoint
 
 1. **Dependencies:** If your validator relies on new libraries (e.g., `jsonschema`), add them to `validator/requirements.txt`.
 2. **Entrypoint:** No changes required in `validator/app.py`. All `@api.route` decorators are auto-registered via `api.init_app(app)`.
@@ -93,7 +93,7 @@ Reuse helper functions (e.g., `clean_output`) from other endpoints to sanitize a
 > from .json_validator import JsonValidator
 > ```
 
-## :white_check_mark: Testing Your Endpoint
+## Testing Your Endpoint
 
 1. **Activate your environment:**
 

@@ -8,13 +8,13 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Platform%20Providers&app=codefair&org=fairdataihub
 ---
 
-# :electric_plug: Platform Providers (GitLab)
+# Platform Providers (GitLab)
 
 Codefair is being built to work across git platforms, not just GitHub. The mechanism that makes this possible is the **provider abstraction**: every compliance check, dashboard render, and pull-request operation goes through a platform-agnostic interface instead of calling a platform SDK directly.
 
 > [!NOTE] > **Status:** GitLab support is **planned**. The `RepositoryProvider` interface and the GitHub implementation exist today; a `GitLabRepositoryProvider` does not yet. This page documents the contract so the community can help build it.
 
-## :jigsaw: The provider model
+## The provider model
 
 The contract lives in `ui/server/services/providers/interface.ts`:
 
@@ -45,7 +45,7 @@ flowchart TD
   I -. "same contract" .-> GL
 ```
 
-## :clipboard: The contract
+## The contract
 
 `RepositoryProvider` groups its methods into four areas:
 
@@ -58,7 +58,7 @@ flowchart TD
 
 All methods take plain values (`owner`, `repo`, `path`, …) and return the neutral types defined alongside the interface: `RepoInfo`, `FileContent`, `PullRequestRef`, `IssueRef`, and so on. Nothing GitHub-specific leaks through.
 
-## :white_check_mark: The GitHub implementation (reference)
+## The GitHub implementation (reference)
 
 `ui/server/services/providers/github.ts` is the implementation to copy. It wraps an installation-scoped Octokit client and translates each contract method into a GitHub REST call:
 
@@ -102,7 +102,7 @@ export class GitHubRepositoryProvider implements RepositoryProvider {
 }
 ```
 
-## :rocket: Adding GitLab step by step
+## Adding GitLab step by step
 
 ### 1. Implement the provider
 

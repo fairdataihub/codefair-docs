@@ -155,7 +155,8 @@ function appSidebarGuide() {
       text: 'Extending the Platform',
       collapsible: true,
       items: [
-        { text: 'Platform Providers (GitLab)', link: '/dev/providers.md' },
+        // Temporarily hidden
+        // { text: 'Platform Providers (GitLab)', link: '/dev/providers.md' },
         { text: 'REST API Reference', link: '/dev/api-reference.md' },
       ],
     },

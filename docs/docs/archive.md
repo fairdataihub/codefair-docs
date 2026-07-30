@@ -8,7 +8,7 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Software%20Archive&app=codefair&org=fairdataihub
 ---
 
-# :label: FAIR Software Release
+# FAIR Software Release
 
 In the [FAIR4RS Principles](https://doi.org/10.1038/s41597-022-01710-x), many of the principles aimed at making research software **Findable** and **Accessible** can be fulfilled by archiving the software in a suitable archival repository. This is critical to ensure the long-term preservation and accessibility of the software. One recommended approach, as prescribed by the [FAIR-BioRS guidelines](https://doi.org/10.1038/s41597-023-02463-x), is to archive each release of your software on Zenodo.
 
@@ -24,13 +24,13 @@ There is a webhook method that allows you to [automatically archive each GitHub 
 To archive your software on Zenodo, you will need to have a [license file](/docs/license.md) and [metadata files](/docs/metadata.md) (CITATION.cff and codemeta.json) in your repository.
 :::
 
-## :rocket: How to make a FAIR release
+## How to make a FAIR release
 
 To make a FAIR software release, you can simply click on the `Create release` button provided in the GitHub Issue Dashboard under the FAIR Software Release section. This will direct you to the Codefair's UI that takes you step by step into connecting to Zenodo, providing metadata required by Zenodo, making a release on GitHub, and archiving it on Zenodo.
 
 ![Software Archive](/zenodo-dashboard.png)
 
-## :desktop_computer: FAIR software release UI
+## FAIR software release UI
 
 The Zenodo archive UI is a user-friendly interface that allows you to archive your research software. It takes you through several steps:
 
@@ -80,7 +80,7 @@ The Zenodo archive UI is a user-friendly interface that allows you to archive yo
 
 After clicking the `Start the Zenodo publish process` button, Codefair will automatically handle your release. This includes generating a DOI via Zenodo for citation, updating the metadata files (CITATION.cff and codemeta.json) with the new DOI, and finalizing the release on both GitHub and Zenodo. You can monitor the status in both the Codefair UI and GitHub Issue dashboards. Once completed, Codefair will notify you of the successful archival, allowing you to track the entire Zenodo process.
 
-## :label: Share your DOI badge {#share-your-doi-badge}
+## Share your DOI badge {#share-your-doi-badge}
 
 Once your software is archived on Zenodo, Codefair generates a **DOI badge** you can add to your README so visitors can quickly find and cite your latest release. Click **Request Zenodo badge** on the release page and Codefair shows ready-to-copy snippets in Markdown and HTML, plus the image and target URLs on their own:
 
@@ -104,7 +104,7 @@ Two different URLs are doing two different jobs here:
 
 Both always reflect your most recently published Zenodo DOI, so the badge stays up to date as you publish new releases without you having to edit your README again.
 
-## :closed_lock_with_key: Managing your Zenodo connection
+## Managing your Zenodo connection
 
 Codefair stores a Zenodo token so it can create depositions on your behalf. There are two ways to remove it:
 
@@ -113,7 +113,7 @@ Codefair stores a Zenodo token so it can create depositions on your behalf. Ther
 
 Either way you can reconnect later from the release workflow. Removing a token does not affect anything you have already published; your DOIs and Zenodo records are permanent.
 
-## :bookmark: How Codefair finds your existing DOIs
+## How Codefair finds your existing DOIs
 
 Even before you publish through Codefair, the dashboard looks for identifiers you may already have. It reads the `identifier` field of your `codemeta.json` and the `doi` field of your `CITATION.cff`, and sorts what it finds into three groups:
 
@@ -126,7 +126,7 @@ Even before you publish through Codefair, the dashboard looks for identifiers yo
 
 If more than one identifier is found, Codefair picks a **primary** one (preferring a Zenodo DOI) and lists the rest under _"Additional identifiers found"_, noting which file each came from. This is informational; Codefair never edits or removes identifiers you added yourself.
 
-## :warning: Requirements and limits
+## Requirements and limits
 
 A few conditions are enforced before a release can be archived:
 
@@ -139,6 +139,6 @@ A few conditions are enforced before a release can be archived:
 Testing? Point Codefair at the [Zenodo Sandbox](https://sandbox.zenodo.org/) instead of production so you can practise the whole workflow without minting a real DOI. Sandbox DOIs use the `10.5072` prefix.
 :::
 
-## :world_map: Workflow Diagram
+## Workflow Diagram
 
 ![Zenodo Archive](/zenodo-diagram.png)

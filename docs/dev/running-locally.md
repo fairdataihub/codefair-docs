@@ -8,11 +8,11 @@ head:
       content: https://kalai.fairdataihub.org/api/generate?title=Codefair%20Documentation&description=Running%20the%20GitHub%20Repository&app=codefair&org=fairdataihub
 ---
 
-# :computer: Running Locally
+# Running Locally
 
 This section provides instructions for developers to run the Codefair GitHub repository locally. If you have not yet, read the [Architecture](./architecture.md) page first; it explains how the pieces below fit together.
 
-## :file_folder: Code structure
+## Code structure
 
 Codefair is a **central API**: a single Nuxt application that serves the web UI and the backend, plus a small validation microservice. The repository has two active parts:
 
@@ -23,7 +23,7 @@ Codefair is a **central API**: a single Nuxt application that serves the web UI 
 > [!NOTE]
 > The repository also contains a `bot/` folder: the original [Probot](https://probot.github.io/) backend, now **being retired**. You do **not** need to set it up for local development: all backend functionality you'll be working on lives in `ui/server`. It is still deployed in production for repositories that have not yet been migrated to the central API. See [Architecture](./architecture.md#use-central-api-flag).
 
-## :white_check_mark: Prerequisites
+## Prerequisites
 
 Before you can run the Codefair repository, you will need the following prerequisites:
 
@@ -62,14 +62,14 @@ Before you can run the Codefair repository, you will need the following prerequi
 
    After creating the App, generate a **private key** (`.pem`) and note the **App ID**. These become `GH_APP_PRIVATE_KEY` and `GH_APP_ID`.
 
-## :arrow_down: Clone the repository
+## Clone the repository
 
 ```bash
 git clone https://github.com/fairdataihub/codefair-app.git
 cd codefair-app
 ```
 
-## :elephant: Set up the database
+## Set up the database
 
 Start a local PostgreSQL instance using the provided Compose file at the repository root:
 
@@ -83,7 +83,7 @@ This starts Postgres on port `5432` with database `codefair_local` (user `admin`
 DATABASE_URL="postgresql://admin:root@localhost:5432/codefair_local"
 ```
 
-## :key: Environment variables
+## Environment variables
 
 Unlike the old Probot setup, there is now a **single** `.env` file, located in the `ui/` directory. The required variables are enforced at startup by `ui/server/plugins/env-check.ts`. If any are missing, the app refuses to boot and tells you which one. Create `ui/.env` with the following:
 
@@ -121,7 +121,7 @@ ZENODO_REDIRECT_URI=        # Zenodo OAuth redirect URI
 > [!TIP]
 > For local archival testing, point the Zenodo variables at the [Zenodo Sandbox](https://sandbox.zenodo.org/) rather than production so you don't mint real DOIs.
 
-## :running: Running the services
+## Running the services
 
 ### 1. Central API (`ui/`)
 

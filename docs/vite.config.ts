@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   optimizeDeps: {
-    include: ['@braintree/sanitize-url', 'mermaid', 'dayjs', 'moment-mini'],
+    include: ['@braintree/sanitize-url', 'mermaid', 'dayjs'],
   },
   plugins: [
     SearchPlugin({

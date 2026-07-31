@@ -48,17 +48,7 @@ Codefair is a platform for that combines the power of GitHub apps and an intuiti
 
 ## :bangbang: Prerequisites
 
-This project uses `yarn` as the package manager. If you do not have `yarn` installed, you can install it with the following command:
-
-```bash
-npm install -g yarn
-```
-
-If you already have a conda environment on your machine, you can install the dependencies with:
-
-```bash
-conda install -c conda-forge yarn nodejs
-```
+This project uses [mise](https://mise.jdx.dev/) to manage the Node.js and `pnpm` versions, which are pinned in `mise.toml`. Install mise by following the [getting started guide](https://mise.jdx.dev/getting-started.html) for your platform.
 
 ## :running: Run Locally
 
@@ -66,26 +56,34 @@ Clone the project
 
 ```bash
 git clone https://github.com/fairdataihub/codefair-docs.git
+cd codefair-docs
+```
+
+Trust and install the required tool versions
+
+```bash
+mise trust
+mise install
 ```
 
 Install the dependencies
 
 ```bash
-yarn install
+pnpm install
 ```
 
 Start the server
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 ## :building_construction: Build Locally
 
-Use this to build a local production version of the site. User `docs:serve` to preview the local build.
+Use this to build a local production version of the site. Use `docs:serve` to preview the local build.
 
 ```bash
-yarn docs:build
+pnpm docs:build
 ```
 
 ## :arrow_forward: Submitting a PR
@@ -93,8 +91,8 @@ yarn docs:build
 If you are an external contributor, please make a fork of the repository and submit a PR from your fork.
 
 1. Create a new branch from the `main` branch.
-2. Make your changes. You can test your changes locally by running `yarn dev`. Make sure to check the console for any errors.
-3. Test your changes on a local build by running `yarn build` and `yarn serve`. If this works, you can submit yout changes.
+2. Make your changes. You can test your changes locally by running `pnpm dev`. Make sure to check the console for any errors.
+3. Test your changes on a local build by running `pnpm docs:build` and `pnpm docs:serve`. If this works, you can submit your changes.
 4. Push your changes to the remote branch.
 5. Create a PR to merge your branch into `main`.
 

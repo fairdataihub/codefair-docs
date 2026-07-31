@@ -1,0 +1,16 @@
+allowBuilds:
+  esbuild: true
+  vue-demi: true
+
+# vitepress runs vite with `root: docs/`, and docs/vite.config.ts pre-bundles dayjs and
+# @braintree/sanitize-url -- both transitive deps of mermaid, not direct dependencies.
+# Without a flat node_modules they are unresolvable from docs/ and the dev server dies with
+# "Failed to resolve dependency: dayjs, present in 'optimizeDeps.include'".
+shamefullyHoist: true
+# vitepress-plugin-search peers on vitepress ^1.0.0-rc.35; we are pinned to 1.0.0-alpha.33.
+strictPeerDependencies: false
+
+# setting the minimum release age to 5 days (7200 minutes) to ensure that releases are stable before being used in the workspace
+minimumReleaseAge: 7200
+blockExoticSubdeps: true
+minimumReleaseAgeStrict: true # tracked in https://github.com/pnpm/pnpm/issues/11238

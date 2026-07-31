@@ -1,0 +1,6 @@
+[tools]
+node = "22"
+# npm backend rather than the default aqua one: aqua looks for a `pnpm-win-x64.exe`
+# release asset, which pnpm dropped in v11 (it now ships `pnpm-win32-x64.zip`), so
+# `aqua:pnpm/pnpm@11` fails to install on Windows.
+"npm:pnpm" = "11"

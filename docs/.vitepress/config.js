@@ -99,6 +99,10 @@ export default withMermaid(
         },
       ],
 
+      search: {
+        provider: 'local',
+      },
+
       nav: [
         {
           text: 'Codefair UI',
